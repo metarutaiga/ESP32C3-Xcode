@@ -3,11 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		D66C4B1B29A860E000F27A29 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B1A29A860E000F27A29 /* main.cpp */; };
+		D66C4B1F29A88BF700F27A29 /* libcpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B1E29A88BF700F27A29 /* libcpp.cpp */; };
+		D66C4B2029A88BF700F27A29 /* libcpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B1E29A88BF700F27A29 /* libcpp.cpp */; };
+		D66C4B2229A88F1300F27A29 /* nvs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2129A88F1300F27A29 /* nvs.c */; };
+		D66C4B2329A88F1300F27A29 /* nvs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2129A88F1300F27A29 /* nvs.c */; };
+		D66C4B2529A891C300F27A29 /* vfs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2429A891C300F27A29 /* vfs.c */; };
+		D66C4B2629A891C300F27A29 /* vfs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2429A891C300F27A29 /* vfs.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -17,6 +23,9 @@
 		D66C4B1929A860D000F27A29 /* sdkconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sdkconfig.h; path = hello_world/build/config/sdkconfig.h; sourceTree = "<group>"; };
 		D66C4B1A29A860E000F27A29 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../esp32/main.cpp; sourceTree = "<group>"; };
 		D66C4B1C29A864FC00F27A29 /* sdkconfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sdkconfig.h; sourceTree = "<group>"; };
+		D66C4B1E29A88BF700F27A29 /* libcpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = libcpp.cpp; path = ../esp32/lost/libcpp.cpp; sourceTree = "<group>"; };
+		D66C4B2129A88F1300F27A29 /* nvs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = nvs.c; path = ../esp32/lost/nvs.c; sourceTree = "<group>"; };
+		D66C4B2429A891C300F27A29 /* vfs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vfs.c; path = ../esp32/lost/vfs.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +66,7 @@
 		D644A038231ED82900B75B77 = {
 			isa = PBXGroup;
 			children = (
+				D66C4B1D29A88BE000F27A29 /* lost */,
 				D66C4B1A29A860E000F27A29 /* main.cpp */,
 				CE999BD625D21EC800351116 /* Configs */,
 				D644A042231ED82900B75B77 /* Products */,
@@ -71,6 +81,16 @@
 				D627776B295B33050092DFB5 /* libesp32.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		D66C4B1D29A88BE000F27A29 /* lost */ = {
+			isa = PBXGroup;
+			children = (
+				D66C4B1E29A88BF700F27A29 /* libcpp.cpp */,
+				D66C4B2129A88F1300F27A29 /* nvs.c */,
+				D66C4B2429A891C300F27A29 /* vfs.c */,
+			);
+			name = lost;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -115,6 +135,7 @@
 		D644A039231ED82900B75B77 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					30A9A7BA25ADC792000FA104 = {
@@ -171,7 +192,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D66C4B2229A88F1300F27A29 /* nvs.c in Sources */,
+				D66C4B2529A891C300F27A29 /* vfs.c in Sources */,
 				D66C4B1B29A860E000F27A29 /* main.cpp in Sources */,
+				D66C4B1F29A88BF700F27A29 /* libcpp.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +203,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D66C4B2629A891C300F27A29 /* vfs.c in Sources */,
+				D66C4B2029A88BF700F27A29 /* libcpp.cpp in Sources */,
+				D66C4B2329A88F1300F27A29 /* nvs.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
