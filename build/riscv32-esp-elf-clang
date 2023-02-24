@@ -1,0 +1,22 @@
+#!/bin/bash
+
+ARGS=""
+while [[ $# > 0 ]] ; do
+    case $1 in
+        -dead_strip*)
+        ;;
+        -F*)
+        ;;
+        -index-store-path*)
+        shift ;;
+        *)
+        ARGS=$ARGS" "$1
+        ;;
+    esac
+    shift
+done
+ARGS=$ARGS" -target riscv32-esp-elf"
+
+echo esp-clang/bin/clang $ARGS
+esp-clang/bin/clang $ARGS
+exit $?

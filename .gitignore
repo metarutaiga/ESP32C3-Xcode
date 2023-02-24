@@ -1,0 +1,13 @@
+.DS_Store
+bin/
+build/esp32.xcodeproj/xcshareddata/
+build/esp32.xcodeproj/xcuserdata/
+build/esp-clang/
+build/hello_world/
+build/temp/
+build/*.tar.gz
+build/*.tar.xz
+esp32.xcworkspace/xcshareddata/
+esp32.xcworkspace/xcuserdata/
+xcschememanagement.plist
+*.xcscheme
