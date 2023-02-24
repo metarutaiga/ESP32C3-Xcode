@@ -20,6 +20,7 @@ ALTERNATE_LINKER = $CLANGPLATFORM_DIR/riscv32-esp-elf-lld
 GCC_PREFIX_HEADER = $CLANGPLATFORM_DIR/hello_world/build/config/sdkconfig.h
 
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/.
+HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/esp_app_format/include
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/esp_common/include
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/esp_event/include
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/esp_hw_support/include
@@ -115,7 +116,7 @@ OTHER_LDFLAGS = $(inherited) -lapp_update
 OTHER_LDFLAGS = $(inherited) -lbootloader_support
 OTHER_LDFLAGS = $(inherited) -ldriver
 OTHER_LDFLAGS = $(inherited) -lefuse
-OTHER_LDFLAGS = $(inherited) -lesp_app_format
+//OTHER_LDFLAGS = $(inherited) -lesp_app_format
 OTHER_LDFLAGS = $(inherited) -lesp_common
 OTHER_LDFLAGS = $(inherited) -lesp_event
 OTHER_LDFLAGS = $(inherited) -lesp_hw_support

@@ -14,6 +14,8 @@
 		D66C4B2329A88F1300F27A29 /* nvs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2129A88F1300F27A29 /* nvs.c */; };
 		D66C4B2529A891C300F27A29 /* vfs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2429A891C300F27A29 /* vfs.c */; };
 		D66C4B2629A891C300F27A29 /* vfs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2429A891C300F27A29 /* vfs.c */; };
+		D66C4B2829A898C900F27A29 /* esp_app_desc.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2729A898C900F27A29 /* esp_app_desc.c */; };
+		D66C4B2929A898C900F27A29 /* esp_app_desc.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2729A898C900F27A29 /* esp_app_desc.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,7 @@
 		D66C4B1E29A88BF700F27A29 /* libcpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = libcpp.cpp; path = ../esp32/lost/libcpp.cpp; sourceTree = "<group>"; };
 		D66C4B2129A88F1300F27A29 /* nvs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = nvs.c; path = ../esp32/lost/nvs.c; sourceTree = "<group>"; };
 		D66C4B2429A891C300F27A29 /* vfs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vfs.c; path = ../esp32/lost/vfs.c; sourceTree = "<group>"; };
+		D66C4B2729A898C900F27A29 /* esp_app_desc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = esp_app_desc.c; path = ../esp32/lost/esp_app_desc.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +89,7 @@
 		D66C4B1D29A88BE000F27A29 /* lost */ = {
 			isa = PBXGroup;
 			children = (
+				D66C4B2729A898C900F27A29 /* esp_app_desc.c */,
 				D66C4B1E29A88BF700F27A29 /* libcpp.cpp */,
 				D66C4B2129A88F1300F27A29 /* nvs.c */,
 				D66C4B2429A891C300F27A29 /* vfs.c */,
@@ -196,6 +200,7 @@
 				D66C4B2529A891C300F27A29 /* vfs.c in Sources */,
 				D66C4B1B29A860E000F27A29 /* main.cpp in Sources */,
 				D66C4B1F29A88BF700F27A29 /* libcpp.cpp in Sources */,
+				D66C4B2829A898C900F27A29 /* esp_app_desc.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D66C4B2629A891C300F27A29 /* vfs.c in Sources */,
+				D66C4B2929A898C900F27A29 /* esp_app_desc.c in Sources */,
 				D66C4B2029A88BF700F27A29 /* libcpp.cpp in Sources */,
 				D66C4B2329A88F1300F27A29 /* nvs.c in Sources */,
 			);
