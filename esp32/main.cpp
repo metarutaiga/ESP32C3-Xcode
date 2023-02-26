@@ -16,7 +16,10 @@ char thisname[24] = "";
 char number[128] = "";
 bool debug;
 
-extern "C" const char* const __wrap_default_ssid = wifi_format;
+extern "C" uint32_t mesh_sta_auth_expire_time()
+{
+    return 0;
+}
 
 static void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data)
 {

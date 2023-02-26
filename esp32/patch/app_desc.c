@@ -12,7 +12,7 @@
 
 
 // Application version info
-const __attribute__((section(".rodata_desc"))) esp_app_desc_t esp_app_desc = {
+const _SECTION_ATTR_IMPL(".rodata_desc", __LINE__) esp_app_desc_t esp_app_desc = {
     .magic_word = ESP_APP_DESC_MAGIC_WORD,
     .secure_version = 0,
     .version = "1.00",
@@ -22,7 +22,7 @@ const __attribute__((section(".rodata_desc"))) esp_app_desc_t esp_app_desc = {
     .idf_ver = "v5.0.1",
 };
 
-const esp_app_desc_t *esp_app_get_description(void)
+const esp_app_desc_t* esp_app_get_description(void)
 {
     return &esp_app_desc;
 }

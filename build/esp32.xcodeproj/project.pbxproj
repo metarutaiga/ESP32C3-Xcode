@@ -8,14 +8,27 @@
 
 /* Begin PBXBuildFile section */
 		D66C4B1B29A860E000F27A29 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B1A29A860E000F27A29 /* main.cpp */; };
-		D66C4B1F29A88BF700F27A29 /* libcpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B1E29A88BF700F27A29 /* libcpp.cpp */; };
-		D66C4B2029A88BF700F27A29 /* libcpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B1E29A88BF700F27A29 /* libcpp.cpp */; };
-		D66C4B2229A88F1300F27A29 /* nvs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2129A88F1300F27A29 /* nvs.c */; };
-		D66C4B2329A88F1300F27A29 /* nvs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2129A88F1300F27A29 /* nvs.c */; };
-		D66C4B2529A891C300F27A29 /* vfs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2429A891C300F27A29 /* vfs.c */; };
-		D66C4B2629A891C300F27A29 /* vfs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2429A891C300F27A29 /* vfs.c */; };
-		D66C4B2829A898C900F27A29 /* esp_app_desc.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2729A898C900F27A29 /* esp_app_desc.c */; };
-		D66C4B2929A898C900F27A29 /* esp_app_desc.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2729A898C900F27A29 /* esp_app_desc.c */; };
+		D66C4B2E29A8FB8100F27A29 /* app_desc.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2A29A8FB8100F27A29 /* app_desc.c */; };
+		D66C4B2F29A8FB8100F27A29 /* app_desc.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2A29A8FB8100F27A29 /* app_desc.c */; };
+		D66C4B3029A8FB8100F27A29 /* libcpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2B29A8FB8100F27A29 /* libcpp.cpp */; };
+		D66C4B3129A8FB8100F27A29 /* libcpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2B29A8FB8100F27A29 /* libcpp.cpp */; };
+		D66C4B3229A8FB8100F27A29 /* vfs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2C29A8FB8100F27A29 /* vfs.c */; };
+		D66C4B3329A8FB8100F27A29 /* vfs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2C29A8FB8100F27A29 /* vfs.c */; };
+		D66C4B3429A8FB8100F27A29 /* nvs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2D29A8FB8100F27A29 /* nvs.c */; };
+		D66C4B3529A8FB8100F27A29 /* nvs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2D29A8FB8100F27A29 /* nvs.c */; };
+		D68B30C029AB4BB300D1C409 /* aes-wrap.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BB29AB4BB200D1C409 /* aes-wrap.c */; };
+		D68B30C129AB4BB300D1C409 /* aes-cbc.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BC29AB4BB200D1C409 /* aes-cbc.c */; };
+		D68B30C229AB4BB300D1C409 /* aes-unwrap.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BD29AB4BB200D1C409 /* aes-unwrap.c */; };
+		D68B30C329AB4BB300D1C409 /* aes-internal-enc.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BE29AB4BB200D1C409 /* aes-internal-enc.c */; };
+		D68B30C429AB4BB300D1C409 /* aes-internal-dec.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BF29AB4BB300D1C409 /* aes-internal-dec.c */; };
+		D68B30C729AB4D4700D1C409 /* aes.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30C629AB4D4700D1C409 /* aes.c */; };
+		D68B30C929AB515B00D1C409 /* aes-ccm.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30C829AB515B00D1C409 /* aes-ccm.c */; };
+		D68B30CB29AB539E00D1C409 /* aes-ctr.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30CA29AB539E00D1C409 /* aes-ctr.c */; };
+		D68B30CD29AB544C00D1C409 /* aes-gcm.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30CC29AB544C00D1C409 /* aes-gcm.c */; };
+		D68B30CF29AB568200D1C409 /* aes-omac1.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30CE29AB568200D1C409 /* aes-omac1.c */; };
+		D68B30D229AB5DCA00D1C409 /* sha.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30D029AB5DCA00D1C409 /* sha.c */; };
+		D68B30D429AB5DE800D1C409 /* sha1-internal.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30D329AB5DE800D1C409 /* sha1-internal.c */; };
+		D68B30D629AB5FE100D1C409 /* sha256-internal.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30D529AB5FE100D1C409 /* sha256-internal.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,10 +38,26 @@
 		D66C4B1929A860D000F27A29 /* sdkconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sdkconfig.h; path = hello_world/build/config/sdkconfig.h; sourceTree = "<group>"; };
 		D66C4B1A29A860E000F27A29 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../esp32/main.cpp; sourceTree = "<group>"; };
 		D66C4B1C29A864FC00F27A29 /* sdkconfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = sdkconfig.h; sourceTree = "<group>"; };
-		D66C4B1E29A88BF700F27A29 /* libcpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = libcpp.cpp; path = ../esp32/lost/libcpp.cpp; sourceTree = "<group>"; };
-		D66C4B2129A88F1300F27A29 /* nvs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = nvs.c; path = ../esp32/lost/nvs.c; sourceTree = "<group>"; };
-		D66C4B2429A891C300F27A29 /* vfs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vfs.c; path = ../esp32/lost/vfs.c; sourceTree = "<group>"; };
-		D66C4B2729A898C900F27A29 /* esp_app_desc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = esp_app_desc.c; path = ../esp32/lost/esp_app_desc.c; sourceTree = "<group>"; };
+		D66C4B2A29A8FB8100F27A29 /* app_desc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = app_desc.c; path = ../esp32/patch/app_desc.c; sourceTree = "<group>"; };
+		D66C4B2B29A8FB8100F27A29 /* libcpp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = libcpp.cpp; path = ../esp32/patch/libcpp.cpp; sourceTree = "<group>"; };
+		D66C4B2C29A8FB8100F27A29 /* vfs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vfs.c; path = ../esp32/patch/vfs.c; sourceTree = "<group>"; };
+		D66C4B2D29A8FB8100F27A29 /* nvs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = nvs.c; path = ../esp32/patch/nvs.c; sourceTree = "<group>"; };
+		D66C4B3629A8FB8B00F27A29 /* esp32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = esp32.h; path = ../esp32/esp32.h; sourceTree = "<group>"; };
+		D68B30BB29AB4BB200D1C409 /* aes-wrap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "aes-wrap.c"; path = "../esp32/crypto/aes-wrap.c"; sourceTree = "<group>"; };
+		D68B30BC29AB4BB200D1C409 /* aes-cbc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "aes-cbc.c"; path = "../esp32/crypto/aes-cbc.c"; sourceTree = "<group>"; };
+		D68B30BD29AB4BB200D1C409 /* aes-unwrap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "aes-unwrap.c"; path = "../esp32/crypto/aes-unwrap.c"; sourceTree = "<group>"; };
+		D68B30BE29AB4BB200D1C409 /* aes-internal-enc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "aes-internal-enc.c"; path = "../esp32/crypto/aes-internal-enc.c"; sourceTree = "<group>"; };
+		D68B30BF29AB4BB300D1C409 /* aes-internal-dec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "aes-internal-dec.c"; path = "../esp32/crypto/aes-internal-dec.c"; sourceTree = "<group>"; };
+		D68B30C529AB4D4700D1C409 /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = aes.h; path = ../esp32/crypto/aes.h; sourceTree = "<group>"; };
+		D68B30C629AB4D4700D1C409 /* aes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = aes.c; path = ../esp32/crypto/aes.c; sourceTree = "<group>"; };
+		D68B30C829AB515B00D1C409 /* aes-ccm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "aes-ccm.c"; path = "../esp32/crypto/aes-ccm.c"; sourceTree = "<group>"; };
+		D68B30CA29AB539E00D1C409 /* aes-ctr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "aes-ctr.c"; path = "../esp32/crypto/aes-ctr.c"; sourceTree = "<group>"; };
+		D68B30CC29AB544C00D1C409 /* aes-gcm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "aes-gcm.c"; path = "../esp32/crypto/aes-gcm.c"; sourceTree = "<group>"; };
+		D68B30CE29AB568200D1C409 /* aes-omac1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "aes-omac1.c"; path = "../esp32/crypto/aes-omac1.c"; sourceTree = "<group>"; };
+		D68B30D029AB5DCA00D1C409 /* sha.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = sha.c; path = ../esp32/crypto/sha.c; sourceTree = "<group>"; };
+		D68B30D129AB5DCA00D1C409 /* sha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sha.h; path = ../esp32/crypto/sha.h; sourceTree = "<group>"; };
+		D68B30D329AB5DE800D1C409 /* sha1-internal.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "sha1-internal.c"; path = "../esp32/crypto/sha1-internal.c"; sourceTree = "<group>"; };
+		D68B30D529AB5FE100D1C409 /* sha256-internal.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "sha256-internal.c"; path = "../esp32/crypto/sha256-internal.c"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +98,9 @@
 		D644A038231ED82900B75B77 = {
 			isa = PBXGroup;
 			children = (
-				D66C4B1D29A88BE000F27A29 /* lost */,
+				D68B30BA29AB4BA000D1C409 /* crypto */,
+				D66C4B1D29A88BE000F27A29 /* patch */,
+				D66C4B3629A8FB8B00F27A29 /* esp32.h */,
 				D66C4B1A29A860E000F27A29 /* main.cpp */,
 				CE999BD625D21EC800351116 /* Configs */,
 				D644A042231ED82900B75B77 /* Products */,
@@ -86,15 +117,37 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D66C4B1D29A88BE000F27A29 /* lost */ = {
+		D66C4B1D29A88BE000F27A29 /* patch */ = {
 			isa = PBXGroup;
 			children = (
-				D66C4B2729A898C900F27A29 /* esp_app_desc.c */,
-				D66C4B1E29A88BF700F27A29 /* libcpp.cpp */,
-				D66C4B2129A88F1300F27A29 /* nvs.c */,
-				D66C4B2429A891C300F27A29 /* vfs.c */,
+				D66C4B2A29A8FB8100F27A29 /* app_desc.c */,
+				D66C4B2B29A8FB8100F27A29 /* libcpp.cpp */,
+				D66C4B2D29A8FB8100F27A29 /* nvs.c */,
+				D66C4B2C29A8FB8100F27A29 /* vfs.c */,
 			);
-			name = lost;
+			name = patch;
+			sourceTree = "<group>";
+		};
+		D68B30BA29AB4BA000D1C409 /* crypto */ = {
+			isa = PBXGroup;
+			children = (
+				D68B30BC29AB4BB200D1C409 /* aes-cbc.c */,
+				D68B30C829AB515B00D1C409 /* aes-ccm.c */,
+				D68B30CA29AB539E00D1C409 /* aes-ctr.c */,
+				D68B30CC29AB544C00D1C409 /* aes-gcm.c */,
+				D68B30BF29AB4BB300D1C409 /* aes-internal-dec.c */,
+				D68B30BE29AB4BB200D1C409 /* aes-internal-enc.c */,
+				D68B30CE29AB568200D1C409 /* aes-omac1.c */,
+				D68B30BD29AB4BB200D1C409 /* aes-unwrap.c */,
+				D68B30BB29AB4BB200D1C409 /* aes-wrap.c */,
+				D68B30C629AB4D4700D1C409 /* aes.c */,
+				D68B30C529AB4D4700D1C409 /* aes.h */,
+				D68B30D029AB5DCA00D1C409 /* sha.c */,
+				D68B30D129AB5DCA00D1C409 /* sha.h */,
+				D68B30D329AB5DE800D1C409 /* sha1-internal.c */,
+				D68B30D529AB5FE100D1C409 /* sha256-internal.c */,
+			);
+			name = crypto;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,11 +249,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D66C4B2229A88F1300F27A29 /* nvs.c in Sources */,
-				D66C4B2529A891C300F27A29 /* vfs.c in Sources */,
+				D68B30C729AB4D4700D1C409 /* aes.c in Sources */,
+				D68B30C129AB4BB300D1C409 /* aes-cbc.c in Sources */,
+				D68B30D229AB5DCA00D1C409 /* sha.c in Sources */,
+				D66C4B3429A8FB8100F27A29 /* nvs.c in Sources */,
+				D66C4B2E29A8FB8100F27A29 /* app_desc.c in Sources */,
+				D66C4B3229A8FB8100F27A29 /* vfs.c in Sources */,
+				D68B30C429AB4BB300D1C409 /* aes-internal-dec.c in Sources */,
+				D68B30CB29AB539E00D1C409 /* aes-ctr.c in Sources */,
+				D66C4B3029A8FB8100F27A29 /* libcpp.cpp in Sources */,
+				D68B30C229AB4BB300D1C409 /* aes-unwrap.c in Sources */,
+				D68B30C329AB4BB300D1C409 /* aes-internal-enc.c in Sources */,
 				D66C4B1B29A860E000F27A29 /* main.cpp in Sources */,
-				D66C4B1F29A88BF700F27A29 /* libcpp.cpp in Sources */,
-				D66C4B2829A898C900F27A29 /* esp_app_desc.c in Sources */,
+				D68B30CD29AB544C00D1C409 /* aes-gcm.c in Sources */,
+				D68B30C029AB4BB300D1C409 /* aes-wrap.c in Sources */,
+				D68B30C929AB515B00D1C409 /* aes-ccm.c in Sources */,
+				D68B30D429AB5DE800D1C409 /* sha1-internal.c in Sources */,
+				D68B30CF29AB568200D1C409 /* aes-omac1.c in Sources */,
+				D68B30D629AB5FE100D1C409 /* sha256-internal.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -208,10 +274,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D66C4B2629A891C300F27A29 /* vfs.c in Sources */,
-				D66C4B2929A898C900F27A29 /* esp_app_desc.c in Sources */,
-				D66C4B2029A88BF700F27A29 /* libcpp.cpp in Sources */,
-				D66C4B2329A88F1300F27A29 /* nvs.c in Sources */,
+				D66C4B3329A8FB8100F27A29 /* vfs.c in Sources */,
+				D66C4B3529A8FB8100F27A29 /* nvs.c in Sources */,
+				D66C4B2F29A8FB8100F27A29 /* app_desc.c in Sources */,
+				D66C4B3129A8FB8100F27A29 /* libcpp.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,8 +1,6 @@
 #include "esp32.h"
 #include <nvs.h>
 
-#define TAG __FILE_NAME__
-
 esp_err_t nvs_open(const char* name, nvs_open_mode_t open_mode, nvs_handle_t *out_handle) { return ESP_FAIL; }
 esp_err_t nvs_open_from_partition(const char *part_name, const char* name, nvs_open_mode_t open_mode, nvs_handle_t *out_handle) { return ESP_FAIL; }
 esp_err_t nvs_set_i8(nvs_handle_t handle, const char* key, int8_t value) { return ESP_FAIL; }

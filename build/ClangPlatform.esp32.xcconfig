@@ -108,7 +108,7 @@ OTHER_LDFLAGS = $(inherited) -T $CLANGPLATFORM_DIR/../esp-idf/components/soc/esp
 OTHER_LDFLAGS = $(inherited) -Wl,-Map,$(TARGET_BUILD_DIR)/$(EXECUTABLE_NAME).map
 OTHER_LDFLAGS = $(inherited) -Wl,--start-group
 OTHER_LDFLAGS = $(inherited) -lcore
-OTHER_LDFLAGS = $(inherited) -lmesh
+//OTHER_LDFLAGS = $(inherited) -lmesh
 OTHER_LDFLAGS = $(inherited) -lnet80211
 OTHER_LDFLAGS = $(inherited) -lphy
 OTHER_LDFLAGS = $(inherited) -lpp
@@ -147,6 +147,9 @@ OTHER_LDFLAGS = $(inherited) -lspi_flash
 //OTHER_LDFLAGS = $(inherited) -lvfs
 OTHER_LDFLAGS = $(inherited) -lwifi_provisioning
 OTHER_LDFLAGS = $(inherited) -lwpa_supplicant
+
+OTHER_LDFLAGS = $(inherited) -Wl,-wrap,sha1_vector
+OTHER_LDFLAGS = $(inherited) -Wl,-wrap,sha256_vector
 
 OTHER_LDFLAGS[config=Release] = $(inherited) -Wl,--gc-sections
 
