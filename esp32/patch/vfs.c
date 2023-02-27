@@ -29,7 +29,7 @@ int _open_r(struct _reent* r, const char* path, int flags, int mode)
 ssize_t _write_r(struct _reent* r, int fd, const void* data, size_t size)
 {
     if (fd == 0) {
-        static _lock_t write_lock IRAM_BSS_ATTR;
+        static _lock_t write_lock;
         _lock_acquire_recursive(&write_lock);
         const char* text = data;
         for (size_t i = 0; i < size; ++i) {

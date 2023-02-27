@@ -25,12 +25,10 @@ int __wrap_sha1_vector(size_t num_elem, const u8 *addr[], const size_t *len, u8 
 
     esp_sha_acquire_hardware();
     for (i = 0; i <= num_elem; i++) {
-        size_t left = total & 0x3F;
+        size_t left = total % 64;
         size_t fill = 64 - left;
 
         if (i == num_elem) {
-            u32 high = (total >> 29);
-            u32 low = (total << 3);
             memset(buffer + left, 0, fill);
             buffer[left] = 0x80;
             if (left >= 56) {
@@ -38,14 +36,10 @@ int __wrap_sha1_vector(size_t num_elem, const u8 *addr[], const size_t *len, u8 
                 first_block = false;
                 memset(buffer, 0, 56);
             }
-            buffer[56] = (high >> 24);
-            buffer[57] = (high >> 16);
-            buffer[58] = (high >>  8);
-            buffer[59] = (high      );
-            buffer[60] = ( low >> 24);
-            buffer[61] = ( low >> 16);
-            buffer[62] = ( low >>  8);
-            buffer[63] = ( low      );
+            u32 high = __builtin_bswap32(total >> 29);
+            u32 low = __builtin_bswap32(total << 3);
+            memcpy(buffer + 56, &high, sizeof(high));
+            memcpy(buffer + 60, &low, sizeof(low));
             sha_hal_hash_block(SHA1, buffer, 64 / 4, first_block);
             first_block = false;
             break;
