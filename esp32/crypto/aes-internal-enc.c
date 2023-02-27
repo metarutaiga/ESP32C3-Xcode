@@ -16,6 +16,7 @@
 
 #include "aes.h"
 
+
 void * aes_encrypt_init(const u8 *key, size_t len)
 {
     size_t *context = malloc(sizeof(size_t) + len);

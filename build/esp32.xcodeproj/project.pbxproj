@@ -16,19 +16,19 @@
 		D66C4B3329A8FB8100F27A29 /* vfs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2C29A8FB8100F27A29 /* vfs.c */; };
 		D66C4B3429A8FB8100F27A29 /* nvs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2D29A8FB8100F27A29 /* nvs.c */; };
 		D66C4B3529A8FB8100F27A29 /* nvs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2D29A8FB8100F27A29 /* nvs.c */; };
-		D68B30C029AB4BB300D1C409 /* aes-wrap.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BB29AB4BB200D1C409 /* aes-wrap.c */; };
-		D68B30C129AB4BB300D1C409 /* aes-cbc.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BC29AB4BB200D1C409 /* aes-cbc.c */; };
-		D68B30C229AB4BB300D1C409 /* aes-unwrap.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BD29AB4BB200D1C409 /* aes-unwrap.c */; };
-		D68B30C329AB4BB300D1C409 /* aes-internal-enc.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BE29AB4BB200D1C409 /* aes-internal-enc.c */; };
-		D68B30C429AB4BB300D1C409 /* aes-internal-dec.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BF29AB4BB300D1C409 /* aes-internal-dec.c */; };
-		D68B30C729AB4D4700D1C409 /* aes.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30C629AB4D4700D1C409 /* aes.c */; };
-		D68B30C929AB515B00D1C409 /* aes-ccm.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30C829AB515B00D1C409 /* aes-ccm.c */; };
-		D68B30CB29AB539E00D1C409 /* aes-ctr.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30CA29AB539E00D1C409 /* aes-ctr.c */; };
-		D68B30CD29AB544C00D1C409 /* aes-gcm.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30CC29AB544C00D1C409 /* aes-gcm.c */; };
-		D68B30CF29AB568200D1C409 /* aes-omac1.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30CE29AB568200D1C409 /* aes-omac1.c */; };
-		D68B30D229AB5DCA00D1C409 /* sha.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30D029AB5DCA00D1C409 /* sha.c */; };
-		D68B30D429AB5DE800D1C409 /* sha1-internal.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30D329AB5DE800D1C409 /* sha1-internal.c */; };
-		D68B30D629AB5FE100D1C409 /* sha256-internal.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30D529AB5FE100D1C409 /* sha256-internal.c */; };
+		D6865F5729AC7DA500EBC297 /* aes-internal-dec.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BF29AB4BB300D1C409 /* aes-internal-dec.c */; };
+		D6865F5829AC7DA500EBC297 /* aes-internal-enc.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BE29AB4BB200D1C409 /* aes-internal-enc.c */; };
+		D6865F5A29AC7DA500EBC297 /* aes-unwrap.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BD29AB4BB200D1C409 /* aes-unwrap.c */; };
+		D6865F5B29AC7DA500EBC297 /* aes-wrap.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BB29AB4BB200D1C409 /* aes-wrap.c */; };
+		D6865F5C29AC7DA500EBC297 /* aes.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30C629AB4D4700D1C409 /* aes.c */; };
+		D6865F5D29ACA19500EBC297 /* sha.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30D029AB5DCA00D1C409 /* sha.c */; };
+		D6865F5E29ACA19500EBC297 /* sha1-internal.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30D329AB5DE800D1C409 /* sha1-internal.c */; };
+		D6865F5F29ACA19500EBC297 /* sha256-internal.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30D529AB5FE100D1C409 /* sha256-internal.c */; };
+		D6865F6029ACAFAB00EBC297 /* aes-cbc.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BC29AB4BB200D1C409 /* aes-cbc.c */; };
+		D6865F6129ACAFB900EBC297 /* aes-ccm.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30C829AB515B00D1C409 /* aes-ccm.c */; };
+		D6865F6229ACAFB900EBC297 /* aes-ctr.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30CA29AB539E00D1C409 /* aes-ctr.c */; };
+		D6865F6329ACAFB900EBC297 /* aes-gcm.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30CC29AB544C00D1C409 /* aes-gcm.c */; };
+		D6865F6429ACAFB900EBC297 /* aes-omac1.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30CE29AB568200D1C409 /* aes-omac1.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -240,7 +240,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd $TARGET_BUILD_DIR\npython3 -m esptool --chip ESP32-C3 elf2image libesp32.so --flash_freq 40m --flash_mode dout --flash_size 4MB\n";
+			shellScript = "cd $TARGET_BUILD_DIR\npython3 -m esptool --chip esp32c3 elf2image --flash_mode dio --flash_freq 80m --flash_size 4MB --elf-sha256-offset 0xb0 libesp32.so \n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -249,24 +249,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D68B30C729AB4D4700D1C409 /* aes.c in Sources */,
-				D68B30C129AB4BB300D1C409 /* aes-cbc.c in Sources */,
-				D68B30D229AB5DCA00D1C409 /* sha.c in Sources */,
+				D6865F6129ACAFB900EBC297 /* aes-ccm.c in Sources */,
+				D6865F6229ACAFB900EBC297 /* aes-ctr.c in Sources */,
+				D6865F6329ACAFB900EBC297 /* aes-gcm.c in Sources */,
+				D6865F6429ACAFB900EBC297 /* aes-omac1.c in Sources */,
+				D6865F6029ACAFAB00EBC297 /* aes-cbc.c in Sources */,
+				D6865F5729AC7DA500EBC297 /* aes-internal-dec.c in Sources */,
+				D6865F5829AC7DA500EBC297 /* aes-internal-enc.c in Sources */,
+				D6865F5A29AC7DA500EBC297 /* aes-unwrap.c in Sources */,
+				D6865F5B29AC7DA500EBC297 /* aes-wrap.c in Sources */,
+				D6865F5C29AC7DA500EBC297 /* aes.c in Sources */,
+				D6865F5D29ACA19500EBC297 /* sha.c in Sources */,
+				D6865F5E29ACA19500EBC297 /* sha1-internal.c in Sources */,
+				D6865F5F29ACA19500EBC297 /* sha256-internal.c in Sources */,
 				D66C4B3429A8FB8100F27A29 /* nvs.c in Sources */,
 				D66C4B2E29A8FB8100F27A29 /* app_desc.c in Sources */,
 				D66C4B3229A8FB8100F27A29 /* vfs.c in Sources */,
-				D68B30C429AB4BB300D1C409 /* aes-internal-dec.c in Sources */,
-				D68B30CB29AB539E00D1C409 /* aes-ctr.c in Sources */,
 				D66C4B3029A8FB8100F27A29 /* libcpp.cpp in Sources */,
-				D68B30C229AB4BB300D1C409 /* aes-unwrap.c in Sources */,
-				D68B30C329AB4BB300D1C409 /* aes-internal-enc.c in Sources */,
 				D66C4B1B29A860E000F27A29 /* main.cpp in Sources */,
-				D68B30CD29AB544C00D1C409 /* aes-gcm.c in Sources */,
-				D68B30C029AB4BB300D1C409 /* aes-wrap.c in Sources */,
-				D68B30C929AB515B00D1C409 /* aes-ccm.c in Sources */,
-				D68B30D429AB5DE800D1C409 /* sha1-internal.c in Sources */,
-				D68B30CF29AB568200D1C409 /* aes-omac1.c in Sources */,
-				D68B30D629AB5FE100D1C409 /* sha256-internal.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

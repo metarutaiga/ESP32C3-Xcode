@@ -20,7 +20,8 @@ int esp_vfs_select(int nfds, fd_set* readfds, fd_set* writefds, fd_set* errorfds
 
 int _open_r(struct _reent* r, const char* path, int flags, int mode)
 {
-    if (strncmp(path, "/dev/uart/0", 9) == 0)
+    static const char default_stdio_dev[] _SECTION_ATTR_IMPL(".flash", __LINE__) = "/dev/console/";
+    if (strncmp(path, default_stdio_dev, sizeof(default_stdio_dev) - 1) == 0)
         return 0;
     return -1;
 }
@@ -29,20 +30,20 @@ ssize_t _write_r(struct _reent* r, int fd, const void* data, size_t size)
 {
     if (fd == 0) {
         static _lock_t write_lock IRAM_BSS_ATTR;
-        __lock_acquire_recursive(write_lock);
+        _lock_acquire_recursive(&write_lock);
         const char* text = data;
         for (size_t i = 0; i < size; ++i) {
-            char c = text[i];
+            uint8_t c = text[i];
             if (c == '\n') {
                 c = '\r';
-                while (uart_ll_get_txfifo_len(0) < 2);
-                uart_ll_write_txfifo(0, &c, 1);
+                while (uart_ll_get_txfifo_len(&UART0) < 2);
+                uart_ll_write_txfifo(&UART0, &c, 1);
                 c = '\n';
             }
-            while (uart_ll_get_txfifo_len(0) < 2);
-            uart_ll_write_txfifo(0, &c, 1);
+            while (uart_ll_get_txfifo_len(&UART0) < 2);
+            uart_ll_write_txfifo(&UART0, &c, 1);
         }
-        __lock_release_recursive(write_lock);
+        _lock_release_recursive(&write_lock);
         return size;
     }
     return -1;

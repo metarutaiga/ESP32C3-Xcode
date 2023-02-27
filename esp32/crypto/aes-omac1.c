@@ -9,6 +9,7 @@
 
 #include "aes.h"
 
+
 static void gf_mulx(u8 *pad)
 {
     int i, carry;

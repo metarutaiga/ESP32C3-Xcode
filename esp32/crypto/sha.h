@@ -9,6 +9,7 @@
 #ifndef SHA_H
 #define SHA_H
 
+#include <string.h>
 #include <hal/sha_hal.h>
 
 typedef unsigned char u8;
