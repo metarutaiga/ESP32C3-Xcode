@@ -3,6 +3,7 @@
 #include <esp_http_server.h>
 #include <lwip/apps/sntp.h>
 #include "app/fs.h"
+#include "app/https.h"
 #include "app/mqtt.h"
 #include "app/ota.h"
 
@@ -38,13 +39,10 @@ static void wifi_handler(void)
     httpd_register_uri_handler(httpd_server, &web_system_uri);
 #ifdef DEMO
     // HTTPS
-    //https_connect("https://raw.githubusercontent.com/metarutaiga/esp32-Xcode/master/LICENSE.txt", "Connection: close", [](void* arg, char* data, int length)
-    //{
-    //    for (int i = 0; i < length; ++i)
-    //    {
-    //        ets_putc(data[i]);
-    //    }
-    //}, nullptr);
+    https_connect("https://raw.githubusercontent.com/metarutaiga/esp32-Xcode/master/LICENSE.txt", "Connection: close", [](void* arg, char* data, int length)
+    {
+        printf("%*s\n", length, data);
+    }, nullptr);
 #endif
     // MQTT
     int fd = fs_open("mqtt", "r");

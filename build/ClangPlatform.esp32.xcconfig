@@ -51,6 +51,9 @@ HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/soc/
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/soc/esp32c3/include
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/spi_flash/include
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/vfs/include
+HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/wpa_supplicant/src
+HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/wpa_supplicant/include
+HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/wpa_supplicant/port/include
 
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/app_update
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/bootloader_support
