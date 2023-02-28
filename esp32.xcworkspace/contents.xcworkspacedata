@@ -5,6 +5,9 @@
       location = "container:build/esp32.xcodeproj">
    </FileRef>
    <FileRef
+      location = "container:build/freertos-mqtt.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "container:build/littlefs.xcodeproj">
    </FileRef>
 </Workspace>

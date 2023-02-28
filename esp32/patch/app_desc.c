@@ -8,6 +8,7 @@
 #include <sys/param.h>
 #include "esp_app_desc.h"
 #include "esp_attr.h"
+#include "esp_idf_version.h"
 #include "sdkconfig.h"
 
 
@@ -15,11 +16,11 @@
 const _SECTION_ATTR_IMPL(".rodata_desc", __LINE__) esp_app_desc_t esp_app_desc = {
     .magic_word = ESP_APP_DESC_MAGIC_WORD,
     .secure_version = 0,
-    .version = "1.00",
+    .version = "3f2f391",
     .project_name = "esp32-c3",
     .time = __TIME__,
     .date = __DATE__,
-    .idf_ver = "v5.0.1",
+    .idf_ver = "v" __XSTRING(ESP_IDF_VERSION_MAJOR) "." __XSTRING(ESP_IDF_VERSION_MINOR) "." __XSTRING(ESP_IDF_VERSION_PATCH),
 };
 
 const esp_app_desc_t* esp_app_get_description(void)

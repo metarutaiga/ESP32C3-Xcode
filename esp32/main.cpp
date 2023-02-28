@@ -3,23 +3,23 @@
 #include <esp_http_server.h>
 #include <lwip/apps/sntp.h>
 #include "app/fs.h"
+#include "app/mqtt.h"
 #include "app/ota.h"
 
 #define TAG __FILE_NAME__
 
-extern const char version[] __attribute__((weak));
-extern const char build_date[] __attribute__((weak));
 extern const char web_css[] __attribute__((weak));
 extern const char wifi_format[] __attribute__((weak));
 extern const char pass_format[] __attribute__((weak));
-const char version[] = "1.00";
-const char build_date[] = __DATE__ " " __TIME__;
 const char web_css[] = "";
 const char wifi_format[] = "ESP32_%02X%02X%02X";
 const char pass_format[] = "32ESP_%02X%02X%02X";
 char thisname[24] = "";
 char number[128] = "";
 bool debug;
+
+esp_netif_t* ap_netif IRAM_BSS_ATTR;
+esp_netif_t* sta_netif IRAM_BSS_ATTR;
 
 httpd_handle_t httpd_server IRAM_BSS_ATTR;
 extern esp_err_t web_system(httpd_req_t* req);
@@ -52,7 +52,7 @@ static void wifi_handler(void)
     {
         string mqtt = fs_gets(number, 128, fd);
         string port = fs_gets(number, 128, fd);
-        //mqtt_setup(mqtt.c_str(), strtol(port.c_str(), nullptr, 10));
+        mqtt_setup(mqtt.c_str(), strtol(port.c_str(), nullptr, 10));
         fs_close(fd);
     }
 
@@ -86,16 +86,6 @@ static void wifi_handler(void)
     }
 
     app_wifi();
-
-    // Dump task
-    //size_t uxArraySize = uxTaskGetNumberOfTasks();
-    //TaskStatus_t* pxTaskStatusArray = (TaskStatus_t*)malloc(uxArraySize * sizeof(TaskStatus_t));
-    //uxArraySize = uxTaskGetSystemState(pxTaskStatusArray, uxArraySize, nullptr);
-    //for (int i = 0; i < uxArraySize; ++i)
-    //{
-    //    ESP_LOGI(TAG, "%d: %p %8d %s", pxTaskStatusArray[i].xTaskNumber, pxTaskStatusArray[i].pxStackBase, pxTaskStatusArray[i].usStackHighWaterMark, pxTaskStatusArray[i].pcTaskName);
-    //}
-    //free(pxTaskStatusArray);
 }
 
 static void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data)
@@ -139,11 +129,10 @@ extern "C" void app_main()
 {
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
-    esp_netif_create_default_wifi_sta();
-    esp_netif_create_default_wifi_ap();
+    sta_netif = esp_netif_create_default_wifi_sta();
+    ap_netif = esp_netif_create_default_wifi_ap();
 
     // Component
-    ESP_LOGI(TAG, "%s", build_date);
     fs_init();
 
     // WiFi
