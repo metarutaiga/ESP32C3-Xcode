@@ -10,17 +10,6 @@
 #include "aes.h"
 
 
-static void xor_aes_block(u8 *dst, const u8 *src)
-{
-    u32 *d = (u32 *) dst;
-    u32 *s = (u32 *) src;
-    *d++ ^= *s++;
-    *d++ ^= *s++;
-    *d++ ^= *s++;
-    *d++ ^= *s++;
-}
-
-
 static void aes_ccm_auth_start(size_t M, size_t L, const u8 *nonce,
                                const u8 *aad, size_t aad_len, size_t plain_len,
                                u8 *x)

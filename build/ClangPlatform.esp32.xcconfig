@@ -163,6 +163,15 @@ OTHER_LDFLAGS = $(inherited) -lwpa_supplicant
 OTHER_LDFLAGS = $(inherited) -Wl,-wrap,sha1_vector
 OTHER_LDFLAGS = $(inherited) -Wl,-wrap,sha256_vector
 
+OTHER_LDFLAGS = $(inherited) -Wl,-wrap,SHA1Transform
+OTHER_LDFLAGS = $(inherited) -Wl,-wrap,SHA1Init
+OTHER_LDFLAGS = $(inherited) -Wl,-wrap,SHA1Update
+OTHER_LDFLAGS = $(inherited) -Wl,-wrap,SHA1Final
+OTHER_LDFLAGS = $(inherited) -Wl,-wrap,sha256_compress
+OTHER_LDFLAGS = $(inherited) -Wl,-wrap,sha256_init
+OTHER_LDFLAGS = $(inherited) -Wl,-wrap,sha256_process
+OTHER_LDFLAGS = $(inherited) -Wl,-wrap,sha256_done
+
 OTHER_LDFLAGS[config=Release] = $(inherited) -Wl,--gc-sections
 
 ARCHS = riscv32

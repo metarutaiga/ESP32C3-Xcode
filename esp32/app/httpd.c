@@ -2,15 +2,6 @@
 #include <sys/socket.h>
 #include <esp_http_server.h>
 
-#define accept      lwip_accept
-#define bind        lwip_bind
-#define closesocket lwip_close
-#define connect     lwip_connect
-#define listen      lwip_listen
-#define recv        lwip_recv
-#define send        lwip_send
-#define socket      lwip_socket
-
 #define HTTPD_STACK_SIZE 3584
 #define HTTPD_MAX_CONNECTIONS 16
 
@@ -25,7 +16,7 @@ static struct httpd_uri_node* uri_node IRAM_BSS_ATTR;
 
 static void httpd_handler(void* arg)
 {
-    int listen_fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+    int listen_fd = lwip_socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (listen_fd < 0)
         goto final;
 
@@ -34,9 +25,9 @@ static void httpd_handler(void* arg)
     sockaddr.sin_family = AF_INET;
     sockaddr.sin_port = htons(80);
     sockaddr.sin_addr.s_addr = INADDR_ANY;
-    if (bind(listen_fd, (struct sockaddr*)&sockaddr, sizeof(sockaddr)) < 0)
+    if (lwip_bind(listen_fd, (struct sockaddr*)&sockaddr, sizeof(sockaddr)) < 0)
         goto final;
-    if (listen(listen_fd, HTTPD_MAX_CONNECTIONS) < 0)
+    if (lwip_listen(listen_fd, HTTPD_MAX_CONNECTIONS) < 0)
         goto final;
 
     int fds[HTTPD_MAX_CONNECTIONS];
@@ -63,13 +54,13 @@ static void httpd_handler(void* arg)
             }
         }
 
-        if (select(max_fd + 1, &set, NULL, NULL, NULL) <= 0)
+        if (lwip_select(max_fd + 1, &set, NULL, NULL, NULL) <= 0)
             continue;
 
         if (FD_ISSET(listen_fd, &set))
         {
             socklen_t sockaddr_len = sizeof(sockaddr);
-            int fd = accept(listen_fd, (struct sockaddr*)&sockaddr, &sockaddr_len);
+            int fd = lwip_accept(listen_fd, (struct sockaddr*)&sockaddr, &sockaddr_len);
             if (fd >= 0)
             {
                 for (int i = 0; i < HTTPD_MAX_CONNECTIONS; ++i)
@@ -84,7 +75,7 @@ static void httpd_handler(void* arg)
                 }
                 if (fd >= 0)
                 {
-                    closesocket(fd);
+                    lwip_close(fd);
                     ESP_LOGE(TAG, "httpd is full (%d)", fd);
                 }
             }
@@ -99,7 +90,7 @@ static void httpd_handler(void* arg)
                 if (FD_ISSET(fd, &set))
                 {
                     bool closed = false;
-                    int length = recv(fd, buf, 1536, 0);
+                    int length = lwip_recv(fd, buf, 1536, 0);
                     if (length <= 0)
                     {
                         closed = true;
@@ -150,7 +141,7 @@ static void httpd_handler(void* arg)
                     }
                     if (closed)
                     {
-                        closesocket(fd);
+                        lwip_close(fd);
                         httpd_req_t* req = reqs[i];
                         if (req)
                         {
@@ -173,7 +164,7 @@ final:
         int fd = fds[i];
         if (fd >= 0)
         {
-            closesocket(fd);
+            lwip_close(fd);
         }
         httpd_req_t* req = reqs[i];
         if (req)
@@ -184,7 +175,7 @@ final:
     }
     if (listen_fd >= 0)
     {
-        closesocket(listen_fd);
+        lwip_close(listen_fd);
     }
     ESP_LOGI(TAG, "%s is closed", "httpd");
     vTaskDelete(NULL);
@@ -270,17 +261,17 @@ esp_err_t httpd_resp_send(httpd_req_t* r, const char* buf, ssize_t buf_len)
                              r->user_ctx ? (char*)r->user_ctx : "",
                              r->user_ctx ? "\r\n" : "",
                              "", "");
-        send(r->method, header, length, 0);
+        lwip_send(r->method, header, length, 0);
         r->content_len += length;
     }
     if (buf == NULL || buf_len == 0)
     {
-        send(r->method, NULL, 0, 0);
+        lwip_send(r->method, NULL, 0, 0);
         return ESP_OK;
     }
     while (buf_len)
     {
-        int length = send(r->method, buf, buf_len, 0);
+        int length = lwip_send(r->method, buf, buf_len, 0);
         if (length < 0)
         {
             return ESP_FAIL;
@@ -310,12 +301,12 @@ esp_err_t httpd_resp_send_chunk(httpd_req_t* r, const char* buf, ssize_t buf_len
                              r->user_ctx ? (char*)r->user_ctx : "",
                              r->user_ctx ? "\r\n" : "",
                              "Transfer-Encoding: chunked", "\r\n");
-        send(r->method, header, length, 0);
+        lwip_send(r->method, header, length, 0);
         r->content_len += length;
     }
     if (buf == NULL || buf_len == 0)
     {
-        send(r->method, NULL, 0, 0);
+        lwip_send(r->method, NULL, 0, 0);
         return ESP_OK;
     }
     char* temp = malloc(buf_len + 16);
@@ -327,7 +318,7 @@ esp_err_t httpd_resp_send_chunk(httpd_req_t* r, const char* buf, ssize_t buf_len
     buf_len = number_length + 2 + buf_len + 2;
     while (buf_len)
     {
-        int length = send(r->method, buf, buf_len, 0);
+        int length = lwip_send(r->method, buf, buf_len, 0);
         if (length < 0)
         {
             free(temp);

@@ -27,10 +27,7 @@ int aes_128_cbc_encrypt(const u8 *key, const u8 *iv, u8 *data, size_t data_len)
     aes_hal_setkey(key, 16, ESP_AES_ENCRYPT);
     while (data_len > 0) {
         aes_hal_transform_block(data_words, temp);
-        data_words[0] ^= iv_words[0];
-        data_words[1] ^= iv_words[1];
-        data_words[2] ^= iv_words[2];
-        data_words[3] ^= iv_words[3];
+        xor_aes_block(data_words, iv_words);
         iv_words[0] = temp[0];
         iv_words[1] = temp[1];
         iv_words[2] = temp[2];
@@ -59,10 +56,7 @@ int aes_128_cbc_decrypt(const u8 *key, const u8 *iv, u8 *data, size_t data_len)
     esp_aes_acquire_hardware();
     aes_hal_setkey(key, 16, ESP_AES_DECRYPT);
     while (data_len > 0) {
-        data_words[0] ^= iv_words[0];
-        data_words[1] ^= iv_words[1];
-        data_words[2] ^= iv_words[2];
-        data_words[3] ^= iv_words[3];
+        xor_aes_block(data_words, iv_words);
         aes_hal_transform_block(data_words, temp);
         iv_words[0] = temp[0];
         iv_words[1] = temp[1];

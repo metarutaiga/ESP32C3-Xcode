@@ -41,7 +41,10 @@ static void wifi_handler(void)
     // HTTPS
     https_connect("https://raw.githubusercontent.com/metarutaiga/esp32-Xcode/master/LICENSE.txt", "Connection: close", [](void* arg, char* data, int length)
     {
-        printf("%*s\n", length, data);
+        for (int i = 0; i < length; ++i)
+        {
+            putchar(data[i]);
+        }
     }, nullptr);
 #endif
     // MQTT
@@ -77,7 +80,7 @@ static void wifi_handler(void)
     {
         if (strcmp(fs_gets(number, 128, fd), "YES") == 0)
         {
-            ota_init(8233);
+            ota_init(8685);
             debug = true;
         }
         fs_close(fd);
@@ -115,7 +118,7 @@ static void event_handler(void* arg, esp_event_base_t event_base, int32_t event_
         if (fd >= 0)
         {
             if (strcmp(fs_gets(number, 128, fd), "YES") == 0)
-                ota_init(8233);
+                ota_init(8685);
             fs_close(fd);
         }
     }
