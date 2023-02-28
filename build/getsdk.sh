@@ -6,3 +6,9 @@ if [ ! -d "esp-clang" ]; then
   tar xvf llvm-esp-15.0.0-20221201-macos.tar.xz
   rm -rf esp-clang/riscv32-esp-elf/include/c++
 fi
+
+if [ ! -f "patchsdk.ok" ]; then
+  echo ok > patchsdk.ok
+  cd ../esp-idf
+  patch < ../build/patchsdk
+fi
