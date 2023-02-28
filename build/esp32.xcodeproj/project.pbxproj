@@ -29,6 +29,17 @@
 		D6865F6229ACAFB900EBC297 /* aes-ctr.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30CA29AB539E00D1C409 /* aes-ctr.c */; };
 		D6865F6329ACAFB900EBC297 /* aes-gcm.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30CC29AB544C00D1C409 /* aes-gcm.c */; };
 		D6865F6429ACAFB900EBC297 /* aes-omac1.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30CE29AB568200D1C409 /* aes-omac1.c */; };
+		D6865F6C29AD044200EBC297 /* fs.c in Sources */ = {isa = PBXBuildFile; fileRef = D6865F6A29AD044200EBC297 /* fs.c */; };
+		D6865F6D29AD044200EBC297 /* fs.c in Sources */ = {isa = PBXBuildFile; fileRef = D6865F6A29AD044200EBC297 /* fs.c */; };
+		D6865F7029AD085F00EBC297 /* liblittlefs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6865F6F29AD085F00EBC297 /* liblittlefs.a */; };
+		D6865F7229ADA03700EBC297 /* httpd.c in Sources */ = {isa = PBXBuildFile; fileRef = D6865F7129ADA03700EBC297 /* httpd.c */; };
+		D6865F7329ADA03700EBC297 /* httpd.c in Sources */ = {isa = PBXBuildFile; fileRef = D6865F7129ADA03700EBC297 /* httpd.c */; };
+		D6865F7629ADAE2F00EBC297 /* system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6865F7529ADAE2F00EBC297 /* system.cpp */; };
+		D6865F7729ADAE2F00EBC297 /* system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6865F7529ADAE2F00EBC297 /* system.cpp */; };
+		D6865F7929ADAEE200EBC297 /* lost.c in Sources */ = {isa = PBXBuildFile; fileRef = D6865F7829ADAEE200EBC297 /* lost.c */; };
+		D6865F7A29ADAEE200EBC297 /* lost.c in Sources */ = {isa = PBXBuildFile; fileRef = D6865F7829ADAEE200EBC297 /* lost.c */; };
+		D6865F7D29ADDA8F00EBC297 /* ota.c in Sources */ = {isa = PBXBuildFile; fileRef = D6865F7C29ADDA8F00EBC297 /* ota.c */; };
+		D6865F7E29ADDA8F00EBC297 /* ota.c in Sources */ = {isa = PBXBuildFile; fileRef = D6865F7C29ADDA8F00EBC297 /* ota.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +54,14 @@
 		D66C4B2C29A8FB8100F27A29 /* vfs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vfs.c; path = ../esp32/patch/vfs.c; sourceTree = "<group>"; };
 		D66C4B2D29A8FB8100F27A29 /* nvs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = nvs.c; path = ../esp32/patch/nvs.c; sourceTree = "<group>"; };
 		D66C4B3629A8FB8B00F27A29 /* esp32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = esp32.h; path = ../esp32/esp32.h; sourceTree = "<group>"; };
+		D6865F6A29AD044200EBC297 /* fs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fs.c; path = ../esp32/app/fs.c; sourceTree = "<group>"; };
+		D6865F6B29AD044200EBC297 /* fs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fs.h; path = ../esp32/app/fs.h; sourceTree = "<group>"; };
+		D6865F6F29AD085F00EBC297 /* liblittlefs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = liblittlefs.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6865F7129ADA03700EBC297 /* httpd.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = httpd.c; path = ../esp32/app/httpd.c; sourceTree = "<group>"; };
+		D6865F7529ADAE2F00EBC297 /* system.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = system.cpp; path = ../esp32/web/system.cpp; sourceTree = "<group>"; };
+		D6865F7829ADAEE200EBC297 /* lost.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lost.c; path = ../esp32/patch/lost.c; sourceTree = "<group>"; };
+		D6865F7B29ADDA8F00EBC297 /* ota.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ota.h; path = ../esp32/app/ota.h; sourceTree = "<group>"; };
+		D6865F7C29ADDA8F00EBC297 /* ota.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = ota.c; path = ../esp32/app/ota.c; sourceTree = "<group>"; };
 		D68B30BB29AB4BB200D1C409 /* aes-wrap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "aes-wrap.c"; path = "../esp32/crypto/aes-wrap.c"; sourceTree = "<group>"; };
 		D68B30BC29AB4BB200D1C409 /* aes-cbc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "aes-cbc.c"; path = "../esp32/crypto/aes-cbc.c"; sourceTree = "<group>"; };
 		D68B30BD29AB4BB200D1C409 /* aes-unwrap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "aes-unwrap.c"; path = "../esp32/crypto/aes-unwrap.c"; sourceTree = "<group>"; };
@@ -65,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6865F7029AD085F00EBC297 /* liblittlefs.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +101,7 @@
 		300264BD24266097004559E0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D6865F6F29AD085F00EBC297 /* liblittlefs.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -98,8 +119,10 @@
 		D644A038231ED82900B75B77 = {
 			isa = PBXGroup;
 			children = (
+				D6865F6929AD042800EBC297 /* app */,
 				D68B30BA29AB4BA000D1C409 /* crypto */,
 				D66C4B1D29A88BE000F27A29 /* patch */,
+				D6865F7429ADAE1A00EBC297 /* web */,
 				D66C4B3629A8FB8B00F27A29 /* esp32.h */,
 				D66C4B1A29A860E000F27A29 /* main.cpp */,
 				CE999BD625D21EC800351116 /* Configs */,
@@ -122,10 +145,31 @@
 			children = (
 				D66C4B2A29A8FB8100F27A29 /* app_desc.c */,
 				D66C4B2B29A8FB8100F27A29 /* libcpp.cpp */,
+				D6865F7829ADAEE200EBC297 /* lost.c */,
 				D66C4B2D29A8FB8100F27A29 /* nvs.c */,
 				D66C4B2C29A8FB8100F27A29 /* vfs.c */,
 			);
 			name = patch;
+			sourceTree = "<group>";
+		};
+		D6865F6929AD042800EBC297 /* app */ = {
+			isa = PBXGroup;
+			children = (
+				D6865F6A29AD044200EBC297 /* fs.c */,
+				D6865F6B29AD044200EBC297 /* fs.h */,
+				D6865F7129ADA03700EBC297 /* httpd.c */,
+				D6865F7C29ADDA8F00EBC297 /* ota.c */,
+				D6865F7B29ADDA8F00EBC297 /* ota.h */,
+			);
+			name = app;
+			sourceTree = "<group>";
+		};
+		D6865F7429ADAE1A00EBC297 /* web */ = {
+			isa = PBXGroup;
+			children = (
+				D6865F7529ADAE2F00EBC297 /* system.cpp */,
+			);
+			name = web;
 			sourceTree = "<group>";
 		};
 		D68B30BA29AB4BA000D1C409 /* crypto */ = {
@@ -250,9 +294,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6865F6129ACAFB900EBC297 /* aes-ccm.c in Sources */,
+				D6865F7929ADAEE200EBC297 /* lost.c in Sources */,
 				D6865F6229ACAFB900EBC297 /* aes-ctr.c in Sources */,
 				D6865F6329ACAFB900EBC297 /* aes-gcm.c in Sources */,
+				D6865F7D29ADDA8F00EBC297 /* ota.c in Sources */,
 				D6865F6429ACAFB900EBC297 /* aes-omac1.c in Sources */,
+				D6865F7229ADA03700EBC297 /* httpd.c in Sources */,
 				D6865F6029ACAFAB00EBC297 /* aes-cbc.c in Sources */,
 				D6865F5729AC7DA500EBC297 /* aes-internal-dec.c in Sources */,
 				D6865F5829AC7DA500EBC297 /* aes-internal-enc.c in Sources */,
@@ -264,6 +311,8 @@
 				D6865F5F29ACA19500EBC297 /* sha256-internal.c in Sources */,
 				D66C4B3429A8FB8100F27A29 /* nvs.c in Sources */,
 				D66C4B2E29A8FB8100F27A29 /* app_desc.c in Sources */,
+				D6865F6C29AD044200EBC297 /* fs.c in Sources */,
+				D6865F7629ADAE2F00EBC297 /* system.cpp in Sources */,
 				D66C4B3229A8FB8100F27A29 /* vfs.c in Sources */,
 				D66C4B3029A8FB8100F27A29 /* libcpp.cpp in Sources */,
 				D66C4B1B29A860E000F27A29 /* main.cpp in Sources */,
@@ -274,10 +323,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6865F7329ADA03700EBC297 /* httpd.c in Sources */,
+				D6865F7A29ADAEE200EBC297 /* lost.c in Sources */,
 				D66C4B3329A8FB8100F27A29 /* vfs.c in Sources */,
 				D66C4B3529A8FB8100F27A29 /* nvs.c in Sources */,
+				D6865F7729ADAE2F00EBC297 /* system.cpp in Sources */,
 				D66C4B2F29A8FB8100F27A29 /* app_desc.c in Sources */,
+				D6865F7E29ADDA8F00EBC297 /* ota.c in Sources */,
 				D66C4B3129A8FB8100F27A29 /* libcpp.cpp in Sources */,
+				D6865F6D29AD044200EBC297 /* fs.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,6 +15,7 @@
 		30A9A7BB25ADC792000FA104 /* liblittlefs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = liblittlefs.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6865F6529AD005E00EBC297 /* ClangPlatform.esp32.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ClangPlatform.esp32.xcconfig; sourceTree = "<group>"; };
 		D6865F6629AD007800EBC297 /* sdkconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sdkconfig.h; sourceTree = "<group>"; };
+		D6865F6E29AD04A100EBC297 /* sdkconfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = sdkconfig.h; path = hello_world/build/config/sdkconfig.h; sourceTree = "<group>"; };
 		D6D0417E294EEC69006B09EE /* lfs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = lfs.h; path = ../littlefs/lfs.h; sourceTree = "<group>"; };
 		D6D0417F294EEC69006B09EE /* lfs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lfs.c; path = ../littlefs/lfs.c; sourceTree = "<group>"; };
 		D6D04180294EEC69006B09EE /* lfs_util.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = lfs_util.c; path = ../littlefs/lfs_util.c; sourceTree = "<group>"; };
@@ -35,8 +36,9 @@
 		CE999BD625D21EC800351116 /* Configs */ = {
 			isa = PBXGroup;
 			children = (
-				D6865F6629AD007800EBC297 /* sdkconfig.h */,
 				D6865F6529AD005E00EBC297 /* ClangPlatform.esp32.xcconfig */,
+				D6865F6629AD007800EBC297 /* sdkconfig.h */,
+				D6865F6E29AD04A100EBC297 /* sdkconfig.h */,
 			);
 			name = Configs;
 			sourceTree = "<group>";
@@ -86,7 +88,7 @@
 		D644A039231ED82900B75B77 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1400;
+				LastUpgradeCheck = 1420;
 				TargetAttributes = {
 					30A9A7BA25ADC792000FA104 = {
 						CreatedOnToolsVersion = 12.3;
@@ -128,8 +130,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D6865F6529AD005E00EBC297 /* ClangPlatform.esp32.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				DEAD_CODE_STRIPPING = YES;
 				EXECUTABLE_EXTENSION = a;
 				GCC_PREFIX_HEADER = sdkconfig.h;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 			};
 			name = Debug;
 		};
@@ -137,8 +142,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D6865F6529AD005E00EBC297 /* ClangPlatform.esp32.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				DEAD_CODE_STRIPPING = YES;
 				EXECUTABLE_EXTENSION = a;
 				GCC_PREFIX_HEADER = sdkconfig.h;
+				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 			};
 			name = Release;
 		};
@@ -175,6 +183,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
@@ -243,6 +252,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;

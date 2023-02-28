@@ -20,8 +20,7 @@ int esp_vfs_select(int nfds, fd_set* readfds, fd_set* writefds, fd_set* errorfds
 
 int _open_r(struct _reent* r, const char* path, int flags, int mode)
 {
-    static const char default_stdio_dev[] _SECTION_ATTR_IMPL(".flash", __LINE__) = "/dev/console/";
-    if (strncmp(path, default_stdio_dev, sizeof(default_stdio_dev) - 1) == 0)
+    if (strncmp(path, "/dev/console/", 13) == 0)
         return 0;
     return -1;
 }

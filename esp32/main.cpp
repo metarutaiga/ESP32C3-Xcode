@@ -1,4 +1,9 @@
 #include "esp32.h"
+#include <time.h>
+#include <esp_http_server.h>
+#include <lwip/apps/sntp.h>
+#include "app/fs.h"
+#include "app/ota.h"
 
 #define TAG __FILE_NAME__
 
@@ -16,9 +21,81 @@ char thisname[24] = "";
 char number[128] = "";
 bool debug;
 
-extern "C" uint32_t mesh_sta_auth_expire_time()
+httpd_handle_t httpd_server IRAM_BSS_ATTR;
+extern esp_err_t web_system(httpd_req_t* req);
+extern esp_err_t web_ssid(httpd_req_t* req);
+extern esp_err_t web_ota(httpd_req_t* req);
+extern esp_err_t web_mqtt(httpd_req_t* req);
+extern esp_err_t web_ntp(httpd_req_t* req);
+extern esp_err_t web_reset(httpd_req_t* req);
+
+extern "C" void app_wifi() __attribute__((weak));
+extern "C" void app_wifi() {}
+static void wifi_handler(void)
 {
-    return 0;
+    // HTTP
+    httpd_uri_t web_system_uri = { .uri = "/setup", .method = HTTP_GET, .handler = web_system };
+    httpd_register_uri_handler(httpd_server, &web_system_uri);
+#ifdef DEMO
+    // HTTPS
+    //https_connect("https://raw.githubusercontent.com/metarutaiga/esp32-Xcode/master/LICENSE.txt", "Connection: close", [](void* arg, char* data, int length)
+    //{
+    //    for (int i = 0; i < length; ++i)
+    //    {
+    //        ets_putc(data[i]);
+    //    }
+    //}, nullptr);
+#endif
+    // MQTT
+    int fd = fs_open("mqtt", "r");
+    if (fd >= 0)
+    {
+        string mqtt = fs_gets(number, 128, fd);
+        string port = fs_gets(number, 128, fd);
+        //mqtt_setup(mqtt.c_str(), strtol(port.c_str(), nullptr, 10));
+        fs_close(fd);
+    }
+
+    // NTP
+    string ntp = "pool.ntp.org";
+    string zone = "GMT-8";
+    fd = fs_open("ntp", "r");
+    if (fd >= 0)
+    {
+        ntp = fs_gets(number, 128, fd);
+        zone = fs_gets(number, 128, fd);
+        fs_close(fd);
+    }
+    free((void*)sntp_getservername(0));
+    sntp_setoperatingmode(SNTP_OPMODE_POLL);
+    sntp_setservername(0, strdup(ntp.c_str()));
+    sntp_init();
+    setenv("TZ", zone.c_str(), 1);
+    tzset();
+
+    // OTA
+    fd = fs_open("ota", "r");
+    if (fd >= 0)
+    {
+        if (strcmp(fs_gets(number, 128, fd), "YES") == 0)
+        {
+            ota_init(8233);
+            debug = true;
+        }
+        fs_close(fd);
+    }
+
+    app_wifi();
+
+    // Dump task
+    //size_t uxArraySize = uxTaskGetNumberOfTasks();
+    //TaskStatus_t* pxTaskStatusArray = (TaskStatus_t*)malloc(uxArraySize * sizeof(TaskStatus_t));
+    //uxArraySize = uxTaskGetSystemState(pxTaskStatusArray, uxArraySize, nullptr);
+    //for (int i = 0; i < uxArraySize; ++i)
+    //{
+    //    ESP_LOGI(TAG, "%d: %p %8d %s", pxTaskStatusArray[i].xTaskNumber, pxTaskStatusArray[i].pxStackBase, pxTaskStatusArray[i].usStackHighWaterMark, pxTaskStatusArray[i].pcTaskName);
+    //}
+    //free(pxTaskStatusArray);
 }
 
 static void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data)
@@ -40,9 +117,19 @@ static void event_handler(void* arg, esp_event_base_t event_base, int32_t event_
         ESP_LOGI(TAG, "got ip:%s", esp_ip4addr_ntoa(&event->ip_info.ip, number, 128));
 
         ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
+
+        wifi_handler();
     }
     else if (event_base == IP_EVENT && event_id == IP_EVENT_AP_STAIPASSIGNED)
     {
+        // OTA
+        int fd = fs_open("ota", "r");
+        if (fd >= 0)
+        {
+            if (strcmp(fs_gets(number, 128, fd), "YES") == 0)
+                ota_init(8233);
+            fs_close(fd);
+        }
     }
 }
 
@@ -57,12 +144,15 @@ extern "C" void app_main()
 
     // Component
     ESP_LOGI(TAG, "%s", build_date);
+    fs_init();
 
     // WiFi
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
     ESP_ERROR_CHECK(esp_wifi_init(&cfg));
     ESP_ERROR_CHECK(esp_event_handler_instance_register(WIFI_EVENT, ESP_EVENT_ANY_ID, &event_handler, NULL, NULL));
     ESP_ERROR_CHECK(esp_event_handler_instance_register(IP_EVENT, IP_EVENT_STA_GOT_IP, &event_handler, NULL, NULL));
+    ESP_ERROR_CHECK(esp_wifi_set_storage(WIFI_STORAGE_RAM));
+    ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_APSTA));
 
     // MAC
     uint8_t macaddr[6] = {};
@@ -78,10 +168,40 @@ extern "C" void app_main()
     config.ap.ssid_hidden = 0;
     config.ap.max_connection = 4;
     config.ap.beacon_interval = 100;
-    ESP_ERROR_CHECK(esp_wifi_set_storage(WIFI_STORAGE_RAM));
-    ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_APSTA));
     ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_AP, &config));
+
+    // SSID
+    int fd = fs_open("ssid", "r");
+    if (fd >= 0)
+    {
+        wifi_config_t config = {};
+        strcpy((char*)config.sta.ssid, fs_gets(number, 128, fd));
+        strcpy((char*)config.sta.password, fs_gets(number, 128, fd));
+        fs_close(fd);
+        ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &config));
+    }
+
     ESP_ERROR_CHECK(esp_wifi_start());
+
+    // Start the httpd server
+    httpd_config_t httpd_config = HTTPD_DEFAULT_CONFIG();
+    ESP_LOGI(TAG, "Starting server on port: '%d'", httpd_config.server_port);
+    httpd_start(&httpd_server, &httpd_config);
+
+    // Set URI handlers
+    ESP_LOGI(TAG, "Registering URI handlers");
+    httpd_uri_t web_system_uri = { .uri = "/", .method = HTTP_GET, .handler = web_system };
+    httpd_uri_t web_ssid_uri = { .uri = "/ssid", .method = HTTP_GET, .handler = web_ssid };
+    httpd_uri_t web_ota_uri = { .uri = "/ota", .method = HTTP_GET, .handler = web_ota };
+    httpd_uri_t web_mqtt_uri = { .uri = "/mqtt", .method = HTTP_GET, .handler = web_mqtt };
+    httpd_uri_t web_ntp_uri = { .uri = "/ntp", .method = HTTP_GET, .handler = web_ntp };
+    httpd_uri_t web_reset_uri = { .uri = "/reset", .method = HTTP_GET, .handler = web_reset };
+    httpd_register_uri_handler(httpd_server, &web_system_uri);
+    httpd_register_uri_handler(httpd_server, &web_ssid_uri);
+    httpd_register_uri_handler(httpd_server, &web_ota_uri);
+    httpd_register_uri_handler(httpd_server, &web_mqtt_uri);
+    httpd_register_uri_handler(httpd_server, &web_ntp_uri);
+    httpd_register_uri_handler(httpd_server, &web_reset_uri);
 
     // Setup
     strcpy(thisname, (char*)config.ap.ssid);
