@@ -9,10 +9,8 @@
 
 #define TAG __FILE_NAME__
 
-extern const char web_css[] __attribute__((weak));
 extern const char wifi_format[] __attribute__((weak));
 extern const char pass_format[] __attribute__((weak));
-const char web_css[] = "";
 const char wifi_format[] = "ESP32_%02X%02X%02X";
 const char pass_format[] = "32ESP_%02X%02X%02X";
 char thisname[24] = "";

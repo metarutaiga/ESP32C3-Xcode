@@ -9,13 +9,9 @@
 /* Begin PBXBuildFile section */
 		D66C4B1B29A860E000F27A29 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B1A29A860E000F27A29 /* main.cpp */; };
 		D66C4B2E29A8FB8100F27A29 /* app_desc.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2A29A8FB8100F27A29 /* app_desc.c */; };
-		D66C4B2F29A8FB8100F27A29 /* app_desc.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2A29A8FB8100F27A29 /* app_desc.c */; };
 		D66C4B3029A8FB8100F27A29 /* libcpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2B29A8FB8100F27A29 /* libcpp.cpp */; };
-		D66C4B3129A8FB8100F27A29 /* libcpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2B29A8FB8100F27A29 /* libcpp.cpp */; };
 		D66C4B3229A8FB8100F27A29 /* vfs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2C29A8FB8100F27A29 /* vfs.c */; };
-		D66C4B3329A8FB8100F27A29 /* vfs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2C29A8FB8100F27A29 /* vfs.c */; };
 		D66C4B3429A8FB8100F27A29 /* nvs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2D29A8FB8100F27A29 /* nvs.c */; };
-		D66C4B3529A8FB8100F27A29 /* nvs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2D29A8FB8100F27A29 /* nvs.c */; };
 		D6865F5729AC7DA500EBC297 /* aes-internal-dec.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BF29AB4BB300D1C409 /* aes-internal-dec.c */; };
 		D6865F5829AC7DA500EBC297 /* aes-internal-enc.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BE29AB4BB200D1C409 /* aes-internal-enc.c */; };
 		D6865F5A29AC7DA500EBC297 /* aes-unwrap.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BD29AB4BB200D1C409 /* aes-unwrap.c */; };
@@ -30,28 +26,19 @@
 		D6865F6329ACAFB900EBC297 /* aes-gcm.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30CC29AB544C00D1C409 /* aes-gcm.c */; };
 		D6865F6429ACAFB900EBC297 /* aes-omac1.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30CE29AB568200D1C409 /* aes-omac1.c */; };
 		D6865F6C29AD044200EBC297 /* fs.c in Sources */ = {isa = PBXBuildFile; fileRef = D6865F6A29AD044200EBC297 /* fs.c */; };
-		D6865F6D29AD044200EBC297 /* fs.c in Sources */ = {isa = PBXBuildFile; fileRef = D6865F6A29AD044200EBC297 /* fs.c */; };
 		D6865F7029AD085F00EBC297 /* liblittlefs.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6865F6F29AD085F00EBC297 /* liblittlefs.a */; };
 		D6865F7229ADA03700EBC297 /* httpd.c in Sources */ = {isa = PBXBuildFile; fileRef = D6865F7129ADA03700EBC297 /* httpd.c */; };
-		D6865F7329ADA03700EBC297 /* httpd.c in Sources */ = {isa = PBXBuildFile; fileRef = D6865F7129ADA03700EBC297 /* httpd.c */; };
 		D6865F7629ADAE2F00EBC297 /* system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6865F7529ADAE2F00EBC297 /* system.cpp */; };
-		D6865F7729ADAE2F00EBC297 /* system.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6865F7529ADAE2F00EBC297 /* system.cpp */; };
 		D6865F7929ADAEE200EBC297 /* lost.c in Sources */ = {isa = PBXBuildFile; fileRef = D6865F7829ADAEE200EBC297 /* lost.c */; };
-		D6865F7A29ADAEE200EBC297 /* lost.c in Sources */ = {isa = PBXBuildFile; fileRef = D6865F7829ADAEE200EBC297 /* lost.c */; };
 		D6865F7D29ADDA8F00EBC297 /* ota.c in Sources */ = {isa = PBXBuildFile; fileRef = D6865F7C29ADDA8F00EBC297 /* ota.c */; };
-		D6865F7E29ADDA8F00EBC297 /* ota.c in Sources */ = {isa = PBXBuildFile; fileRef = D6865F7C29ADDA8F00EBC297 /* ota.c */; };
 		D6865F8229ADEF7700EBC297 /* mqtt.c in Sources */ = {isa = PBXBuildFile; fileRef = D6865F8029ADEF7700EBC297 /* mqtt.c */; };
-		D6865F8329ADEF7700EBC297 /* mqtt.c in Sources */ = {isa = PBXBuildFile; fileRef = D6865F8029ADEF7700EBC297 /* mqtt.c */; };
 		D6865F8529ADF4A200EBC297 /* libfreertos-mqtt.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6865F8429ADF4A200EBC297 /* libfreertos-mqtt.a */; };
 		D6865F8829ADFB6200EBC297 /* https.c in Sources */ = {isa = PBXBuildFile; fileRef = D6865F8629ADFB6200EBC297 /* https.c */; };
-		D6865F8929ADFB6200EBC297 /* https.c in Sources */ = {isa = PBXBuildFile; fileRef = D6865F8629ADFB6200EBC297 /* https.c */; };
 		D6865F8C29AF106300EBC297 /* fota.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6865F8B29AF106300EBC297 /* fota.cpp */; };
-		D6865F8D29AF106300EBC297 /* fota.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D6865F8B29AF106300EBC297 /* fota.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		30A9A7BB25ADC792000FA104 /* libesp32.so */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libesp32.so; sourceTree = BUILT_PRODUCTS_DIR; };
-		D627776B295B33050092DFB5 /* libesp32.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libesp32.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		D66C4B1829A860C100F27A29 /* ClangPlatform.esp32.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ClangPlatform.esp32.xcconfig; sourceTree = "<group>"; };
 		D66C4B1929A860D000F27A29 /* sdkconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sdkconfig.h; path = hello_world/build/config/sdkconfig.h; sourceTree = "<group>"; };
 		D66C4B1A29A860E000F27A29 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../esp32/main.cpp; sourceTree = "<group>"; };
@@ -103,13 +90,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D6277769295B33050092DFB5 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -151,7 +131,6 @@
 			isa = PBXGroup;
 			children = (
 				30A9A7BB25ADC792000FA104 /* libesp32.so */,
-				D627776B295B33050092DFB5 /* libesp32.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -236,22 +215,6 @@
 			productReference = 30A9A7BB25ADC792000FA104 /* libesp32.so */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
-		D627776A295B33050092DFB5 /* esp32_lib */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D627776E295B33050092DFB5 /* Build configuration list for PBXNativeTarget "esp32_lib" */;
-			buildPhases = (
-				D6277768295B33050092DFB5 /* Sources */,
-				D6277769295B33050092DFB5 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = esp32_lib;
-			productName = esp32;
-			productReference = D627776B295B33050092DFB5 /* libesp32.a */;
-			productType = "com.apple.product-type.library.static";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -263,9 +226,6 @@
 				TargetAttributes = {
 					30A9A7BA25ADC792000FA104 = {
 						CreatedOnToolsVersion = 12.3;
-					};
-					D627776A295B33050092DFB5 = {
-						CreatedOnToolsVersion = 14.0;
 					};
 				};
 			};
@@ -283,7 +243,6 @@
 			projectRoot = "";
 			targets = (
 				30A9A7BA25ADC792000FA104 /* esp32 */,
-				D627776A295B33050092DFB5 /* esp32_lib */,
 			);
 		};
 /* End PBXProject section */
@@ -344,25 +303,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D6277768295B33050092DFB5 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D6865F7329ADA03700EBC297 /* httpd.c in Sources */,
-				D6865F7A29ADAEE200EBC297 /* lost.c in Sources */,
-				D66C4B3329A8FB8100F27A29 /* vfs.c in Sources */,
-				D6865F8929ADFB6200EBC297 /* https.c in Sources */,
-				D66C4B3529A8FB8100F27A29 /* nvs.c in Sources */,
-				D6865F7729ADAE2F00EBC297 /* system.cpp in Sources */,
-				D6865F8329ADEF7700EBC297 /* mqtt.c in Sources */,
-				D66C4B2F29A8FB8100F27A29 /* app_desc.c in Sources */,
-				D6865F7E29ADDA8F00EBC297 /* ota.c in Sources */,
-				D66C4B3129A8FB8100F27A29 /* libcpp.cpp in Sources */,
-				D6865F6D29AD044200EBC297 /* fs.c in Sources */,
-				D6865F8D29AF106300EBC297 /* fota.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
@@ -393,34 +333,6 @@
 					DEMO,
 					"$(inherited)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				PRODUCT_NAME = esp32;
-			};
-			name = Release;
-		};
-		D627776C295B33050092DFB5 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D66C4B1829A860C100F27A29 /* ClangPlatform.esp32.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				DEAD_CODE_STRIPPING = YES;
-				EXECUTABLE_EXTENSION = a;
-				EXECUTABLE_PREFIX = lib;
-				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
-				PRODUCT_NAME = esp32;
-			};
-			name = Debug;
-		};
-		D627776D295B33050092DFB5 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D66C4B1829A860C100F27A29 /* ClangPlatform.esp32.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				DEAD_CODE_STRIPPING = YES;
-				EXECUTABLE_EXTENSION = a;
-				EXECUTABLE_PREFIX = lib;
-				MACH_O_TYPE = staticlib;
 				MACOSX_DEPLOYMENT_TARGET = "$(RECOMMENDED_MACOSX_DEPLOYMENT_TARGET)";
 				PRODUCT_NAME = esp32;
 			};
@@ -568,15 +480,6 @@
 			buildConfigurations = (
 				30A9A7BC25ADC792000FA104 /* Debug */,
 				30A9A7BD25ADC792000FA104 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D627776E295B33050092DFB5 /* Build configuration list for PBXNativeTarget "esp32_lib" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D627776C295B33050092DFB5 /* Debug */,
-				D627776D295B33050092DFB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

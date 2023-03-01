@@ -103,7 +103,7 @@ static void mqtt_loop(TimerHandle_t timer)
     if (now_rssi != rssi)
     {
         now_rssi = rssi;
-        mqtt_publish(mqtt_prefix(number, "ESP", "RSSI", 0), itoa(rssi | 0xFFFFFF00, number + 64, 10), 0, 0);
+        mqtt_publish(mqtt_prefix(number, "ESP", "RSSI", 0), itoa(rssi, number + 64, 10), 0, 0);
     }
 }
 

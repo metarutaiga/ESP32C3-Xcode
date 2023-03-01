@@ -3,6 +3,9 @@
 #include <esp_http_server.h>
 #include "app/fs.h"
 
+extern const char web_css[] __attribute__((weak));
+const char web_css[] = "";
+
 esp_err_t web_system(httpd_req_t* req)
 {
     string html;

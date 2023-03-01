@@ -13,6 +13,7 @@
 
 
 // Application version info
+extern const esp_app_desc_t esp_app_desc __attribute__((weak));
 const _SECTION_ATTR_IMPL(".rodata_desc", __LINE__) esp_app_desc_t esp_app_desc = {
     .magic_word = ESP_APP_DESC_MAGIC_WORD,
     .secure_version = 0,

@@ -15,14 +15,18 @@ extern "C" {
 #include <esp_log.h>
 #include <esp_netif.h>
 #include <esp_system.h>
+#include <esp_timer.h>
 #include <esp_wifi.h>
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
 #include <freertos/timers.h>
 
 extern char* url_decode(char* param);
+inline int32_t esp_timer_get_time_ms(void)
+{
+    return (int32_t)(esp_timer_get_time() / 1000);
+}
 
-extern const char web_css[];
 extern char thisname[24];
 extern char number[128];
 extern bool debug;
