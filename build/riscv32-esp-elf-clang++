@@ -15,7 +15,7 @@ while [[ $# > 0 ]] ; do
     esac
     shift
 done
-ARGS=$ARGS" -target riscv32-esp-elf"
+ARGS=$ARGS" -target riscv32-esp-elf -D__Espressif__"
 
 echo esp-clang/bin/clang++ $ARGS
 esp-clang/bin/clang++ $ARGS

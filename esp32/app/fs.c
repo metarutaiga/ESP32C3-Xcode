@@ -64,7 +64,7 @@ static int32_t fs_hal_erase(uint32_t addr, uint32_t size)
     return 0;
 }
 
-static lfs_t fs;
+static lfs_t fs IRAM_BSS_ATTR;
 
 static int lfs_flash_read(const struct lfs_config* c, lfs_block_t block, lfs_off_t off, void* dst, lfs_size_t size)
 {
@@ -92,7 +92,7 @@ static int lfs_flash_sync(const struct lfs_config* c)
 
 void fs_init(void)
 {
-    static struct lfs_config cfg;
+    static struct lfs_config cfg IRAM_BSS_ATTR;
     cfg.read = lfs_flash_read;
     cfg.prog = lfs_flash_prog;
     cfg.erase = lfs_flash_erase;

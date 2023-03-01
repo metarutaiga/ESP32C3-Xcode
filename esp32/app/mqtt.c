@@ -30,10 +30,11 @@ static void mqtt_information(void)
     if (mqtt_is_connected == false)
         return;
 
-    mqtt_publish(mqtt_prefix(number, "ESP", "SDK Version", 0), esp_get_idf_version(), 0, 0);
+    extern const esp_app_desc_t esp_app_desc;
+
+    mqtt_publish(mqtt_prefix(number, "ESP", "SDK Version", 0), esp_app_desc.idf_ver, 0, 0);
     mqtt_publish(mqtt_prefix(number, "ESP", "CPU Frequency", 0), itoa(esp_clk_cpu_freq() / 1000000, number + 64, 10), 0, 0);
 
-    extern const esp_app_desc_t esp_app_desc;
     sprintf(number + 64, "%s %s", esp_app_desc.date, esp_app_desc.time);
     mqtt_publish(mqtt_prefix(number, "ESP", "Build", 0), number + 64, 0, 0);
     mqtt_publish(mqtt_prefix(number, "ESP", "Version", 0), esp_app_desc.version, 0, 1);
