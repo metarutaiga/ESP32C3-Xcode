@@ -23,6 +23,6 @@ done
 
 #echo esp-clang/bin/ld.lld $ARGS
 #esp-clang/bin/ld.lld $ARGS
-echo ~/.espressif/tools/riscv32-esp-elf/esp-2022r1-11.2.0/riscv32-esp-elf/bin/riscv32-esp-elf-ld $ARGS
-~/.espressif/tools/riscv32-esp-elf/esp-2022r1-11.2.0/riscv32-esp-elf/bin/riscv32-esp-elf-ld $ARGS
+echo esp-clang/riscv32-esp-elf/bin/ld $ARGS
+esp-clang/riscv32-esp-elf/bin/ld $ARGS
 exit $?
