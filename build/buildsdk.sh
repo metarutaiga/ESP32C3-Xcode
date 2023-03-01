@@ -12,6 +12,12 @@ cd hello_world
 if [ ! -d "build" ]; then
   idf.py set-target esp32-c3
 fi
-idf.py menuconfig
-idf.py build
+idf.py -D IDF_TOOLCHAIN=clang menuconfig
+if [ ! -d "../esp-clang/riscv32-esp-elf/include/c++" ]; then
+  mv ../esp-clang/riscv32-esp-elf/include/c++- ../esp-clang/riscv32-esp-elf/include/c++
+fi
+idf.py -D IDF_TOOLCHAIN=clang build
+if [ ! -d "../esp-clang/riscv32-esp-elf/include/c++-" ]; then
+  mv ../esp-clang/riscv32-esp-elf/include/c++ ../esp-clang/riscv32-esp-elf/include/c++-
+fi
 cd ..
