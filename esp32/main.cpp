@@ -2,6 +2,7 @@
 #include <time.h>
 #include <esp_http_server.h>
 #include <lwip/apps/sntp.h>
+#include <soc/uart_pins.h>
 #include "app/fs.h"
 #include "app/https.h"
 #include "app/mqtt.h"
@@ -17,6 +18,10 @@ char thisname[24] = "";
 char number[128] = "";
 bool debug;
 
+int32_t uart0_tx IRAM_BSS_ATTR = U0TXD_GPIO_NUM;
+int32_t uart0_rx IRAM_BSS_ATTR = U0RXD_GPIO_NUM;
+int32_t uart1_tx IRAM_BSS_ATTR = U1TXD_GPIO_NUM;
+int32_t uart1_rx IRAM_BSS_ATTR = U1RXD_GPIO_NUM;
 esp_netif_t* ap_netif IRAM_BSS_ATTR;
 esp_netif_t* sta_netif IRAM_BSS_ATTR;
 
