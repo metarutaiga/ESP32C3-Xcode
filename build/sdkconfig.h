@@ -17,4 +17,5 @@
 #undef _SECTION_ATTR_IMPL
 #define _SECTION_ATTR_IMPL(SECTION, COUNTER)
 #define __XSTRING(x) __STRING(x)
+#define _RETARGETABLE_LOCKING
 #endif

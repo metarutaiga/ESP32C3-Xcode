@@ -18,10 +18,10 @@ char thisname[24] = "";
 char number[128] = "";
 bool debug;
 
-int32_t uart0_tx IRAM_BSS_ATTR = U0TXD_GPIO_NUM;
-int32_t uart0_rx IRAM_BSS_ATTR = U0RXD_GPIO_NUM;
-int32_t uart1_tx IRAM_BSS_ATTR = U1TXD_GPIO_NUM;
-int32_t uart1_rx IRAM_BSS_ATTR = U1RXD_GPIO_NUM;
+int uart0_tx IRAM_BSS_ATTR = U0TXD_GPIO_NUM;
+int uart0_rx IRAM_BSS_ATTR = U0RXD_GPIO_NUM;
+int uart1_tx IRAM_BSS_ATTR = U1TXD_GPIO_NUM;
+int uart1_rx IRAM_BSS_ATTR = U1RXD_GPIO_NUM;
 esp_netif_t* ap_netif IRAM_BSS_ATTR;
 esp_netif_t* sta_netif IRAM_BSS_ATTR;
 
@@ -133,8 +133,8 @@ extern "C" void app_main()
 {
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
-    sta_netif = esp_netif_create_default_wifi_sta();
     ap_netif = esp_netif_create_default_wifi_ap();
+    sta_netif = esp_netif_create_default_wifi_sta();
 
     // Component
     fs_init();
@@ -198,5 +198,7 @@ extern "C" void app_main()
 
     // Setup
     strcpy(thisname, (char*)config.ap.ssid);
+    esp_netif_set_hostname(ap_netif, thisname);
+    esp_netif_set_hostname(sta_netif, thisname);
     app_setup();
 }

@@ -31,10 +31,10 @@ extern char thisname[24];
 extern char number[128];
 extern bool debug;
 
-extern int32_t uart0_tx;
-extern int32_t uart0_rx;
-extern int32_t uart1_tx;
-extern int32_t uart1_rx;
+extern int uart0_tx;
+extern int uart0_rx;
+extern int uart1_tx;
+extern int uart1_rx;
 extern esp_netif_t* ap_netif;
 extern esp_netif_t* sta_netif;
 

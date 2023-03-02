@@ -91,7 +91,7 @@ int _fstat_r(struct _reent* r, int fd, struct stat* st)
     return -1;
 }
 
-int _stat_r(struct _reent* r, const char*  path, struct stat* st)
+int _stat_r(struct _reent* r, const char* path, struct stat* st)
 {
     return -1;
 }
