@@ -18,4 +18,7 @@
 #define _SECTION_ATTR_IMPL(SECTION, COUNTER)
 #define __XSTRING(x) __STRING(x)
 #define _RETARGETABLE_LOCKING
+typedef unsigned char uint8_t;
+typedef unsigned short uint16_t;
+typedef unsigned int uint32_t;
 #endif

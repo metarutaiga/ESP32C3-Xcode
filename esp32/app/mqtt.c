@@ -1,5 +1,4 @@
 #include "esp32.h"
-#include <esp_app_desc.h>
 #include <esp_private/wifi.h>
 #include <esp_private/esp_clk.h>
 #define USE_ESP_MQTT 0

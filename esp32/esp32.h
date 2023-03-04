@@ -5,11 +5,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+#include <esp_app_desc.h>
 #include <esp_attr.h>
 #include <esp_err.h>
 #include <esp_log.h>
