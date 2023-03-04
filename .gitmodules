@@ -7,3 +7,6 @@
 [submodule "freertos-mqtt"]
 	path = freertos-mqtt
 	url = https://github.com/metarutaiga/freertos-mqtt
+[submodule "esp-homekit-sdk"]
+	path = esp-homekit-sdk
+	url = https://github.com/espressif/esp-homekit-sdk

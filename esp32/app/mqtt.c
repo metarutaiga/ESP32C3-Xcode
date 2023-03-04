@@ -127,34 +127,15 @@ void mqtt_publish(const char* topic, const void* data, int length, int retain)
     if (mqtt_is_connected == false)
         return;
 
-    char* temp_topic = NULL;
-    char* temp_data = NULL;
-    if ((uint32_t)topic >= 0x40000000)
-    {
-        temp_topic = strdup(topic);
-        topic = temp_topic;
-    }
     if (length == 0)
     {
-        for (char c; (c = ((char*)data)[length]); ++length);
-    }
-    if ((uint32_t)data >= 0x40000000)
-    {
-        temp_data = (char*)malloc(length + 1);
-        for (int i = 0; i < length; ++i)
-        {
-            temp_data[i] = ((char*)data)[i];
-        }
-        temp_data[length] = 0;
-        data = temp_data;
+        length = strlen(data);
     }
 #if USE_ESP_MQTT
     esp_mqtt_client_publish(mqtt_client, topic, (char*)data, length, 0, retain);
 #else
     mqtt_publish_with_length(topic, (char*)data, length, 0, retain);
 #endif
-    free(temp_topic);
-    free(temp_data);
 }
 
 void mqtt_receive(void (*callback)(const char* topic, uint32_t topic_len, const char* data, uint32_t length))
