@@ -4,6 +4,7 @@
 #include <lwip/apps/sntp.h>
 #include <soc/uart_pins.h>
 #include "app/fs.h"
+#include "app/httpd.h"
 #include "app/https.h"
 #include "app/mqtt.h"
 #include "app/ota.h"

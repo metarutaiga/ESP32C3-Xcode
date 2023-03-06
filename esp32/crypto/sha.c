@@ -2,6 +2,8 @@
 #include "esp_private/periph_ctrl.h"
 #include "hal/sha_hal.h"
 
+#if 0
+
 static portMUX_TYPE sha_spinlock = portMUX_INITIALIZER_UNLOCKED;
 
 void esp_sha_acquire_hardware(void)
@@ -19,3 +21,5 @@ void esp_sha_release_hardware(void)
 
     portEXIT_CRITICAL(&sha_spinlock);
 }
+
+#endif

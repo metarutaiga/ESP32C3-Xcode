@@ -4,7 +4,7 @@
 extern "C" {
 #endif
 
-void fs_init();
+void fs_init(void);
 int fs_stat(const char* name);
 int fs_open(const char* name, const char* mode);
 void fs_close(int fd);
@@ -19,6 +19,8 @@ int fs_read(void* buffer, int length, int fd);
 int fs_write(const void* buffer, int length, int fd);
 
 int fs_mkdir(const char* name);
+
+int fs_remove(const char* name);
 
 #ifdef __cplusplus
 }

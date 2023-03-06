@@ -1,6 +1,7 @@
 #include "esp32.h"
 #include <sys/socket.h>
 #include <esp_http_server.h>
+#include "httpd.h"
 
 #define HTTPD_STACK_SIZE 3584
 #define HTTPD_MAX_CONNECTIONS 16

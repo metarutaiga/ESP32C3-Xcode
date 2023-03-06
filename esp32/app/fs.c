@@ -231,3 +231,26 @@ int fs_mkdir(const char* name)
 {
     return lfs_mkdir(&fs, name);
 }
+
+int fs_remove(const char* name)
+{
+    lfs_dir_t dir = {};
+    if (lfs_dir_open(&fs, &dir, name) == 0)
+    {
+        lfs_dir_seek(&fs, &dir, 2);
+
+        struct lfs_info info;
+        while (lfs_dir_read(&fs, &dir, &info) > 0)
+        {
+            size_t length = strlen(name) + 1 + strlen(info.name) + 1;
+            char* temp = malloc(length);
+            strcpy(temp, name);
+            strcat(temp, "/");
+            strcat(temp, info.name);
+            fs_remove(temp);
+            free(temp);
+        }
+        lfs_dir_close(&fs, &dir);
+    }
+    return lfs_remove(&fs, name);
+}

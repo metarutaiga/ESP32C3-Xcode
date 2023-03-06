@@ -2,6 +2,7 @@
 #include <sys/time.h>
 #include <esp_http_server.h>
 #include "app/fs.h"
+#include "app/httpd.h"
 
 extern const char web_css[] __attribute__((weak));
 const char web_css[] = "";
