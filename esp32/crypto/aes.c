@@ -2,8 +2,6 @@
 #include "esp_private/periph_ctrl.h"
 #include "hal/aes_hal.h"
 
-#if 0
-
 static portMUX_TYPE aes_spinlock = portMUX_INITIALIZER_UNLOCKED;
 
 void esp_aes_acquire_hardware(void)
@@ -21,5 +19,3 @@ void esp_aes_release_hardware(void)
     
     portEXIT_CRITICAL(&aes_spinlock);
 }
-
-#endif

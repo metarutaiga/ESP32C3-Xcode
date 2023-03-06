@@ -13,6 +13,7 @@
 		D66C4B3229A8FB8100F27A29 /* vfs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2C29A8FB8100F27A29 /* vfs.c */; };
 		D66C4B3429A8FB8100F27A29 /* nvs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2D29A8FB8100F27A29 /* nvs.c */; };
 		D682406129B5E1D0002C217A /* HomeKit.c in Sources */ = {isa = PBXBuildFile; fileRef = D682406029B5E1D0002C217A /* HomeKit.c */; };
+		D682407A29B63598002C217A /* hkdf-sha.c in Sources */ = {isa = PBXBuildFile; fileRef = D682407929B63598002C217A /* hkdf-sha.c */; };
 		D6865F5729AC7DA500EBC297 /* aes-internal-dec.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BF29AB4BB300D1C409 /* aes-internal-dec.c */; };
 		D6865F5829AC7DA500EBC297 /* aes-internal-enc.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BE29AB4BB200D1C409 /* aes-internal-enc.c */; };
 		D6865F5A29AC7DA500EBC297 /* aes-unwrap.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BD29AB4BB200D1C409 /* aes-unwrap.c */; };
@@ -51,6 +52,7 @@
 		D66C4B3629A8FB8B00F27A29 /* esp32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = esp32.h; path = ../esp32/esp32.h; sourceTree = "<group>"; };
 		D682405B29B5C3C1002C217A /* httpd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = httpd.h; path = ../esp32/app/httpd.h; sourceTree = "<group>"; };
 		D682406029B5E1D0002C217A /* HomeKit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = HomeKit.c; path = ../esp32/patch/HomeKit.c; sourceTree = "<group>"; };
+		D682407929B63598002C217A /* hkdf-sha.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "hkdf-sha.c"; path = "../esp32/crypto/hkdf-sha.c"; sourceTree = "<group>"; };
 		D6865F6A29AD044200EBC297 /* fs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fs.c; path = ../esp32/app/fs.c; sourceTree = "<group>"; };
 		D6865F6B29AD044200EBC297 /* fs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fs.h; path = ../esp32/app/fs.h; sourceTree = "<group>"; };
 		D6865F6F29AD085F00EBC297 /* liblittlefs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = liblittlefs.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +194,7 @@
 				D68B30BB29AB4BB200D1C409 /* aes-wrap.c */,
 				D68B30C629AB4D4700D1C409 /* aes.c */,
 				D68B30C529AB4D4700D1C409 /* aes.h */,
+				D682407929B63598002C217A /* hkdf-sha.c */,
 				D68B30D029AB5DCA00D1C409 /* sha.c */,
 				D68B30D129AB5DCA00D1C409 /* sha.h */,
 				D68B30D329AB5DE800D1C409 /* sha1-internal.c */,
@@ -300,6 +303,7 @@
 				D66C4B3429A8FB8100F27A29 /* nvs.c in Sources */,
 				D66C4B2E29A8FB8100F27A29 /* app_desc.c in Sources */,
 				D6865F6C29AD044200EBC297 /* fs.c in Sources */,
+				D682407A29B63598002C217A /* hkdf-sha.c in Sources */,
 				D6865F7629ADAE2F00EBC297 /* system.cpp in Sources */,
 				D66C4B3229A8FB8100F27A29 /* vfs.c in Sources */,
 				D6865F8229ADEF7700EBC297 /* mqtt.c in Sources */,
