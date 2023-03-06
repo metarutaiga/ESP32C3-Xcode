@@ -12,6 +12,7 @@
 		D66C4B3029A8FB8100F27A29 /* libcpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2B29A8FB8100F27A29 /* libcpp.cpp */; };
 		D66C4B3229A8FB8100F27A29 /* vfs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2C29A8FB8100F27A29 /* vfs.c */; };
 		D66C4B3429A8FB8100F27A29 /* nvs.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2D29A8FB8100F27A29 /* nvs.c */; };
+		D682404E29B58425002C217A /* tweetnacl.c in Sources */ = {isa = PBXBuildFile; fileRef = D682404C29B58425002C217A /* tweetnacl.c */; };
 		D6865F5729AC7DA500EBC297 /* aes-internal-dec.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BF29AB4BB300D1C409 /* aes-internal-dec.c */; };
 		D6865F5829AC7DA500EBC297 /* aes-internal-enc.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BE29AB4BB200D1C409 /* aes-internal-enc.c */; };
 		D6865F5A29AC7DA500EBC297 /* aes-unwrap.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BD29AB4BB200D1C409 /* aes-unwrap.c */; };
@@ -48,6 +49,8 @@
 		D66C4B2C29A8FB8100F27A29 /* vfs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vfs.c; path = ../esp32/patch/vfs.c; sourceTree = "<group>"; };
 		D66C4B2D29A8FB8100F27A29 /* nvs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = nvs.c; path = ../esp32/patch/nvs.c; sourceTree = "<group>"; };
 		D66C4B3629A8FB8B00F27A29 /* esp32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = esp32.h; path = ../esp32/esp32.h; sourceTree = "<group>"; };
+		D682404C29B58425002C217A /* tweetnacl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tweetnacl.c; path = ../esp32/crypto/tweetnacl.c; sourceTree = "<group>"; };
+		D682404D29B58425002C217A /* tweetnacl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tweetnacl.h; path = ../esp32/crypto/tweetnacl.h; sourceTree = "<group>"; };
 		D6865F6A29AD044200EBC297 /* fs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fs.c; path = ../esp32/app/fs.c; sourceTree = "<group>"; };
 		D6865F6B29AD044200EBC297 /* fs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fs.h; path = ../esp32/app/fs.h; sourceTree = "<group>"; };
 		D6865F6F29AD085F00EBC297 /* liblittlefs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = liblittlefs.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +194,8 @@
 				D68B30D129AB5DCA00D1C409 /* sha.h */,
 				D68B30D329AB5DE800D1C409 /* sha1-internal.c */,
 				D68B30D529AB5FE100D1C409 /* sha256-internal.c */,
+				D682404C29B58425002C217A /* tweetnacl.c */,
+				D682404D29B58425002C217A /* tweetnacl.h */,
 			);
 			name = crypto;
 			sourceTree = "<group>";
@@ -290,6 +295,7 @@
 				D6865F5B29AC7DA500EBC297 /* aes-wrap.c in Sources */,
 				D6865F5C29AC7DA500EBC297 /* aes.c in Sources */,
 				D6865F5D29ACA19500EBC297 /* sha.c in Sources */,
+				D682404E29B58425002C217A /* tweetnacl.c in Sources */,
 				D6865F5E29ACA19500EBC297 /* sha1-internal.c in Sources */,
 				D6865F5F29ACA19500EBC297 /* sha256-internal.c in Sources */,
 				D66C4B3429A8FB8100F27A29 /* nvs.c in Sources */,
