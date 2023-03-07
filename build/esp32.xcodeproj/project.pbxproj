@@ -273,7 +273,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd $TARGET_BUILD_DIR\npython3 -m esptool --chip esp32c3 elf2image --flash_mode dio --flash_freq 80m --flash_size 4MB --elf-sha256-offset 0xb0 libesp32.so \n";
+			shellScript = "cd $TARGET_BUILD_DIR\npython3 -m esptool --chip esp32c3 elf2image --flash_mode dio --flash_freq 80m --flash_size 4MB --elf-sha256-offset 0xb0 libesp32.so \ngzip -9 -f -k -n -S .ota libesp32.bin\n\ndd if=libesp32.bin.ota iseek=$(echo $(stat -f \"%z\" libesp32.bin.ota) - 4 | bc) of=libesp32.bin.ota oseek=5 bs=1 count=3 conv=notrunc\nprintf ESP32 | dd of=libesp32.bin.ota bs=1 count=5 conv=notrunc\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
