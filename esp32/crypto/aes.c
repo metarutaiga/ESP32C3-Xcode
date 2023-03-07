@@ -4,6 +4,7 @@
 
 static portMUX_TYPE aes_spinlock = portMUX_INITIALIZER_UNLOCKED;
 
+void esp_aes_acquire_hardware(void) __attribute__((weak));
 void esp_aes_acquire_hardware(void)
 {
     portENTER_CRITICAL(&aes_spinlock);
@@ -12,6 +13,7 @@ void esp_aes_acquire_hardware(void)
     periph_module_enable(PERIPH_AES_MODULE);
 }
 
+void esp_aes_release_hardware(void) __attribute__((weak));
 void esp_aes_release_hardware(void)
 {
     /* Disable AES hardware */
