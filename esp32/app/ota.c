@@ -35,9 +35,9 @@ static void ota_handler(TimerHandle_t timer)
         }
         if (context->offset == 0 && context->handle == 0)
         {
-            if (memcmp("ESP32", data, 5) == 0)
+            if (memcmp("ESP32C3", data, 7) == 0)
             {
-                memcpy(&context->size, data + 5, 3);
+                memcpy(&context->size, data + 7, 3);
                 context->decompressor = realloc(context->decompressor, sizeof(tinfl_decompressor));
                 context->decompressor_dictionary = realloc(context->decompressor_dictionary, TINFL_LZ_DICT_SIZE);
                 context->decompressor_offset = 0;
