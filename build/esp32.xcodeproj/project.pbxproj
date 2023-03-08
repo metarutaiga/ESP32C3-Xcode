@@ -15,6 +15,8 @@
 		D682406129B5E1D0002C217A /* HomeKit.c in Sources */ = {isa = PBXBuildFile; fileRef = D682406029B5E1D0002C217A /* HomeKit.c */; };
 		D682407A29B63598002C217A /* hkdf-sha.c in Sources */ = {isa = PBXBuildFile; fileRef = D682407929B63598002C217A /* hkdf-sha.c */; };
 		D682407F29B77765002C217A /* bignum.c in Sources */ = {isa = PBXBuildFile; fileRef = D682407E29B77765002C217A /* bignum.c */; };
+		D682408A29B83990002C217A /* tweetnacl_wrap.c in Sources */ = {isa = PBXBuildFile; fileRef = D682408729B83990002C217A /* tweetnacl_wrap.c */; };
+		D682408B29B83990002C217A /* tweetnacl.c in Sources */ = {isa = PBXBuildFile; fileRef = D682408829B83990002C217A /* tweetnacl.c */; };
 		D6865F5729AC7DA500EBC297 /* aes-internal-dec.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BF29AB4BB300D1C409 /* aes-internal-dec.c */; };
 		D6865F5829AC7DA500EBC297 /* aes-internal-enc.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BE29AB4BB200D1C409 /* aes-internal-enc.c */; };
 		D6865F5A29AC7DA500EBC297 /* aes-unwrap.c in Sources */ = {isa = PBXBuildFile; fileRef = D68B30BD29AB4BB200D1C409 /* aes-unwrap.c */; };
@@ -55,6 +57,9 @@
 		D682406029B5E1D0002C217A /* HomeKit.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = HomeKit.c; path = ../esp32/patch/HomeKit.c; sourceTree = "<group>"; };
 		D682407929B63598002C217A /* hkdf-sha.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "hkdf-sha.c"; path = "../esp32/crypto/hkdf-sha.c"; sourceTree = "<group>"; };
 		D682407E29B77765002C217A /* bignum.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = bignum.c; path = ../esp32/crypto/bignum.c; sourceTree = "<group>"; usesTabs = 0; };
+		D682408729B83990002C217A /* tweetnacl_wrap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tweetnacl_wrap.c; path = ../esp32/crypto/tweetnacl_wrap.c; sourceTree = "<group>"; };
+		D682408829B83990002C217A /* tweetnacl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tweetnacl.c; path = ../esp32/crypto/tweetnacl.c; sourceTree = "<group>"; };
+		D682408929B83990002C217A /* tweetnacl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tweetnacl.h; path = ../esp32/crypto/tweetnacl.h; sourceTree = "<group>"; };
 		D6865F6A29AD044200EBC297 /* fs.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fs.c; path = ../esp32/app/fs.c; sourceTree = "<group>"; };
 		D6865F6B29AD044200EBC297 /* fs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fs.h; path = ../esp32/app/fs.h; sourceTree = "<group>"; };
 		D6865F6F29AD085F00EBC297 /* liblittlefs.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = liblittlefs.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -202,6 +207,9 @@
 				D68B30D129AB5DCA00D1C409 /* sha.h */,
 				D68B30D329AB5DE800D1C409 /* sha1-internal.c */,
 				D68B30D529AB5FE100D1C409 /* sha256-internal.c */,
+				D682408729B83990002C217A /* tweetnacl_wrap.c */,
+				D682408829B83990002C217A /* tweetnacl.c */,
+				D682408929B83990002C217A /* tweetnacl.h */,
 			);
 			name = crypto;
 			sourceTree = "<group>";
@@ -285,7 +293,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D682407F29B77765002C217A /* bignum.c in Sources */,
 				D6865F8C29AF106300EBC297 /* fota.cpp in Sources */,
 				D6865F6C29AD044200EBC297 /* fs.c in Sources */,
 				D6865F7229ADA03700EBC297 /* httpd.c in Sources */,
@@ -302,10 +309,13 @@
 				D6865F5A29AC7DA500EBC297 /* aes-unwrap.c in Sources */,
 				D6865F5B29AC7DA500EBC297 /* aes-wrap.c in Sources */,
 				D6865F5C29AC7DA500EBC297 /* aes.c in Sources */,
+				D682407F29B77765002C217A /* bignum.c in Sources */,
 				D682407A29B63598002C217A /* hkdf-sha.c in Sources */,
 				D6865F5D29ACA19500EBC297 /* sha.c in Sources */,
 				D6865F5E29ACA19500EBC297 /* sha1-internal.c in Sources */,
 				D6865F5F29ACA19500EBC297 /* sha256-internal.c in Sources */,
+				D682408A29B83990002C217A /* tweetnacl_wrap.c in Sources */,
+				D682408B29B83990002C217A /* tweetnacl.c in Sources */,
 				D66C4B2E29A8FB8100F27A29 /* app_desc.c in Sources */,
 				D682406129B5E1D0002C217A /* HomeKit.c in Sources */,
 				D66C4B3029A8FB8100F27A29 /* libcpp.cpp in Sources */,

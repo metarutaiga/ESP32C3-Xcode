@@ -189,7 +189,7 @@ OTHER_LDFLAGS = $(inherited) -lwpa_supplicant
 OTHER_LDFLAGS = $(inherited) -lesp_hap_apple_profiles
 OTHER_LDFLAGS = $(inherited) -lesp_hap_core
 OTHER_LDFLAGS = $(inherited) -lesp_hap_platform
-OTHER_LDFLAGS = $(inherited) -lespressif__libsodium
+//OTHER_LDFLAGS = $(inherited) -lespressif__libsodium
 OTHER_LDFLAGS = $(inherited) -lespressif__mdns
 OTHER_LDFLAGS = $(inherited) -lhkdf-sha
 OTHER_LDFLAGS = $(inherited) -ljson_generator
@@ -209,6 +209,14 @@ OTHER_LDFLAGS = $(inherited) -Wl,-wrap,sha256_compress
 OTHER_LDFLAGS = $(inherited) -Wl,-wrap,sha256_init
 OTHER_LDFLAGS = $(inherited) -Wl,-wrap,sha256_process
 OTHER_LDFLAGS = $(inherited) -Wl,-wrap,sha256_done
+
+OTHER_LDFLAGS = $(inherited) -Wl,-wrap,crypto_aead_chacha20poly1305_ietf_decrypt_detached
+OTHER_LDFLAGS = $(inherited) -Wl,-wrap,crypto_aead_chacha20poly1305_ietf_encrypt_detached
+OTHER_LDFLAGS = $(inherited) -Wl,-wrap,crypto_scalarmult_curve25519
+OTHER_LDFLAGS = $(inherited) -Wl,-wrap,crypto_sign_ed25519_detached
+OTHER_LDFLAGS = $(inherited) -Wl,-wrap,crypto_sign_ed25519_verify_detached
+OTHER_LDFLAGS = $(inherited) -Wl,-wrap,crypto_sign_ed25519_keypair
+OTHER_LDFLAGS = $(inherited) -Wl,-wrap,randombytes
 
 OTHER_LDFLAGS[config=Release] = $(inherited) -Wl,--gc-sections
 
