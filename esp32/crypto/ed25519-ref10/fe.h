@@ -47,6 +47,7 @@ extern void fe_add(fe,const fe,const fe);
 extern void fe_sub(fe,const fe,const fe);
 extern void fe_neg(fe,const fe);
 extern void fe_mul(fe,const fe,const fe);
+extern void fe_sq_mul(fe,const fe,unsigned int);
 extern void fe_sq(fe,const fe);
 extern void fe_sq2(fe,const fe);
 extern void fe_mul121666(fe,const fe);
