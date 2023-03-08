@@ -1,5 +1,6 @@
 #include "esp32.h"
 #include <esp_random.h>
+#include <mbedtls/sha512.h>
 #include "crypto/tweetnacl.h"
 
 #define crypto_aead_chacha20poly1305_ietf_ABYTES 16U
@@ -13,6 +14,13 @@
 #define BEGIN
 #define END
 #endif
+
+int __wrap_crypto_hash_sha512_tweet(unsigned char* out,
+                                    const unsigned char* m,
+                                    unsigned long long n)
+{
+    return mbedtls_sha512(m, (size_t)n, out, 0);
+}
 
 int __wrap_crypto_aead_chacha20poly1305_ietf_decrypt_detached(unsigned char* m,
                                                               unsigned char* nsec,

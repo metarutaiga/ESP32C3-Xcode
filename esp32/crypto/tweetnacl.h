@@ -120,7 +120,6 @@ extern int crypto_hash_sha512_tweet(unsigned char *,const unsigned char *,unsign
 #define crypto_hash_sha512_BYTES crypto_hash_sha512_tweet_BYTES
 #define crypto_hash_sha512_VERSION crypto_hash_sha512_tweet_VERSION
 #define crypto_hash_sha512_IMPLEMENTATION "crypto_hash/sha512/tweet"
-#define crypto_hash_sha256_tweet_BYTES 32
 #define crypto_onetimeauth_PRIMITIVE "poly1305"
 #define crypto_onetimeauth crypto_onetimeauth_poly1305
 #define crypto_onetimeauth_verify crypto_onetimeauth_poly1305_verify
