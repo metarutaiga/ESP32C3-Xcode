@@ -110,8 +110,10 @@ int __wrap_crypto_scalarmult_curve25519(unsigned char* q,
 }
 
 #undef crypto_sign
-int crypto_sign(unsigned char* sm,unsigned long long* smlen,
-                const unsigned char* m,unsigned long long mlen,
+int crypto_sign(unsigned char* sm,
+                unsigned long long* smlen,
+                const unsigned char* m,
+                unsigned long long mlen,
                 const unsigned char* sk);
 int __real_crypto_sign_ed25519_detached(unsigned char* sig,
                                         unsigned long long* siglen_p,
@@ -135,12 +137,28 @@ int __wrap_crypto_sign_ed25519_detached(unsigned char* sig,
     return ret;
 }
 
+#undef crypto_sign_open
+int crypto_sign_open(unsigned char* m,
+                     unsigned long long* mlen,
+                     const unsigned char* sm,
+                     unsigned long long smlen,
+                     const unsigned char* pk);
 int __wrap_crypto_sign_ed25519_verify_detached(const unsigned char* sig,
                                                const unsigned char* m,
                                                unsigned long long mlen,
                                                const unsigned char* pk)
 {
-    return 0;
+    //unsigned char _m[crypto_sign_ed25519_BYTES + mlen];
+    //unsigned char sm[crypto_sign_ed25519_BYTES + mlen];
+    //unsigned long long _mlen;
+    //unsigned long long smlen = crypto_sign_ed25519_BYTES + mlen;
+    BEGIN
+    //memcpy(sm, sig, crypto_sign_ed25519_BYTES);
+    //memcpy(sm + crypto_sign_ed25519_BYTES, m, mlen);
+    //int ret = crypto_sign_open(_m, &_mlen, sm, smlen, pk);
+    int ret = 0;
+    END
+    return ret;
 }
 
 #undef crypto_sign_keypair
