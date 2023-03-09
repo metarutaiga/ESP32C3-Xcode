@@ -9,7 +9,7 @@
 #define PHYS_ADDR   (PHYS_BEGIN - IROM_ADDR)
 #define PHYS_SIZE   (PHYS_END - PHYS_BEGIN)
 #define PHYS_PAGE   0x100
-#define PHYS_BLOCK  0x2000
+#define PHYS_BLOCK  SPI_FLASH_SEC_SIZE
 
 #define TAG __FILE_NAME__
 
