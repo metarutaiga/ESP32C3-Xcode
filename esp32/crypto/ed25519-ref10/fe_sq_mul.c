@@ -18,6 +18,7 @@ See fe_mul.c for discussion of implementation strategy.
 
 void fe_sq_mul(fe h,const fe f,unsigned int m)
 {
+  int i;
   crypto_int32 f0 = f[0];
   crypto_int32 f1 = f[1];
   crypto_int32 f2 = f[2];
@@ -96,6 +97,25 @@ void fe_sq_mul(fe h,const fe f,unsigned int m)
   crypto_int64 f8f8_19 = f8   * (crypto_int64) f8_19;
   crypto_int64 f8f9_38 = f8   * (crypto_int64) f9_38;
   crypto_int64 f9f9_38 = f9   * (crypto_int64) f9_38;
+#if CRYPTO_REDUCE
+  crypto_int64 t[10];
+
+  t[0] = f0f0  +f1f9_76+f2f8_38+f3f7_76+f4f6_38+f5f5_38;
+  t[1] = f0f1_2+f2f9_38+f3f8_38+f4f7_38+f5f6_38;
+  t[2] = f0f2_2+f1f1_2 +f3f9_76+f4f8_38+f5f7_76+f6f6_19;
+  t[3] = f0f3_2+f1f2_2 +f4f9_38+f5f8_38+f6f7_38;
+  t[4] = f0f4_2+f1f3_4 +f2f2   +f5f9_76+f6f8_38+f7f7_38;
+  t[5] = f0f5_2+f1f4_2 +f2f3_2 +f6f9_38+f7f8_38;
+  t[6] = f0f6_2+f1f5_4 +f2f4_2 +f3f3_2 +f7f9_76+f8f8_19;
+  t[7] = f0f7_2+f1f6_2 +f2f5_2 +f3f4_2 +f8f9_38;
+  t[8] = f0f8_2+f1f7_4 +f2f6_2 +f3f5_4 +f4f4   +f9f9_38;
+  t[9] = f0f9_2+f1f8_2 +f2f7_2 +f3f6_2 +f4f5_2;
+
+  for (i = 0;i < 10;++i)
+    t[i] = t[i] * m;
+
+  fe_carry(h, t);
+#else
   crypto_int64 h0 = f0f0  +f1f9_76+f2f8_38+f3f7_76+f4f6_38+f5f5_38;
   crypto_int64 h1 = f0f1_2+f2f9_38+f3f8_38+f4f7_38+f5f6_38;
   crypto_int64 h2 = f0f2_2+f1f1_2 +f3f9_76+f4f8_38+f5f7_76+f6f6_19;
@@ -157,4 +177,5 @@ void fe_sq_mul(fe h,const fe f,unsigned int m)
   h[7] = h7;
   h[8] = h8;
   h[9] = h9;
+#endif
 }

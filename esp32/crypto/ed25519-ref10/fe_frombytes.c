@@ -27,6 +27,22 @@ Ignores top bit of h.
 
 void fe_frombytes(fe h,const unsigned char *s)
 {
+#if CRYPTO_REDUCE
+  crypto_int64 t[10];
+
+  t[0] = load_4(s);
+  t[1] = load_3(s + 4) << 6;
+  t[2] = load_3(s + 7) << 5;
+  t[3] = load_3(s + 10) << 3;
+  t[4] = load_3(s + 13) << 2;
+  t[5] = load_4(s + 16);
+  t[6] = load_3(s + 20) << 7;
+  t[7] = load_3(s + 23) << 5;
+  t[8] = load_3(s + 26) << 4;
+  t[9] = (load_3(s + 29) & 8388607) << 2;
+
+  fe_carry(h, t);
+#else
   crypto_int64 h0 = load_4(s);
   crypto_int64 h1 = load_3(s + 4) << 6;
   crypto_int64 h2 = load_3(s + 7) << 5;
@@ -70,4 +86,5 @@ void fe_frombytes(fe h,const unsigned char *s)
   h[7] = h7;
   h[8] = h8;
   h[9] = h9;
+#endif
 }

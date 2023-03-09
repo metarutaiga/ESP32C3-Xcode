@@ -5,6 +5,7 @@
 #include "fe_0.c"
 #include "fe_1.c"
 #include "fe_add.c"
+#include "fe_carry.c"
 #include "fe_cmov.c"
 #include "fe_copy.c"
 #include "fe_cswap.c"
