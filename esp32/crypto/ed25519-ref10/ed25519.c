@@ -1,4 +1,5 @@
 #pragma clang diagnostic ignored "-Wshorten-64-to-32"
+#pragma clang diagnostic ignored "-Wunused-variable"
 
 #include "api.h"
 #include "fe_0.c"
@@ -24,6 +25,7 @@
 #include "ge_scalarmult_base.c"
 #include "sc_muladd.c"
 #include "sc_reduce.c"
+#include "sc_reduce_carry.c"
 #include "sc_reduce_internal.c"
 #include "keypair.c"
 #include "sign.c"
