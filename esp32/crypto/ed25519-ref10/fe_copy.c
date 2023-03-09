@@ -6,6 +6,11 @@ h = f
 
 void fe_copy(fe h,const fe f)
 {
+  int i;
+#if CRYPTO_REDUCE
+  for (i = 0;i < 10;++i)
+    h[i] = f[i];
+#else
   crypto_int32 f0 = f[0];
   crypto_int32 f1 = f[1];
   crypto_int32 f2 = f[2];
@@ -26,4 +31,5 @@ void fe_copy(fe h,const fe f)
   h[7] = f7;
   h[8] = f8;
   h[9] = f9;
+#endif
 }

@@ -14,6 +14,11 @@ Postconditions:
 
 void fe_add(fe h,const fe f,const fe g)
 {
+  int i;
+#if CRYPTO_REDUCE
+  for (i = 0;i < 10;++i)
+    h[i] = f[i] + g[i];
+#else
   crypto_int32 f0 = f[0];
   crypto_int32 f1 = f[1];
   crypto_int32 f2 = f[2];
@@ -54,4 +59,5 @@ void fe_add(fe h,const fe f,const fe g)
   h[7] = h7;
   h[8] = h8;
   h[9] = h9;
+#endif
 }

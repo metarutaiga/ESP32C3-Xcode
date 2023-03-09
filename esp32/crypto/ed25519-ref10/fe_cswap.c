@@ -1,20 +1,14 @@
 #include "fe.h"
 
 /*
-Replace (f,g) with (g,g) if b == 1;
+Replace (f,g) with (g,f) if b == 1;
 replace (f,g) with (f,g) if b == 0.
 
 Preconditions: b in {0,1}.
 */
 
-void fe_cmov(fe f,const fe g,unsigned int b)
+void fe_cswap(fe f,fe g,unsigned int b)
 {
-  int i;
-#if CRYPTO_REDUCE
-  b = -b;
-  for (i = 0;i < 10;++i)
-    f[i] ^= (f[i] ^ g[i]) & b;
-#else
   crypto_int32 f0 = f[0];
   crypto_int32 f1 = f[1];
   crypto_int32 f2 = f[2];
@@ -66,5 +60,14 @@ void fe_cmov(fe f,const fe g,unsigned int b)
   f[7] = f7 ^ x7;
   f[8] = f8 ^ x8;
   f[9] = f9 ^ x9;
-#endif
+  g[0] = g0 ^ x0;
+  g[1] = g1 ^ x1;
+  g[2] = g2 ^ x2;
+  g[3] = g3 ^ x3;
+  g[4] = g4 ^ x4;
+  g[5] = g5 ^ x5;
+  g[6] = g6 ^ x6;
+  g[7] = g7 ^ x7;
+  g[8] = g8 ^ x8;
+  g[9] = g9 ^ x9;
 }

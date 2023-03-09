@@ -26,6 +26,7 @@ Bounds on each t[i] vary depending on context.
 #define fe_sub CRYPTO_NAMESPACE(fe_sub)
 #define fe_neg CRYPTO_NAMESPACE(fe_neg)
 #define fe_mul CRYPTO_NAMESPACE(fe_mul)
+#define fe_sq_mul CRYPTO_NAMESPACE(fe_sq_mul)
 #define fe_sq CRYPTO_NAMESPACE(fe_sq)
 #define fe_sq2 CRYPTO_NAMESPACE(fe_sq2)
 #define fe_mul121666 CRYPTO_NAMESPACE(fe_mul121666)

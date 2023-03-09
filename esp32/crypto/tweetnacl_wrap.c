@@ -90,7 +90,10 @@ int __wrap_crypto_aead_chacha20poly1305_ietf_encrypt_detached(unsigned char* c,
     return 0;
 }
 
-int curve25519_donna(unsigned char* mypublic, const unsigned char* secret, const unsigned char* basepoint);
+#undef crypto_scalarmult
+int crypto_scalarmult(unsigned char* q,
+                      const unsigned char* n,
+                      const unsigned char* p);
 int __real_crypto_scalarmult_curve25519(unsigned char* q,
                                         const unsigned char* n,
                                         const unsigned char* p);
@@ -99,7 +102,7 @@ int __wrap_crypto_scalarmult_curve25519(unsigned char* q,
                                         const unsigned char* p)
 {
     BEGIN
-    int ret = curve25519_donna(q, n, p);
+    int ret = crypto_scalarmult(q, n, p);
     //int ret = __real_crypto_scalarmult_curve25519(q, n, p);
     //int ret = crypto_scalarmult_curve25519(q, n, p);
     END
