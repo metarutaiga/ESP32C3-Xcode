@@ -83,7 +83,7 @@ static void chacha20_ivsetup(u32 *x,const u8 *iv,u32 ivbits,const u8 *counter)
   x[15] = U8TO32_LITTLE(iv + 8);
 }
 
-static void chacha20_encrypt_bytes(u32 *x,const u8 *m,u8 *c,u64 bytes)
+static void chacha20_crypt_bytes(u32 *x,const u8 *m,u8 *c,u64 bytes)
 {
   u8 output[64];
   u64 i;
@@ -115,7 +115,7 @@ int crypto_stream_chacha20_ietf(u8 *c,const u8 *m,u64 bytes,const u8 *n,u32 ic,c
   U32TO8_LITTLE(s,ic);
   chacha20_keysetup(x,k);
   chacha20_ivsetup(x,n,96,s);
-  chacha20_encrypt_bytes(x,m,c,bytes);
+  chacha20_crypt_bytes(x,m,c,bytes);
 
   return 0;
 }
