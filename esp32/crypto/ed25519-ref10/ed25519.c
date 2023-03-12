@@ -17,7 +17,6 @@
 #include "fe_mul121666.c"
 #include "fe_neg.c"
 #include "fe_pow22523.c"
-#include "fe_sq_mul.c"
 #include "fe_sq.c"
 #include "fe_sq2.c"
 #include "fe_sub.c"

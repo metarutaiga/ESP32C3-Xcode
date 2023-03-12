@@ -39,7 +39,7 @@ int __wrap_crypto_aead_chacha20poly1305_ietf_decrypt_detached(unsigned char* m,
     int             ret;
 
     (void) nsec;
-    crypto_stream_chacha20_ietf(block0, sizeof block0, npub, k);
+    crypto_stream_chacha20_ietf_xor(block0, NULL, sizeof block0, npub, 0U, k);
 
     memcpy(pointer, ad, (size_t)adlen);             pointer += adlen;
     memset(pointer, 0, (0x10 - adlen) & 0xf);       pointer += (0x10 - adlen) & 0xf;
@@ -53,7 +53,7 @@ int __wrap_crypto_aead_chacha20poly1305_ietf_decrypt_detached(unsigned char* m,
     if (ret != 0 || m == NULL) {
         return ret;
     }
-    crypto_stream_chacha20_ietf_xor_ic(m, c, clen, npub, 1U, k);
+    crypto_stream_chacha20_ietf_xor(m, c, clen, npub, 1U, k);
     return 0;
 }
 
@@ -73,8 +73,8 @@ int __wrap_crypto_aead_chacha20poly1305_ietf_encrypt_detached(unsigned char* c,
     unsigned char   block0[64U];
 
     (void) nsec;
-    crypto_stream_chacha20_ietf(block0, sizeof block0, npub, k);
-    crypto_stream_chacha20_ietf_xor_ic(c, m, mlen, npub, 1U, k);
+    crypto_stream_chacha20_ietf_xor(block0, NULL, sizeof block0, npub, 0U, k);
+    crypto_stream_chacha20_ietf_xor(c, m, mlen, npub, 1U, k);
 
     memcpy(pointer, ad, (size_t)adlen);             pointer += adlen;
     memset(pointer, 0, (0x10 - adlen) & 0xf);       pointer += (0x10 - adlen) & 0xf;

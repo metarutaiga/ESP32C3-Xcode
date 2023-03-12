@@ -59,7 +59,7 @@
 		D682407929B63598002C217A /* hkdf-sha.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "hkdf-sha.c"; path = "../esp32/crypto/hkdf-sha.c"; sourceTree = "<group>"; };
 		D682407E29B77765002C217A /* bignum.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = bignum.c; path = ../esp32/crypto/bignum.c; sourceTree = "<group>"; usesTabs = 0; };
 		D682408729B83990002C217A /* tweetnacl_wrap.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tweetnacl_wrap.c; path = ../esp32/crypto/tweetnacl_wrap.c; sourceTree = "<group>"; };
-		D682408829B83990002C217A /* tweetnacl.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = tweetnacl.c; path = ../esp32/crypto/tweetnacl.c; sourceTree = "<group>"; };
+		D682408829B83990002C217A /* tweetnacl.c */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.c; name = tweetnacl.c; path = ../esp32/crypto/tweetnacl.c; sourceTree = "<group>"; tabWidth = 2; };
 		D682408929B83990002C217A /* tweetnacl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = tweetnacl.h; path = ../esp32/crypto/tweetnacl.h; sourceTree = "<group>"; };
 		D682419429B8D8DE002C217A /* fe_mul.c */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.c.c; name = fe_mul.c; path = "../esp32/crypto/ed25519-ref10/fe_mul.c"; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
 		D682419529B8D8DE002C217A /* ge_p2_dbl.h */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = ge_p2_dbl.h; path = "../esp32/crypto/ed25519-ref10/ge_p2_dbl.h"; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
@@ -100,7 +100,6 @@
 		D68241B829B8D8DE002C217A /* sc.h */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.c.h; name = sc.h; path = "../esp32/crypto/ed25519-ref10/sc.h"; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
 		D68241B929B8D8DE002C217A /* fe_sq2.c */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.c.c; name = fe_sq2.c; path = "../esp32/crypto/ed25519-ref10/fe_sq2.c"; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
 		D68241BA29B8D8DE002C217A /* fe_add.c */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.c.c; name = fe_add.c; path = "../esp32/crypto/ed25519-ref10/fe_add.c"; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
-		D68241BF29B976BB002C217A /* fe_sq_mul.c */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.c.c; name = fe_sq_mul.c; path = "../esp32/crypto/ed25519-ref10/fe_sq_mul.c"; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
 		D68241C029B976BB002C217A /* sc_reduce_internal.c */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.c.c; name = sc_reduce_internal.c; path = "../esp32/crypto/ed25519-ref10/sc_reduce_internal.c"; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
 		D68241C129B98E18002C217A /* sc_reduce_carry.c */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.c.c; name = sc_reduce_carry.c; path = "../esp32/crypto/ed25519-ref10/sc_reduce_carry.c"; sourceTree = "<group>"; tabWidth = 2; };
 		D68241CC29B9B2AF002C217A /* fe_mul121666.c */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = sourcecode.c.c; name = fe_mul121666.c; path = "../esp32/crypto/ed25519-ref10/fe_mul121666.c"; sourceTree = "<group>"; tabWidth = 2; };
@@ -259,7 +258,6 @@
 				D68241CC29B9B2AF002C217A /* fe_mul121666.c */,
 				D68241EB29B9BB29002C217A /* fe_neg.c */,
 				D68241F629B9BB2A002C217A /* fe_pow22523.c */,
-				D68241BF29B976BB002C217A /* fe_sq_mul.c */,
 				D68241A629B8D8DE002C217A /* fe_sq.c */,
 				D68241B929B8D8DE002C217A /* fe_sq2.c */,
 				D682419F29B8D8DE002C217A /* fe_sub.c */,
