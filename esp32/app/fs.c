@@ -4,7 +4,7 @@
 #include "littlefs/lfs.h"
 
 #define IROM_ADDR   0x42000000
-#define PHYS_BEGIN  0x42010000
+#define PHYS_BEGIN  0x42020000
 #define PHYS_END    0x42100000
 #define PHYS_ADDR   (PHYS_BEGIN - IROM_ADDR)
 #define PHYS_SIZE   (PHYS_END - PHYS_BEGIN)
