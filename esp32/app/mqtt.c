@@ -241,12 +241,12 @@ void mqtt_setup(const char* ip, int port)
 #if USE_ESP_MQTT
         esp_mqtt_client_config_t mqtt_cfg =
         {
-            .host = ip,
-            .port = (uint32_t)port,
-            .client_id = thisname,
-            .lwt_topic = mqtt_prefix(number, "connected", 0),
-            .lwt_msg = "false",
-            .lwt_retain = 1,
+            .broker.address.uri = ip,
+            .broker.address.port = (uint32_t)port,
+            .credentials.client_id = thisname,
+            .session.last_will.topic = mqtt_prefix(number, "connected", 0),
+            .session.last_will.msg = "false",
+            .session.last_will.retain = 1,
         };
 
         mqtt_client = esp_mqtt_client_init(&mqtt_cfg);
