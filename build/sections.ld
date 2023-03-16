@@ -11,6 +11,11 @@
 /* Default entry point */
 ENTRY(call_start_cpu0);
 
+_strtol_r = 0x40031f06;
+strtol_l = 0x40031f08;
+_strtoul_r = 0x40032064;                
+strtoul_l = 0x40032066;
+
 SECTIONS
 {
   /**
