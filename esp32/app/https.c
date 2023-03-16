@@ -139,6 +139,8 @@ static void https_handler(void* arg)
 
 final:
     https_disconnect(context);
+    free(context);
+    ESP_LOGI(TAG, "HTTPS disconnected");
     vTaskDelete(NULL);
 }
 
@@ -154,6 +156,8 @@ static void dns_found(const char* name, const ip_addr_t* ip, void* arg)
     }
 
     https_disconnect(context);
+    free(context);
+    ESP_LOGI(TAG, "%s not found", name);
 }
 
 void https_connect(const char* url, const char* attr, void (*recv)(void* arg, char* pusrdata, int length), void (*disconn)(void* arg))
@@ -178,7 +182,10 @@ void https_connect(const char* url, const char* attr, void (*recv)(void* arg, ch
         context->path = strdup(path);
         context->attr = attr ? strdup(attr) : NULL;
         context->socket = -1;
-        dns_gethostbyname(context->host, &context->ip, dns_found, context);
+        if (dns_gethostbyname(context->host, &context->ip, dns_found, context) == 0)
+        {
+            dns_found(context->host, &context->ip, context);
+        }
     }
 
     free(buffer);
@@ -193,27 +200,32 @@ void https_disconnect(void* arg)
         if (context->socket >= 0)
         {
             lwip_close(context->socket);
+            context->socket = -1;
         }
         if (context->disconn)
         {
             context->disconn(arg);
+            context->disconn = NULL;
         }
         if (context->tls)
         {
             if (context->conn)
             {
                 tls_connection_deinit(context->tls, context->conn);
+                context->conn = NULL;
             }
             tls_deinit(context->tls);
+            context->tls = NULL;
         }
         free(context->path);
         free(context->host);
         free(context->attr);
         free(context->temp);
-        free(context);
+        context->path = NULL;
+        context->host = NULL;
+        context->attr = NULL;
+        context->temp = NULL;
     }
-
-    ESP_LOGI(TAG, "HTTPS disconnected");
 }
 
 void https_send(void* arg, const void* data, int length)

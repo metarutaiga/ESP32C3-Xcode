@@ -8,6 +8,8 @@
 
 #define TAG __FILE_NAME__
 
+#ifdef httpd_start
+
 struct httpd_uri_node
 {
     struct httpd_uri_node* next;
@@ -207,6 +209,11 @@ esp_err_t httpd_register_uri_handler(httpd_handle_t handle, const httpd_uri_t* u
     return ESP_OK;
 }
 
+esp_err_t httpd_unregister_uri_handler(httpd_handle_t handle, const char* uri, httpd_method_t method)
+{
+    return ESP_OK;
+}
+
 size_t httpd_req_get_url_query_len(httpd_req_t* r)
 {
     return strlen(r->uri);
@@ -339,6 +346,13 @@ esp_err_t httpd_resp_set_status(httpd_req_t* r, const char* status)
     return ESP_OK;
 }
 
+esp_err_t httpd_resp_set_type(httpd_req_t* r, const char* type)
+{
+    httpd_uri_t* uri = r->sess_ctx;
+    uri->user_ctx = (void*)type;
+    return ESP_OK;
+}
+
 esp_err_t httpd_resp_set_hdr(httpd_req_t* r, const char* field, const char* value)
 {
     size_t length = strlen(field) + sizeof(": ") - 1 + strlen(value) + 1;
@@ -349,3 +363,5 @@ esp_err_t httpd_resp_set_hdr(httpd_req_t* r, const char* field, const char* valu
     }
     return ESP_OK;
 }
+
+#endif
