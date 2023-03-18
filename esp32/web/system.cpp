@@ -32,7 +32,7 @@ esp_err_t web_system(httpd_req_t* req)
     int fd = fs_open("ssid", "r");
     if (fd >= 0)
     {
-        ssid = fs_gets(number, 128, fd);
+        ssid = fs_gets(number, 256, fd);
         fs_close(fd);
     }
     html += "<form method='get' action='ssid'>";
@@ -65,7 +65,7 @@ esp_err_t web_system(httpd_req_t* req)
     fd = fs_open("ota", "r");
     if (fd >= 0)
     {
-        ota = fs_gets(number, 128, fd);
+        ota = fs_gets(number, 256, fd);
         fs_close(fd);
     }
     html += "<form method='get' action='ota'>";
@@ -91,8 +91,8 @@ esp_err_t web_system(httpd_req_t* req)
     fd = fs_open("mqtt", "r");
     if (fd >= 0)
     {
-        mqtt = fs_gets(number, 128, fd);
-        mqttPort = fs_gets(number, 128, fd);
+        mqtt = fs_gets(number, 256, fd);
+        mqttPort = fs_gets(number, 256, fd);
         fs_close(fd);
     }
     if (mqttPort.empty())
@@ -130,8 +130,8 @@ esp_err_t web_system(httpd_req_t* req)
     fd = fs_open("ntp", "r");
     if (fd >= 0)
     {
-        ntp = fs_gets(number, 128, fd);
-        ntpZone = fs_gets(number, 128, fd);
+        ntp = fs_gets(number, 256, fd);
+        ntpZone = fs_gets(number, 256, fd);
         fs_close(fd);
     }
     if (ntp.empty())
@@ -297,11 +297,11 @@ esp_err_t web_reset(httpd_req_t* req)
     httpd_resp_set_hdr(req, "Location", "/");
     httpd_resp_send(req, NULL, 0);
 
-    TimerHandle_t timer = xTimerCreate("Reset Timer", 1000 / portTICK_PERIOD_MS, pdTRUE, (void*)"Reset Timer", [](TimerHandle_t)
+    xTaskCreate([](void*)
     {
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
         esp_restart();
-    });
-    xTimerStart(timer, 1000 / portTICK_PERIOD_MS);
+    }, "Reset Task", 4096, nullptr, 5, nullptr);
 
     return ESP_OK;
 }

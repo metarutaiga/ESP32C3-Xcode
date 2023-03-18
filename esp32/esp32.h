@@ -30,7 +30,7 @@ inline int32_t esp_timer_get_time_ms(void)
 }
 
 extern char thisname[24];
-extern char number[128];
+extern char number[256];
 extern bool debug;
 
 extern int uart0_tx;

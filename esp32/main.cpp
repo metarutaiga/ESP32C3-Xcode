@@ -16,7 +16,7 @@ extern const char pass_format[] __attribute__((weak));
 const char wifi_format[] = "ESP32_%02X%02X%02X";
 const char pass_format[] = "32ESP_%02X%02X%02X";
 char thisname[24] = "";
-char number[128] = "";
+char number[256] = "";
 bool debug;
 
 int uart0_tx IRAM_BSS_ATTR = U0TXD_GPIO_NUM;
@@ -55,8 +55,8 @@ static void wifi_handler(void)
     int fd = fs_open("mqtt", "r");
     if (fd >= 0)
     {
-        string mqtt = fs_gets(number, 128, fd);
-        string port = fs_gets(number, 128, fd);
+        string mqtt = fs_gets(number, 256, fd);
+        string port = fs_gets(number, 256, fd);
         mqtt_setup(mqtt.c_str(), strtol(port.c_str(), nullptr, 10));
         fs_close(fd);
     }
@@ -67,8 +67,8 @@ static void wifi_handler(void)
     fd = fs_open("ntp", "r");
     if (fd >= 0)
     {
-        ntp = fs_gets(number, 128, fd);
-        zone = fs_gets(number, 128, fd);
+        ntp = fs_gets(number, 256, fd);
+        zone = fs_gets(number, 256, fd);
         fs_close(fd);
     }
     free((void*)sntp_getservername(0));
@@ -82,7 +82,7 @@ static void wifi_handler(void)
     fd = fs_open("ota", "r");
     if (fd >= 0)
     {
-        if (strcmp(fs_gets(number, 128, fd), "YES") == 0)
+        if (strcmp(fs_gets(number, 256, fd), "YES") == 0)
         {
             ota_init(8685);
             debug = true;
@@ -109,7 +109,7 @@ static void event_handler(void* arg, esp_event_base_t event_base, int32_t event_
     else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP)
     {
         ip_event_got_ip_t* event = (ip_event_got_ip_t*) event_data;
-        ESP_LOGI(TAG, "got ip:%s", esp_ip4addr_ntoa(&event->ip_info.ip, number, 128));
+        ESP_LOGI(TAG, "got ip:%s", esp_ip4addr_ntoa(&event->ip_info.ip, number, 256));
 
         ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
 
@@ -121,7 +121,7 @@ static void event_handler(void* arg, esp_event_base_t event_base, int32_t event_
         int fd = fs_open("ota", "r");
         if (fd >= 0)
         {
-            if (strcmp(fs_gets(number, 128, fd), "YES") == 0)
+            if (strcmp(fs_gets(number, 256, fd), "YES") == 0)
                 ota_init(8685);
             fs_close(fd);
         }
@@ -169,8 +169,10 @@ extern "C" void app_main()
     if (fd >= 0)
     {
         wifi_config_t config = {};
-        strcpy((char*)config.sta.ssid, fs_gets(number, 128, fd));
-        strcpy((char*)config.sta.password, fs_gets(number, 128, fd));
+        strcpy((char*)config.sta.ssid, fs_gets(number, 256, fd));
+        strcpy((char*)config.sta.password, fs_gets(number, 256, fd));
+        config.sta.scan_method = WIFI_ALL_CHANNEL_SCAN;
+        config.sta.sort_method = WIFI_CONNECT_AP_BY_SIGNAL;
         fs_close(fd);
         ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &config));
     }
