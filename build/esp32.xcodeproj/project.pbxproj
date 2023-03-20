@@ -11,6 +11,10 @@
 		D62BAA0429C311610082DD37 /* svfprintf.c in Sources */ = {isa = PBXBuildFile; fileRef = D62BA9FF29C311610082DD37 /* svfprintf.c */; };
 		D62BAA0929C859E10082DD37 /* vfiprintf.c in Sources */ = {isa = PBXBuildFile; fileRef = D62BAA0829C859E10082DD37 /* vfiprintf.c */; };
 		D62BAA0A29C859F10082DD37 /* vfprintf.c in Sources */ = {isa = PBXBuildFile; fileRef = D62BA9FD29C311610082DD37 /* vfprintf.c */; };
+		D62BAA2329C8B4690082DD37 /* svfscanf.c in Sources */ = {isa = PBXBuildFile; fileRef = D62BAA1E29C8B4690082DD37 /* svfscanf.c */; };
+		D62BAA2429C8B4690082DD37 /* vfiscanf.c in Sources */ = {isa = PBXBuildFile; fileRef = D62BAA1F29C8B4690082DD37 /* vfiscanf.c */; };
+		D62BAA2529C8B4690082DD37 /* svfiscanf.c in Sources */ = {isa = PBXBuildFile; fileRef = D62BAA2029C8B4690082DD37 /* svfiscanf.c */; };
+		D62BAA2629C8B4690082DD37 /* vfscanf.c in Sources */ = {isa = PBXBuildFile; fileRef = D62BAA2129C8B4690082DD37 /* vfscanf.c */; };
 		D66C4B1B29A860E000F27A29 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B1A29A860E000F27A29 /* main.cpp */; };
 		D66C4B2E29A8FB8100F27A29 /* app_desc.c in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2A29A8FB8100F27A29 /* app_desc.c */; };
 		D66C4B3029A8FB8100F27A29 /* libcpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D66C4B2B29A8FB8100F27A29 /* libcpp.cpp */; };
@@ -57,6 +61,11 @@
 		D62BAA0029C311610082DD37 /* vfieeefp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vfieeefp.h; path = ../esp32/patch/newlib/vfieeefp.h; sourceTree = "<group>"; };
 		D62BAA0129C311610082DD37 /* local.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = local.h; path = ../esp32/patch/newlib/local.h; sourceTree = "<group>"; };
 		D62BAA0829C859E10082DD37 /* vfiprintf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vfiprintf.c; path = ../esp32/patch/newlib/vfiprintf.c; sourceTree = "<group>"; };
+		D62BAA1E29C8B4690082DD37 /* svfscanf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = svfscanf.c; path = ../esp32/patch/newlib/svfscanf.c; sourceTree = "<group>"; };
+		D62BAA1F29C8B4690082DD37 /* vfiscanf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vfiscanf.c; path = ../esp32/patch/newlib/vfiscanf.c; sourceTree = "<group>"; };
+		D62BAA2029C8B4690082DD37 /* svfiscanf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = svfiscanf.c; path = ../esp32/patch/newlib/svfiscanf.c; sourceTree = "<group>"; };
+		D62BAA2129C8B4690082DD37 /* vfscanf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vfscanf.c; path = ../esp32/patch/newlib/vfscanf.c; sourceTree = "<group>"; };
+		D62BAA2229C8B4690082DD37 /* floatio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = floatio.h; path = ../esp32/patch/newlib/floatio.h; sourceTree = "<group>"; };
 		D66C4B1829A860C100F27A29 /* ClangPlatform.esp32.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = ClangPlatform.esp32.xcconfig; sourceTree = "<group>"; };
 		D66C4B1929A860D000F27A29 /* sdkconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sdkconfig.h; path = hello_world/build/config/sdkconfig.h; sourceTree = "<group>"; };
 		D66C4B1A29A860E000F27A29 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../esp32/main.cpp; sourceTree = "<group>"; };
@@ -213,13 +222,18 @@
 		D62BA9FA29C311510082DD37 /* newlib */ = {
 			isa = PBXGroup;
 			children = (
+				D62BAA2229C8B4690082DD37 /* floatio.h */,
 				D62BA9FB29C311600082DD37 /* fvwrite.h */,
 				D62BAA0129C311610082DD37 /* local.h */,
 				D62BA9FC29C311600082DD37 /* svfiprintf.c */,
+				D62BAA2029C8B4690082DD37 /* svfiscanf.c */,
 				D62BA9FF29C311610082DD37 /* svfprintf.c */,
+				D62BAA1E29C8B4690082DD37 /* svfscanf.c */,
 				D62BAA0029C311610082DD37 /* vfieeefp.h */,
 				D62BAA0829C859E10082DD37 /* vfiprintf.c */,
+				D62BAA1F29C8B4690082DD37 /* vfiscanf.c */,
 				D62BA9FD29C311610082DD37 /* vfprintf.c */,
+				D62BAA2129C8B4690082DD37 /* vfscanf.c */,
 			);
 			name = newlib;
 			sourceTree = "<group>";
@@ -517,9 +531,13 @@
 				D6865F5E29ACA19500EBC297 /* sha1-internal.c in Sources */,
 				D6865F5F29ACA19500EBC297 /* sha256-internal.c in Sources */,
 				D62BAA0229C311610082DD37 /* svfiprintf.c in Sources */,
+				D62BAA2529C8B4690082DD37 /* svfiscanf.c in Sources */,
 				D62BAA0429C311610082DD37 /* svfprintf.c in Sources */,
+				D62BAA2329C8B4690082DD37 /* svfscanf.c in Sources */,
 				D62BAA0929C859E10082DD37 /* vfiprintf.c in Sources */,
+				D62BAA2429C8B4690082DD37 /* vfiscanf.c in Sources */,
 				D62BAA0A29C859F10082DD37 /* vfprintf.c in Sources */,
+				D62BAA2629C8B4690082DD37 /* vfscanf.c in Sources */,
 				D66C4B2E29A8FB8100F27A29 /* app_desc.c in Sources */,
 				D682406129B5E1D0002C217A /* homekit.c in Sources */,
 				D66C4B3029A8FB8100F27A29 /* libcpp.cpp in Sources */,
