@@ -4,6 +4,8 @@
 extern "C" {
 #endif
 
+#ifndef HTTPD_FULL
+
 #define httpd_start _httpd_start
 #define httpd_register_uri_handler _httpd_register_uri_handler
 #define httpd_unregister_uri_handler _httpd_unregister_uri_handler
@@ -27,6 +29,8 @@ esp_err_t httpd_resp_send_chunk(httpd_req_t* r, const char* buf, ssize_t buf_len
 esp_err_t httpd_resp_set_status(httpd_req_t* r, const char* status);
 esp_err_t httpd_resp_set_type(httpd_req_t* r, const char* type);
 esp_err_t httpd_resp_set_hdr(httpd_req_t* r, const char* field, const char* value);
+
+#endif
 
 #ifdef __cplusplus
 }

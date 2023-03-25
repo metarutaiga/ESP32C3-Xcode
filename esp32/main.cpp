@@ -181,6 +181,10 @@ extern "C" void app_main()
 
     // Start the httpd server
     httpd_config_t httpd_config = HTTPD_DEFAULT_CONFIG();
+    httpd_config.stack_size = 12288;
+    httpd_config.max_open_sockets = CONFIG_LWIP_MAX_SOCKETS - 3,
+    httpd_config.max_uri_handlers = 32;
+    httpd_config.lru_purge_enable = true;
     ESP_LOGI(TAG, "Starting server on port: '%d'", httpd_config.server_port);
     httpd_start(&httpd_server, &httpd_config);
 

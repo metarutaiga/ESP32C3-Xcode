@@ -8,7 +8,7 @@
 
 #define TAG __FILE_NAME__
 
-#ifdef httpd_start
+#ifndef HTTPD_FULL
 
 struct httpd_uri_node
 {
