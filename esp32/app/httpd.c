@@ -312,11 +312,7 @@ esp_err_t httpd_resp_send_chunk(httpd_req_t* r, const char* buf, ssize_t buf_len
         lwip_send(r->method, header, length, 0);
         r->content_len += length;
     }
-    if (buf == NULL || buf_len == 0)
-    {
-        lwip_send(r->method, NULL, 0, 0);
-        return ESP_OK;
-    }
+    bool finish = (buf_len == 0);
     char* temp = malloc(buf_len + 16);
     size_t number_length = sprintf(temp, "%x", buf_len);
     memcpy(temp + number_length, "\r\n", 2);
@@ -337,6 +333,10 @@ esp_err_t httpd_resp_send_chunk(httpd_req_t* r, const char* buf, ssize_t buf_len
         r->content_len += length;
     }
     free(temp);
+    if (finish)
+    {
+        lwip_send(r->method, NULL, 0, 0);
+    }
     return ESP_OK;
 }
 
