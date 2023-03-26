@@ -79,6 +79,10 @@ ssize_t _read_r(struct _reent* r, int fd, void* dst, size_t size)
 
 int _close_r(struct _reent* r, int fd)
 {
+    if (fd >= LWIP_SOCKET_OFFSET) {
+        lwip_close(fd);
+        return 0;
+    }
     return -1;
 }
 
@@ -86,6 +90,10 @@ int _fstat_r(struct _reent* r, int fd, struct stat* st)
 {
     if (fd == 0) {
         st->st_mode = S_IFCHR;
+        return 0;
+    }
+    if (fd >= LWIP_SOCKET_OFFSET) {
+        st->st_mode = S_IFSOCK;
         return 0;
     }
     return -1;
