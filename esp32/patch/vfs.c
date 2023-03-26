@@ -12,6 +12,10 @@ void esp_vfs_console_register(void)
 {
 }
 
+void esp_vfs_lwip_sockets_register(void)
+{
+}
+
 esp_err_t esp_vfs_register_fd_range(const esp_vfs_t* vfs, void* ctx, int min_fd, int max_fd)
 {
     return ESP_FAIL;
@@ -22,10 +26,35 @@ int esp_vfs_select(int nfds, fd_set* readfds, fd_set* writefds, fd_set* errorfds
     return lwip_select(nfds, readfds, writefds, errorfds, timeout);
 }
 
+int select(int nfds, fd_set* readfds, fd_set* writefds, fd_set* errorfds, struct timeval* timeout)
+{
+    return lwip_select(nfds, readfds, writefds, errorfds, timeout);
+}
+
+int _fcntl_r(struct _reent* r, int fd, int cmd, int arg)
+{
+    return lwip_fcntl(fd, cmd, arg);
+}
+
 int _open_r(struct _reent* r, const char* path, int flags, int mode)
 {
     if (strncmp(path, "/dev/console/", 13) == 0)
         return 0;
+    return -1;
+}
+
+int _close_r(struct _reent* r, int fd)
+{
+    return lwip_close(fd);
+}
+
+off_t _lseek_r(struct _reent* r, int fd, off_t size, int mode)
+{
+    return 0;
+}
+
+ssize_t _read_r(struct _reent* r, int fd, void* dst, size_t size)
+{
     return -1;
 }
 
@@ -63,25 +92,6 @@ ssize_t _write_r(struct _reent* r, int fd, const void* data, size_t size)
         }
         _lock_release_recursive(&write_lock);
         return size;
-    }
-    return -1;
-}
-
-off_t _lseek_r(struct _reent* r, int fd, off_t size, int mode)
-{
-    return 0;
-}
-
-ssize_t _read_r(struct _reent* r, int fd, void* dst, size_t size)
-{
-    return -1;
-}
-
-int _close_r(struct _reent* r, int fd)
-{
-    if (fd >= LWIP_SOCKET_OFFSET) {
-        lwip_close(fd);
-        return 0;
     }
     return -1;
 }
