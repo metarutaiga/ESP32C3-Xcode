@@ -208,6 +208,9 @@ OTHER_LDFLAGS = $(inherited) -lmu_srp
 
 OTHER_LDFLAGS = $(inherited) -Wl,--end-group
 
+OTHER_LDFLAGS = $(inherited) -Wl,-wrap,_read_r_console
+OTHER_LDFLAGS = $(inherited) -Wl,-wrap,_write_r_console
+
 OTHER_LDFLAGS = $(inherited) -Wl,-wrap,sha1_vector
 OTHER_LDFLAGS = $(inherited) -Wl,-wrap,sha256_vector
 
