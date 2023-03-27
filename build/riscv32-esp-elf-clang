@@ -1,5 +1,6 @@
 #!/bin/bash
 
+LD=0
 ARGS=""
 while [[ $# > 0 ]] ; do
     case $1 in
@@ -9,14 +10,24 @@ while [[ $# > 0 ]] ; do
         ;;
         -index-store-path*)
         shift ;;
+        -fuse-ld*)
+        LD=1
+        ARGS=$ARGS" "$1
+        ;;
         *)
         ARGS=$ARGS" "$1
         ;;
     esac
     shift
 done
-ARGS=$ARGS" -target riscv32-esp-elf -D__Espressif__"
+ARGS=$ARGS" -D__Espressif__ -target riscv32-esp-elf -Iesp-clang/riscv32-esp-elf/include"
 
-echo esp-clang/bin/clang $ARGS
-esp-clang/bin/clang $ARGS
-exit $?
+if [ $LD -eq 0 ]; then
+  echo esp-clang/bin/clang $ARGS
+  esp-clang/bin/clang $ARGS
+  exit $?
+else
+  echo esp-clang/bin/clang-15 $ARGS
+  esp-clang/bin/clang-15 $ARGS
+  exit $?
+fi

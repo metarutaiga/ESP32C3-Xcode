@@ -148,6 +148,7 @@ OTHER_LDFLAGS = $(inherited) -T $CLANGPLATFORM_DIR/../esp-idf/components/esp_rom
 OTHER_LDFLAGS = $(inherited) -T $CLANGPLATFORM_DIR/../esp-idf/components/soc/esp32c3/ld/esp32c3.peripherals.ld
 OTHER_LDFLAGS = $(inherited) -Wl,-Map,$(TARGET_BUILD_DIR)/$(EXECUTABLE_NAME).map
 OTHER_LDFLAGS = $(inherited) -Wl,--start-group
+OTHER_LDFLAGS = $(inherited) -lm
 OTHER_LDFLAGS = $(inherited) -lcore
 //OTHER_LDFLAGS = $(inherited) -lmesh
 OTHER_LDFLAGS = $(inherited) -lnet80211

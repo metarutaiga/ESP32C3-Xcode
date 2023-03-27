@@ -27,6 +27,8 @@ while [[ $# > 0 ]] ; do
     shift
 done
 
-echo esp-clang/bin/llvm-ar $ARGS
-esp-clang/bin/llvm-ar r $ARGS
+#echo esp-clang/bin/llvm-ar $ARGS
+#esp-clang/bin/llvm-ar r $ARGS
+echo esp-clang/riscv32-esp-elf/bin/ar $ARGS
+esp-clang/riscv32-esp-elf/bin/ar r $ARGS
 exit $?
