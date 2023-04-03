@@ -14,6 +14,8 @@ while [[ $# > 0 ]] ; do
         shift ;;
         -no_deduplicate*)
         ;;
+        -reproducible*)
+        ;;
         *)
         ARGS=$ARGS" "$1
         ;;

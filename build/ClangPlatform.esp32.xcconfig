@@ -19,6 +19,8 @@ ALTERNATE_LINKER = $CLANGPLATFORM_DIR/riscv32-esp-elf-lld
 
 GCC_PREFIX_HEADER = $CLANGPLATFORM_DIR/hello_world/build/config/sdkconfig.h
 
+HEADER_SEARCH_PATHS = $(inherited) /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1
+
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/.
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/app_update/include
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/bootloader_support/include
@@ -126,11 +128,11 @@ OTHER_CFLAGS = $(inherited) -ffunction-sections
 //OTHER_CFLAGS = $(inherited) -Wno-writable-strings
 OTHER_CFLAGS = $(inherited) -DNDEBUG
 
-OTHER_CPLUSPLUSFLAGS = $(inherited) -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1
 OTHER_CPLUSPLUSFLAGS = $(inherited) -D_LIBCPP_DISABLE_EXTERN_TEMPLATE
 OTHER_CPLUSPLUSFLAGS = $(inherited) -D_LIBCPP_DISABLE_VISIBILITY_ANNOTATIONS
 OTHER_CPLUSPLUSFLAGS = $(inherited) -D_LIBCPP_HAS_NO_LIBRARY_ALIGNED_ALLOCATION
 OTHER_CPLUSPLUSFLAGS = $(inherited) -D_LIBCPP_HAS_NO_THREADS
+OTHER_CPLUSPLUSFLAGS = $(inherited) -D_LIBCPP_HAS_NO_VENDOR_AVAILABILITY_ANNOTATIONS
 
 OTHER_LDFLAGS = $(inherited) -march=rv32imc -fno-rtti
 OTHER_LDFLAGS = $(inherited) -nostdlib++ -Wl,-static
