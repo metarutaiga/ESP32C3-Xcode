@@ -27,7 +27,7 @@ static void httpd_handler(void* arg)
     sockaddr.sin_len = sizeof(sockaddr);
     sockaddr.sin_family = AF_INET;
     sockaddr.sin_port = htons(80);
-    sockaddr.sin_addr.s_addr = INADDR_ANY;
+    sockaddr.sin_addr.s_addr = htonl(INADDR_ANY);
     if (lwip_bind(listen_fd, (struct sockaddr*)&sockaddr, sizeof(sockaddr)) < 0)
         goto final;
     if (lwip_listen(listen_fd, HTTPD_MAX_CONNECTIONS) < 0)

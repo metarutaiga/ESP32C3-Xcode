@@ -8,15 +8,34 @@
 #include <hal/uart_ll.h>
 #include <lwip/sockets.h>
 
-ssize_t __wrap__read_r_console(struct _reent *r, int fd, const void * data, size_t size)
+static int udp_fd = -1;
+static struct sockaddr_in udp_sockaddr;
+
+void init_udp_console(const char* ip)
+{
+    udp_fd = lwip_socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
+    if (udp_fd < 0)
+        return;
+    udp_sockaddr.sin_len = sizeof(udp_sockaddr);
+    udp_sockaddr.sin_family = AF_INET;
+    udp_sockaddr.sin_port = htons(8888);
+    udp_sockaddr.sin_addr.s_addr = htonl(INADDR_ANY);
+    lwip_bind(udp_fd, (struct sockaddr*)&udp_sockaddr, sizeof(udp_sockaddr));
+    lwip_inet_pton(AF_INET, ip, &udp_sockaddr.sin_addr);
+}
+
+ssize_t __wrap__read_r_console(struct _reent* r, int fd, const void* data, size_t size)
 {
     return -1;
 }
 
-ssize_t __wrap__write_r_console(struct _reent *r, int fd, const void * data, size_t size)
+ssize_t __wrap__write_r_console(struct _reent* r, int fd, const void* data, size_t size)
 {
     static _lock_t write_lock;
     _lock_acquire_recursive(&write_lock);
+    if (fd >= 0) {
+        lwip_sendto(udp_fd, data, size, 0, (struct sockaddr*)&udp_sockaddr, sizeof(udp_sockaddr));
+    }
     uint32_t baudrate = uart_ll_get_baudrate(&UART0, esp_clk_apb_freq());
     if (uart0_tx != U0TXD_GPIO_NUM) {
         while (uart_ll_get_txfifo_len(&UART0) < UART_LL_FIFO_DEF_LEN);

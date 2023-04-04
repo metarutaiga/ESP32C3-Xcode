@@ -85,6 +85,31 @@ esp_err_t web_system(httpd_req_t* req)
         return ESP_FAIL;
     html.clear();
 
+    // UDP
+    string udp;
+    fd = fs_open("udp", "r");
+    if (fd >= 0)
+    {
+        udp = fs_gets(number, 256, fd);
+        fs_close(fd);
+    }
+    html += "<form method='get' action='udp'>";
+    html +=     "<tr>";
+    html +=         "<td>";
+    html +=             "<label>UDP</label>";
+    html +=         "</td>";
+    html +=         "<td>";
+    html +=             "<input name='udp' length=32 value='" + udp + "'>";
+    html +=         "</td>";
+    html +=         "<td>";
+    html +=             "<input type='submit'>";
+    html +=         "</td>";
+    html +=     "</tr>";
+    html += "</form>";
+    if (httpd_resp_send_chunk(req, html.data(), html.length()) != ESP_OK)
+        return ESP_FAIL;
+    html.clear();
+
     // MQTT
     string mqtt;
     string mqttPort;
@@ -232,6 +257,30 @@ esp_err_t web_ota(httpd_req_t* req)
     value[0] = 0; httpd_query_key_value(buffer, "ota", value, 64); text += url_decode(value); text += '\n';
 
     int fd = fs_open("ota", "w");
+    if (fd >= 0)
+    {
+        fs_write(text.data(), text.length(), fd);
+        fs_close(fd);
+    }
+
+    return ESP_OK;
+}
+
+esp_err_t web_udp(httpd_req_t* req)
+{
+    httpd_resp_set_status(req, "302 Found");
+    httpd_resp_set_hdr(req, "Location", "/");
+    httpd_resp_send(req, NULL, 0);
+
+    size_t len;
+    char buffer[(len = httpd_req_get_url_query_len(req) + 1)];
+    httpd_req_get_url_query_str(req, buffer, len);
+
+    string text;
+    char value[64];
+    value[0] = 0; httpd_query_key_value(buffer, "udp", value, 64); text += url_decode(value); text += '\n';
+
+    int fd = fs_open("udp", "w");
     if (fd >= 0)
     {
         fs_write(text.data(), text.length(), fd);

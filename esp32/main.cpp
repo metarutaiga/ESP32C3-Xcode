@@ -30,9 +30,12 @@ httpd_handle_t httpd_server IRAM_BSS_ATTR;
 extern esp_err_t web_system(httpd_req_t* req);
 extern esp_err_t web_ssid(httpd_req_t* req);
 extern esp_err_t web_ota(httpd_req_t* req);
+extern esp_err_t web_udp(httpd_req_t* req);
 extern esp_err_t web_mqtt(httpd_req_t* req);
 extern esp_err_t web_ntp(httpd_req_t* req);
 extern esp_err_t web_reset(httpd_req_t* req);
+
+extern "C" void init_udp_console(const char* ip);
 
 extern "C" void app_wifi() __attribute__((weak));
 extern "C" void app_wifi() {}
@@ -85,6 +88,18 @@ static void wifi_handler(void)
         if (strcmp(fs_gets(number, 256, fd), "YES") == 0)
         {
             ota_init(8685);
+            debug = true;
+        }
+        fs_close(fd);
+    }
+
+    // UDP
+    fd = fs_open("udp", "r");
+    if (fd >= 0)
+    {
+        if (strchr(fs_gets(number, 256, fd), '.') != 0)
+        {
+            init_udp_console(number);
             debug = true;
         }
         fs_close(fd);
@@ -193,12 +208,14 @@ extern "C" void app_main()
     httpd_uri_t web_system_uri = { .uri = "/", .method = HTTP_GET, .handler = web_system };
     httpd_uri_t web_ssid_uri = { .uri = "/ssid", .method = HTTP_GET, .handler = web_ssid };
     httpd_uri_t web_ota_uri = { .uri = "/ota", .method = HTTP_GET, .handler = web_ota };
+    httpd_uri_t web_udp_uri = { .uri = "/udp", .method = HTTP_GET, .handler = web_udp };
     httpd_uri_t web_mqtt_uri = { .uri = "/mqtt", .method = HTTP_GET, .handler = web_mqtt };
     httpd_uri_t web_ntp_uri = { .uri = "/ntp", .method = HTTP_GET, .handler = web_ntp };
     httpd_uri_t web_reset_uri = { .uri = "/reset", .method = HTTP_GET, .handler = web_reset };
     httpd_register_uri_handler(httpd_server, &web_system_uri);
     httpd_register_uri_handler(httpd_server, &web_ssid_uri);
     httpd_register_uri_handler(httpd_server, &web_ota_uri);
+    httpd_register_uri_handler(httpd_server, &web_udp_uri);
     httpd_register_uri_handler(httpd_server, &web_mqtt_uri);
     httpd_register_uri_handler(httpd_server, &web_ntp_uri);
     httpd_register_uri_handler(httpd_server, &web_reset_uri);
