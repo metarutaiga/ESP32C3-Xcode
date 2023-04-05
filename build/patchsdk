@@ -60,21 +60,38 @@ index a652ace2e3..4af8d5f6dc 100644
  
  #ifndef CONFIG_COMPILER_CXX_EXCEPTIONS
 diff --git a/components/cxx/cxx_guards.cpp b/components/cxx/cxx_guards.cpp
-index 17d53b27ef..e39e8048d9 100644
+index 17d53b27ef..615a96d690 100644
 --- a/components/cxx/cxx_guards.cpp
 +++ b/components/cxx/cxx_guards.cpp
-@@ -15,7 +15,11 @@
- #include "freertos/semphr.h"
- #include "freertos/task.h"
+@@ -26,8 +26,8 @@ static size_t s_static_init_max_waiting_count = 0;          //!< maximum ever va
+ #endif
  
-+#if defined(__llvm__)
-+typedef uint64_t __guard;
-+#else
- using __cxxabiv1::__guard;
-+#endif
+ extern "C" int __cxa_guard_acquire(__guard* pg);
+-extern "C" void __cxa_guard_release(__guard* pg);
+-extern "C" void __cxa_guard_abort(__guard* pg);
++extern "C" void __cxa_guard_release(__guard* pg) _GLIBCXX_NOTHROW;
++extern "C" void __cxa_guard_abort(__guard* pg) _GLIBCXX_NOTHROW;
+ extern "C" void __cxa_guard_dummy(void);
  
- static SemaphoreHandle_t s_static_init_mutex = NULL;        //!< lock used for the critical section
- static SemaphoreHandle_t s_static_init_wait_sem = NULL;     //!< counting semaphore used by the waiting tasks
+ /**
+@@ -167,7 +167,7 @@ extern "C" int __cxa_guard_acquire(__guard* pg)
+     return ret;
+ }
+ 
+-extern "C" void __cxa_guard_release(__guard* pg)
++extern "C" void __cxa_guard_release(__guard* pg) _GLIBCXX_NOTHROW
+ {
+     guard_t* g = reinterpret_cast<guard_t*>(pg);
+     const auto scheduler_started = xTaskGetSchedulerState() != taskSCHEDULER_NOT_STARTED;
+@@ -189,7 +189,7 @@ extern "C" void __cxa_guard_release(__guard* pg)
+     }
+ }
+ 
+-extern "C" void __cxa_guard_abort(__guard* pg)
++extern "C" void __cxa_guard_abort(__guard* pg) _GLIBCXX_NOTHROW
+ {
+     guard_t* g = reinterpret_cast<guard_t*>(pg);
+     const auto scheduler_started = xTaskGetSchedulerState() != taskSCHEDULER_NOT_STARTED;
 diff --git a/components/esp_common/include/esp_attr.h b/components/esp_common/include/esp_attr.h
 index ade3b3d903..471f92a16a 100644
 --- a/components/esp_common/include/esp_attr.h
