@@ -20,6 +20,8 @@ void init_udp_console(const char* ip)
     udp_sockaddr.sin_family = AF_INET;
     udp_sockaddr.sin_port = htons(8888);
     udp_sockaddr.sin_addr.s_addr = htonl(INADDR_ANY);
+    int mode = 1;
+    lwip_ioctl(udp_fd, FIONBIO, &mode);
     lwip_bind(udp_fd, (struct sockaddr*)&udp_sockaddr, sizeof(udp_sockaddr));
     lwip_inet_pton(AF_INET, ip, &udp_sockaddr.sin_addr);
 }

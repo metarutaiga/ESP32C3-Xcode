@@ -135,6 +135,16 @@ static void ota_handler(TimerHandle_t timer)
                 context->temp = realloc(context->temp, 1536);
 
                 context->tcp_socket = lwip_socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+                if (context->tcp_socket < 0)
+                {
+                    lwip_close(FD_SETSIZE - 1);
+                    context->tcp_socket = lwip_socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+                }
+                if (context->tcp_socket < 0)
+                {
+                    ESP_LOGE(TAG, "Create socket failed");
+                    return;
+                }
 
                 int mode = 1;
                 lwip_ioctl(context->tcp_socket, FIONBIO, &mode);
