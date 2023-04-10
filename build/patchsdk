@@ -102,6 +102,29 @@ index 14c527f788..14ced98632 100644
                  .ppp_events = {
                          .ppp_error_event_enabled = true,
                          .ppp_phase_event_enabled = false
+diff --git a/components/riscv/include/riscv/rvruntime-frames.h b/components/riscv/include/riscv/rvruntime-frames.h
+index 1ef8934f14..6dbd298914 100644
+--- a/components/riscv/include/riscv/rvruntime-frames.h
++++ b/components/riscv/include/riscv/rvruntime-frames.h
+@@ -26,10 +26,18 @@
+ #endif
+ 
+ #if defined(_ASMLANGUAGE) || defined(__ASSEMBLER__)
++#ifdef __clang__
++#define STRUCT_BEGIN                            .set RV_STRUCT_OFFSET, 0
++#define STRUCT_FIELD(ctype,size,asname,name)    .set asname, RV_STRUCT_OFFSET; .set RV_STRUCT_OFFSET, asname + size
++#define STRUCT_AFIELD(ctype,size,asname,name,n) .set asname, RV_STRUCT_OFFSET;\
++                                                .set RV_STRUCT_OFFSET, asname + (size)*(n);
++#define STRUCT_END(sname)                       .set sname##Size, RV_STRUCT_OFFSET;
++#else // __clang__
+ #define STRUCT_BEGIN            .pushsection .text; .struct 0
+ #define STRUCT_FIELD(ctype,size,asname,name)    asname: .space  size
+ #define STRUCT_AFIELD(ctype,size,asname,name,n) asname: .space  (size)*(n)
+ #define STRUCT_END(sname)       sname##Size:; .popsection
++#endif // __clang__
+ #else
+ #define STRUCT_BEGIN            typedef struct {
+ #define STRUCT_FIELD(ctype,size,asname,name)    ctype   name;
 diff --git a/components/riscv/project_include.cmake b/components/riscv/project_include.cmake
 index eae28cd414..7deb70bd23 100644
 --- a/components/riscv/project_include.cmake
@@ -119,6 +142,36 @@ index eae28cd414..7deb70bd23 100644
 +endif()
  
  idf_build_set_property(COMPILE_OPTIONS "${compile_options}" APPEND)
+diff --git a/components/riscv/vectors.S b/components/riscv/vectors.S
+index 56d0a2c85f..4fdc951126 100644
+--- a/components/riscv/vectors.S
++++ b/components/riscv/vectors.S
+@@ -238,14 +238,14 @@ _interrupt_handler:
+     csrr    s2, mstatus
+ 
+     /* Save the interrupt threshold level */
+-    la      t0, INTERRUPT_CORE0_CPU_INT_THRESH_REG
++    li      t0, INTERRUPT_CORE0_CPU_INT_THRESH_REG
+     lw      s3, 0(t0)
+ 
+     /* Increase interrupt threshold level */
+     li      t2, 0x7fffffff
+     and     t1, s1, t2       /* t1 = mcause & mask */
+     slli    t1, t1, 2        /* t1 = mcause * 4 */
+-    la      t2, INTC_INT_PRIO_REG(0)
++    li      t2, INTC_INT_PRIO_REG(0)
+     add     t1, t2, t1       /* t1 = INTC_INT_PRIO_REG + 4 * mcause */
+     lw      t2, 0(t1)        /* t2 = INTC_INT_PRIO_REG[mcause] */
+     addi    t2, t2, 1        /* t2 = t2 +1 */
+@@ -287,7 +287,7 @@ _interrupt_handler:
+     /* MIE cleared. Nested interrupts are disabled */
+ 
+     /* restore the interrupt threshold level */
+-    la      t0, INTERRUPT_CORE0_CPU_INT_THRESH_REG
++    li      t0, INTERRUPT_CORE0_CPU_INT_THRESH_REG
+     sw      s3, 0(t0)
+     fence
+ 
 diff --git a/components/wpa_supplicant/src/tls/asn1.c b/components/wpa_supplicant/src/tls/asn1.c
 index 04d5320490..cdde93e7cf 100644
 --- a/components/wpa_supplicant/src/tls/asn1.c

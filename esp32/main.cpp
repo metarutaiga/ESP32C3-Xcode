@@ -9,6 +9,10 @@
 #include "app/mqtt.h"
 #include "app/ota.h"
 
+_LIBCPP_BEGIN_NAMESPACE_STD
+  template string operator+<char, char_traits<char>, allocator<char>>(char const*, string const&);
+_LIBCPP_END_NAMESPACE_STD
+
 #define TAG __FILE_NAME__
 
 extern const char wifi_format[] __attribute__((weak));
