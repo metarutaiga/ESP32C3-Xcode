@@ -1,5 +1,5 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index c989babd7a..aacb768505 100644
+index 5869c4c1e4..873bb626b6 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -16,10 +16,13 @@ endif()
@@ -33,11 +33,11 @@ index c989babd7a..aacb768505 100644
          list(APPEND compile_options "-Og")
      elseif(CONFIG_BOOTLOADER_COMPILER_OPTIMIZATION_NONE)
 diff --git a/components/bootloader_support/CMakeLists.txt b/components/bootloader_support/CMakeLists.txt
-index cd2e1eac74..1642827025 100644
+index d1b5db87dc..25f76cf78d 100644
 --- a/components/bootloader_support/CMakeLists.txt
 +++ b/components/bootloader_support/CMakeLists.txt
-@@ -33,7 +33,7 @@ if(BOOTLOADER_BUILD)
-     list(APPEND priv_requires hal)
+@@ -46,7 +46,7 @@ if(BOOTLOADER_BUILD OR CONFIG_APP_BUILD_TYPE_RAM)
+     endif()
  else()
      list(APPEND srcs
 -        "src/idf/bootloader_sha.c")
@@ -60,7 +60,7 @@ index a652ace2e3..4af8d5f6dc 100644
  
  #ifndef CONFIG_COMPILER_CXX_EXCEPTIONS
 diff --git a/components/cxx/cxx_guards.cpp b/components/cxx/cxx_guards.cpp
-index 17d53b27ef..e39e8048d9 100644
+index e74ea9a7f0..e39e8048d9 100644
 --- a/components/cxx/cxx_guards.cpp
 +++ b/components/cxx/cxx_guards.cpp
 @@ -15,7 +15,11 @@
@@ -75,6 +75,35 @@ index 17d53b27ef..e39e8048d9 100644
  
  static SemaphoreHandle_t s_static_init_mutex = NULL;        //!< lock used for the critical section
  static SemaphoreHandle_t s_static_init_wait_sem = NULL;     //!< counting semaphore used by the waiting tasks
+@@ -26,8 +30,8 @@ static size_t s_static_init_max_waiting_count = 0;          //!< maximum ever va
+ #endif
+ 
+ extern "C" int __cxa_guard_acquire(__guard* pg);
+-extern "C" void __cxa_guard_release(__guard* pg) throw();
+-extern "C" void __cxa_guard_abort(__guard* pg) throw();
++extern "C" void __cxa_guard_release(__guard* pg);
++extern "C" void __cxa_guard_abort(__guard* pg);
+ extern "C" void __cxa_guard_dummy(void);
+ 
+ /**
+@@ -167,7 +171,7 @@ extern "C" int __cxa_guard_acquire(__guard* pg)
+     return ret;
+ }
+ 
+-extern "C" void __cxa_guard_release(__guard* pg) throw()
++extern "C" void __cxa_guard_release(__guard* pg)
+ {
+     guard_t* g = reinterpret_cast<guard_t*>(pg);
+     const auto scheduler_started = xTaskGetSchedulerState() != taskSCHEDULER_NOT_STARTED;
+@@ -189,7 +193,7 @@ extern "C" void __cxa_guard_release(__guard* pg) throw()
+     }
+ }
+ 
+-extern "C" void __cxa_guard_abort(__guard* pg) throw()
++extern "C" void __cxa_guard_abort(__guard* pg)
+ {
+     guard_t* g = reinterpret_cast<guard_t*>(pg);
+     const auto scheduler_started = xTaskGetSchedulerState() != taskSCHEDULER_NOT_STARTED;
 diff --git a/components/esp_common/include/esp_attr.h b/components/esp_common/include/esp_attr.h
 index ade3b3d903..471f92a16a 100644
 --- a/components/esp_common/include/esp_attr.h
@@ -89,11 +118,11 @@ index ade3b3d903..471f92a16a 100644
  #if CONFIG_SOC_RTC_FAST_MEM_SUPPORTED || CONFIG_SOC_RTC_SLOW_MEM_SUPPORTED
  // Forces data into RTC memory. See "docs/deep-sleep-stub.rst"
 diff --git a/components/esp_netif/lwip/esp_netif_lwip_defaults.c b/components/esp_netif/lwip/esp_netif_lwip_defaults.c
-index 14c527f788..14ced98632 100644
+index 936251ec6a..59271e3f27 100644
 --- a/components/esp_netif/lwip/esp_netif_lwip_defaults.c
 +++ b/components/esp_netif/lwip/esp_netif_lwip_defaults.c
-@@ -50,7 +50,9 @@ static const struct esp_netif_netstack_config s_wifi_netif_config_sta = {
- 
+@@ -58,7 +58,9 @@ static const struct esp_netif_netstack_config s_wifi_netif_config_nan = {
+ #if defined(CONFIG_PPP_SUPPORT)
  static const struct esp_netif_netstack_config s_netif_config_ppp = {
          .lwip_ppp = {
 +#if CONFIG_PPP_SUPPORT
@@ -102,76 +131,6 @@ index 14c527f788..14ced98632 100644
                  .ppp_events = {
                          .ppp_error_event_enabled = true,
                          .ppp_phase_event_enabled = false
-diff --git a/components/riscv/include/riscv/rvruntime-frames.h b/components/riscv/include/riscv/rvruntime-frames.h
-index 1ef8934f14..6dbd298914 100644
---- a/components/riscv/include/riscv/rvruntime-frames.h
-+++ b/components/riscv/include/riscv/rvruntime-frames.h
-@@ -26,10 +26,18 @@
- #endif
- 
- #if defined(_ASMLANGUAGE) || defined(__ASSEMBLER__)
-+#ifdef __clang__
-+#define STRUCT_BEGIN                            .set RV_STRUCT_OFFSET, 0
-+#define STRUCT_FIELD(ctype,size,asname,name)    .set asname, RV_STRUCT_OFFSET; .set RV_STRUCT_OFFSET, asname + size
-+#define STRUCT_AFIELD(ctype,size,asname,name,n) .set asname, RV_STRUCT_OFFSET;\
-+                                                .set RV_STRUCT_OFFSET, asname + (size)*(n);
-+#define STRUCT_END(sname)                       .set sname##Size, RV_STRUCT_OFFSET;
-+#else // __clang__
- #define STRUCT_BEGIN            .pushsection .text; .struct 0
- #define STRUCT_FIELD(ctype,size,asname,name)    asname: .space  size
- #define STRUCT_AFIELD(ctype,size,asname,name,n) asname: .space  (size)*(n)
- #define STRUCT_END(sname)       sname##Size:; .popsection
-+#endif // __clang__
- #else
- #define STRUCT_BEGIN            typedef struct {
- #define STRUCT_FIELD(ctype,size,asname,name)    ctype   name;
-diff --git a/components/riscv/project_include.cmake b/components/riscv/project_include.cmake
-index eae28cd414..7deb70bd23 100644
---- a/components/riscv/project_include.cmake
-+++ b/components/riscv/project_include.cmake
-@@ -1,3 +1,11 @@
--set(compile_options "-nostartfiles")
-+if(CMAKE_C_COMPILER_ID MATCHES "GNU")
-+    set(compile_options "-nostartfiles")
-+endif()
-+
-+if(CMAKE_C_COMPILER_ID MATCHES "Clang")
-+    list(APPEND compile_options "-Wno-gnu-pointer-arith")
-+    list(APPEND compile_options "-Wno-parentheses-equality")
-+    list(APPEND compile_options "-Wno-unused-but-set-variable")
-+endif()
- 
- idf_build_set_property(COMPILE_OPTIONS "${compile_options}" APPEND)
-diff --git a/components/riscv/vectors.S b/components/riscv/vectors.S
-index 56d0a2c85f..4fdc951126 100644
---- a/components/riscv/vectors.S
-+++ b/components/riscv/vectors.S
-@@ -238,14 +238,14 @@ _interrupt_handler:
-     csrr    s2, mstatus
- 
-     /* Save the interrupt threshold level */
--    la      t0, INTERRUPT_CORE0_CPU_INT_THRESH_REG
-+    li      t0, INTERRUPT_CORE0_CPU_INT_THRESH_REG
-     lw      s3, 0(t0)
- 
-     /* Increase interrupt threshold level */
-     li      t2, 0x7fffffff
-     and     t1, s1, t2       /* t1 = mcause & mask */
-     slli    t1, t1, 2        /* t1 = mcause * 4 */
--    la      t2, INTC_INT_PRIO_REG(0)
-+    li      t2, INTC_INT_PRIO_REG(0)
-     add     t1, t2, t1       /* t1 = INTC_INT_PRIO_REG + 4 * mcause */
-     lw      t2, 0(t1)        /* t2 = INTC_INT_PRIO_REG[mcause] */
-     addi    t2, t2, 1        /* t2 = t2 +1 */
-@@ -287,7 +287,7 @@ _interrupt_handler:
-     /* MIE cleared. Nested interrupts are disabled */
- 
-     /* restore the interrupt threshold level */
--    la      t0, INTERRUPT_CORE0_CPU_INT_THRESH_REG
-+    li      t0, INTERRUPT_CORE0_CPU_INT_THRESH_REG
-     sw      s3, 0(t0)
-     fence
- 
 diff --git a/components/wpa_supplicant/src/tls/asn1.c b/components/wpa_supplicant/src/tls/asn1.c
 index 04d5320490..cdde93e7cf 100644
 --- a/components/wpa_supplicant/src/tls/asn1.c
@@ -334,3 +293,42 @@ index 37077b3b03..3dbd90b939 100644
          ${ARGN}
          WORKING_DIRECTORY
          "${CMAKE_CURRENT_SOURCE_DIR}"
+diff --git a/tools/cmake/toolchain-clang-esp32c3.cmake b/tools/cmake/toolchain-clang-esp32c3.cmake
+index 420c99a3a3..3379f5b559 100644
+--- a/tools/cmake/toolchain-clang-esp32c3.cmake
++++ b/tools/cmake/toolchain-clang-esp32c3.cmake
+@@ -6,25 +6,27 @@ set(CMAKE_C_COMPILER clang)
+ set(CMAKE_CXX_COMPILER clang++)
+ set(CMAKE_ASM_COMPILER clang)
+ 
+-set(CMAKE_AR llvm-ar)
+-set(CMAKE_RANLIB llvm-ranlib)
++set(CMAKE_AR riscv32-esp-elf-ar)
++set(CMAKE_RANLIB riscv32-esp-elf-gcc-ranlib)
+ set(CMAKE_OBJDUMP riscv32-esp-elf-objdump)
+ 
+-remove_duplicated_flags("--target=riscv32-esp-elf -march=rv32imc -mabi=ilp32 \
++set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fuse-ld=${IDF_PATH}/../build/esp-clang/riscv32-esp-elf/bin/ld -L${IDF_PATH}/../build/esp-clang/riscv32-esp-elf/lib/rv32imc/ilp32")
++
++remove_duplicated_flags("-target riscv32-esp-elf -march=rv32imc -mabi=ilp32 \
+                         ${CMAKE_C_FLAGS}"
+                         UNIQ_CMAKE_C_FLAGS)
+-set(CMAKE_C_FLAGS "${UNIQ_CMAKE_C_FLAGS}"
++set(CMAKE_C_FLAGS "${UNIQ_CMAKE_C_FLAGS} -I${IDF_PATH}/../build/esp-clang/riscv32-esp-elf/include"
+     CACHE STRING "C Compiler Base Flags"
+     FORCE)
+ 
+-remove_duplicated_flags("--target=riscv32-esp-elf -march=rv32imc -mabi=ilp32 \
++remove_duplicated_flags("-target riscv32-esp-elf -march=rv32imc -mabi=ilp32 \
+                         ${CMAKE_CXX_FLAGS}"
+                         UNIQ_CMAKE_CXX_FLAGS)
+-set(CMAKE_CXX_FLAGS "${UNIQ_CMAKE_CXX_FLAGS}"
++set(CMAKE_CXX_FLAGS "${UNIQ_CMAKE_CXX_FLAGS} -I${IDF_PATH}/../build/esp-clang/riscv32-esp-elf/include/c++/v1 -D_LIBCPP_HAS_NO_THREADS -I${IDF_PATH}/../build/esp-clang/riscv32-esp-elf/include"
+     CACHE STRING "C++ Compiler Base Flags"
+     FORCE)
+ 
+-remove_duplicated_flags("--target=riscv32-esp-elf -march=rv32imc -mabi=ilp32 \
++remove_duplicated_flags("-target riscv32-esp-elf -march=rv32imc -mabi=ilp32 \
+                         ${CMAKE_ASM_FLAGS}"
+                         UNIQ_CMAKE_ASM_FLAGS)
+ set(CMAKE_ASM_FLAGS "${UNIQ_CMAKE_ASM_FLAGS}"
