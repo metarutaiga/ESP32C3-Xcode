@@ -22,3 +22,8 @@ uint32_t mesh_sta_auth_expire_time(void)
 {
     return 0;
 }
+
+esp_err_t esp_wifi_sta_wpa2_ent_disable(void)
+{
+    return ESP_OK;
+}
