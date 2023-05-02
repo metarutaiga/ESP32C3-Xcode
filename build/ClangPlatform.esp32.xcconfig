@@ -66,6 +66,14 @@ HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/wpa_
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/esp_hap_apple_profiles/include
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/esp_hap_core/include
 
+HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/chip/gen/include
+HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-matter/components/esp_matter
+HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-matter/connectedhomeip/connectedhomeip/src
+HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-matter/connectedhomeip/connectedhomeip/src/include
+HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-matter/connectedhomeip/connectedhomeip/third_party/nlassert/repo/include
+HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-matter/connectedhomeip/connectedhomeip/third_party/nlio/repo/include
+HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-matter/connectedhomeip/connectedhomeip/zzz_generated/app-common
+
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/app_update
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/bootloader_support
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/cxx
@@ -105,18 +113,24 @@ LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/vfs
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/wifi_provisioning
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/wpa_supplicant
+
+LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/bt/controller/lib_esp32c3_family/esp32c3
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/esp_phy/lib/esp32c3
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/esp_wifi/lib/esp32c3
 
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/esp_hap_apple_profiles
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/esp_hap_core
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/esp_hap_platform
+LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/espressif__json_parser
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/espressif__libsodium
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/espressif__mdns
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/hkdf-sha
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/json_generator
-LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/json_parser
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/mu_srp
+
+LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/chip/lib
+LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/esp_matter
+LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/esp32_mbedtls
 
 OTHER_CFLAGS = $(inherited) -march=rv32imc -fno-rtti
 OTHER_CFLAGS = $(inherited) -fdata-sections
@@ -126,7 +140,11 @@ OTHER_CFLAGS = $(inherited) -ffunction-sections
 //OTHER_CFLAGS = $(inherited) -Wno-strict-prototypes
 //OTHER_CFLAGS = $(inherited) -Wno-switch
 //OTHER_CFLAGS = $(inherited) -Wno-writable-strings
+
 OTHER_CFLAGS = $(inherited) -DNDEBUG
+OTHER_CFLAGS = $(inherited) -DESP_PLATFORM
+OTHER_CFLAGS = $(inherited) -DCHIP_HAVE_CONFIG_H
+OTHER_CFLAGS = $(inherited) -DCHIP_ADDRESS_RESOLVE_IMPL_INCLUDE_HEADER=<lib/address_resolve/AddressResolve_DefaultImpl.h>
 
 OTHER_CPLUSPLUSFLAGS = $(inherited) -D_LIBCPP_DISABLE_EXTERN_TEMPLATE
 OTHER_CPLUSPLUSFLAGS = $(inherited) -D_LIBCPP_DISABLE_VISIBILITY_ANNOTATIONS
@@ -185,7 +203,7 @@ OTHER_LDFLAGS = $(inherited) -llog
 OTHER_LDFLAGS = $(inherited) -llwip
 OTHER_LDFLAGS = $(inherited) -lmbedcrypto
 //OTHER_LDFLAGS = $(inherited) -lmbedtls
-//OTHER_LDFLAGS = $(inherited) -lmbedx509
+OTHER_LDFLAGS = $(inherited) -lmbedx509
 //OTHER_LDFLAGS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/mbedtls/libmbedtls.a
 //OTHER_LDFLAGS = $(inherited) -lmqtt
 OTHER_LDFLAGS = $(inherited) -lnewlib
@@ -202,12 +220,16 @@ OTHER_LDFLAGS = $(inherited) -lwpa_supplicant
 OTHER_LDFLAGS = $(inherited) -lesp_hap_apple_profiles
 OTHER_LDFLAGS = $(inherited) -lesp_hap_core
 OTHER_LDFLAGS = $(inherited) -lesp_hap_platform
+OTHER_LDFLAGS = $(inherited) -lespressif__json_parser
 //OTHER_LDFLAGS = $(inherited) -lespressif__libsodium
 OTHER_LDFLAGS = $(inherited) -lespressif__mdns
 OTHER_LDFLAGS = $(inherited) -lhkdf-sha
 OTHER_LDFLAGS = $(inherited) -ljson_generator
-OTHER_LDFLAGS = $(inherited) -ljson_parser
 OTHER_LDFLAGS = $(inherited) -lmu_srp
+
+OTHER_LDFLAGS = $(inherited) -lCHIP
+OTHER_LDFLAGS = $(inherited) -lesp_matter
+OTHER_LDFLAGS = $(inherited) -lesp32_mbedtls
 
 OTHER_LDFLAGS = $(inherited) -Wl,--end-group
 
