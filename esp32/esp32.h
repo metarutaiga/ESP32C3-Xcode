@@ -32,6 +32,7 @@ inline int32_t esp_timer_get_time_ms(void)
 extern char thisname[24];
 extern char number[256];
 extern bool debug;
+extern bool wifi_connected;
 
 extern int uart0_tx;
 extern int uart0_rx;

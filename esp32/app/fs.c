@@ -114,7 +114,7 @@ void fs_init(void)
 
 int fs_stat(const char* name)
 {
-    struct lfs_info info = {};
+    struct lfs_info info = { 0, -1 };
     lfs_stat(&fs, name, &info);
     return info.size;
 }
@@ -253,4 +253,38 @@ int fs_remove(const char* name)
         lfs_dir_close(&fs, &dir);
     }
     return lfs_remove(&fs, name);
+}
+
+int fs_dir_open(const char* name)
+{
+    lfs_dir_t* dir = calloc(1, sizeof(lfs_dir_t));
+    if (lfs_dir_open(&fs, dir, name) == 0)
+    {
+        lfs_dir_seek(&fs, dir, 2);
+        return (int)dir;
+    }
+    free(dir);
+    return -1;
+}
+
+int fs_dir_read(int dir, char* name, int length, int* size)
+{
+    if (dir < 0)
+        return -1;
+    struct lfs_info info;
+    if (lfs_dir_read(&fs, (lfs_dir_t*)dir, &info) <= 0)
+        return -1;
+    if (name)
+        strncpy(name, info.name, length);
+    if (size)
+        *size = info.size;
+    return 0;
+}
+
+void fs_dir_close(int dir)
+{
+    if (dir < 0)
+        return;
+    lfs_dir_close(&fs, (lfs_dir_t*)dir);
+    free((lfs_dir_t*)dir);
 }

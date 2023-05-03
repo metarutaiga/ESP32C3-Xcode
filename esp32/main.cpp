@@ -22,6 +22,7 @@ const char pass_format[] = "32ESP_%02X%02X%02X";
 char thisname[24] = "";
 char number[256] = "";
 bool debug;
+bool wifi_connected;
 
 int uart0_tx IRAM_BSS_ATTR = U0TXD_GPIO_NUM;
 int uart0_rx IRAM_BSS_ATTR = U0RXD_GPIO_NUM;
@@ -120,6 +121,8 @@ static void event_handler(void* arg, esp_event_base_t event_base, int32_t event_
     }
     else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED)
     {
+        wifi_connected = false;
+
         esp_wifi_connect();
         ESP_LOGI(TAG, "retry to connect to the AP");
 
@@ -127,6 +130,8 @@ static void event_handler(void* arg, esp_event_base_t event_base, int32_t event_
     }
     else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP)
     {
+        wifi_connected = true;
+
         ip_event_got_ip_t* event = (ip_event_got_ip_t*) event_data;
         ESP_LOGI(TAG, "got ip:%s", esp_ip4addr_ntoa(&event->ip_info.ip, number, 256));
 
