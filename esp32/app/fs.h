@@ -22,6 +22,10 @@ int fs_mkdir(const char* name);
 
 int fs_remove(const char* name);
 
+int fs_dir_open(const char* name);
+int fs_dir_read(int dir, char* name, int length, int* size);
+void fs_dir_close(int dir);
+
 #ifdef __cplusplus
 }
 #endif

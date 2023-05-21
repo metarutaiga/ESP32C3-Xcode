@@ -8,10 +8,9 @@ if [ ! -f "hello_world/README.md" ]; then
   cp -r $IDF_PATH/examples/get-started/hello_world .
 fi
 
+export IDF_TARGET=esp32c3
+
 cd hello_world
-if [ ! -d "build" ]; then
-  idf.py -D IDF_TOOLCHAIN=clang set-target esp32-c3
-fi
 idf.py -D IDF_TOOLCHAIN=clang menuconfig
 idf.py -D IDF_TOOLCHAIN=clang build
 cd ..

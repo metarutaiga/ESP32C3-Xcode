@@ -4,17 +4,19 @@ if [ ! -f "llvm-esp-15.0.0-20221201-macos.tar.xz" ]; then
   wget -N https://github.com/espressif/llvm-project/releases/download/esp-15.0.0-20221201/llvm-esp-15.0.0-20221201-macos.tar.xz
 fi
 
-if [ ! -d "esp-clang" ]; then
-  tar xvf llvm-esp-15.0.0-20221201-macos.tar.xz
+if [ ! -d "../esp-clang" ]; then
+  cd ..
+  tar xvf build/llvm-esp-15.0.0-20221201-macos.tar.xz
   rm esp-clang/bin/clang
   rm esp-clang/bin/clang++
-  ln -s /opt/homebrew/opt/llvm/bin/clang esp-clang/bin/clang
-  ln -s /opt/homebrew/opt/llvm/bin/clang++ esp-clang/bin/clang++
+  cp esp-clang-clang /opt/homebrew/opt/llvm/bin/clang
+  cp esp-clang-clang++ /opt/homebrew/opt/llvm/bin/clang++
   ln -s /opt/homebrew/opt/llvm/include/c++/v1 riscv32-esp-elf/include/c++/v1
   echo !\<arch\> >esp-clang/riscv32-esp-elf/lib/rv32imc/ilp32/libc++.a
   echo !\<arch\> >esp-clang/riscv32-esp-elf/lib/rv32imc/ilp32/libc++abi.a
   echo !\<arch\> >esp-clang/riscv32-esp-elf/lib/rv32imc/ilp32/libclang_rt.builtins-riscv32.a
   echo !\<arch\> >esp-clang/riscv32-esp-elf/lib/rv32imc/ilp32/libunwind.a
+  cd build
 fi
 
 if [ ! -f "patchsdk.ok" ]; then

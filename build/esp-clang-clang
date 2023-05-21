@@ -1,0 +1,18 @@
+#!/bin/bash
+
+ARGS=""
+while [[ $# > 0 ]] ; do
+    case $1 in
+        -fno-jump-tables*)
+        ;;
+        -Werror*)
+        ;;
+        *)
+        ARGS=$ARGS" "$1
+        ;;
+    esac
+    shift
+done
+ARGS=$ARGS" "-fno-use-cxa-atexit" "-Wno-inconsistent-missing-override" "-Wno-unknown-warning-option
+
+/opt/homebrew/opt/llvm/bin/clang $ARGS
