@@ -20,6 +20,10 @@ while [[ $# > 0 ]] ; do
             ARGS=$line" "$ARGS
         done < $2
         shift ;;
+        -V)
+        libtool -V
+        exit 0
+        ;;
         *)
         ARGS=$1" "$ARGS
         ;;
