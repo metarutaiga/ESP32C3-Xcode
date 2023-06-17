@@ -207,6 +207,14 @@ esp_err_t web_system(httpd_req_t* req)
     html +=     "<button type='submit'>Reset</button>";
     html += "</form>";
 
+    // IP
+    esp_netif_ip_info_t ip_info = {};
+    if (esp_netif_get_ip_info(sta_netif, &ip_info) == ESP_OK)
+    {
+        sprintf(number, IPSTR, IP2STR(&ip_info.ip));
+        html += "STA : " + string(number) + "</br>";
+    }
+
     // Tail
     html += "</body>";
     html += "</html>";
@@ -237,6 +245,25 @@ esp_err_t web_ssid(httpd_req_t* req)
     {
         fs_write(text.data(), text.length(), fd);
         fs_close(fd);
+    }
+
+    wifi_mode_t mode = WIFI_MODE_NULL;
+    esp_wifi_get_mode(&mode);
+    if (mode == WIFI_MODE_APSTA)
+    {
+        int fd = fs_open("ssid", "r");
+        if (fd >= 0)
+        {
+            wifi_config_t config = {};
+            strcpy((char*)config.sta.ssid, fs_gets(number, 256, fd));
+            strcpy((char*)config.sta.password, fs_gets(number, 256, fd));
+            config.sta.scan_method = WIFI_ALL_CHANNEL_SCAN;
+            config.sta.sort_method = WIFI_CONNECT_AP_BY_SIGNAL;
+            fs_close(fd);
+            ESP_ERROR_CHECK(esp_wifi_disconnect());
+            ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &config));
+            ESP_ERROR_CHECK(esp_wifi_connect());
+        }
     }
 
     return ESP_OK;
