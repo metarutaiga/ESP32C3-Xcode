@@ -23,6 +23,8 @@ char thisname[24] = "";
 char number[256] = "";
 bool debug;
 bool wifi_connected;
+uint16_t wifi_sta_disconnected RTC_DATA_ATTR;
+uint16_t wifi_sta_got_ip RTC_DATA_ATTR;
 
 int uart0_tx IRAM_BSS_ATTR = U0TXD_GPIO_NUM;
 int uart0_rx IRAM_BSS_ATTR = U0RXD_GPIO_NUM;
@@ -47,7 +49,10 @@ extern "C" void app_wifi() {}
 static void wifi_handler(void)
 {
     // HTTP
+    httpd_uri_t web_root_uri = { .uri = "/", .method = HTTP_GET, .handler = web_system };
     httpd_uri_t web_system_uri = { .uri = "/setup", .method = HTTP_GET, .handler = web_system };
+    httpd_unregister_uri_handler(httpd_server, "/", HTTP_GET);
+    httpd_register_uri_handler(httpd_server, &web_root_uri);
     httpd_register_uri_handler(httpd_server, &web_system_uri);
 #ifdef DEMO
     // HTTPS
@@ -115,6 +120,8 @@ static void wifi_handler(void)
 
 static void event_handler(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data)
 {
+    bool call_wifi_handler = false;
+
     if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_START)
     {
         esp_wifi_connect();
@@ -122,26 +129,26 @@ static void event_handler(void* arg, esp_event_base_t event_base, int32_t event_
     else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_STA_DISCONNECTED)
     {
         wifi_connected = false;
+        wifi_sta_disconnected++;
 
         esp_wifi_connect();
         ESP_LOGI(TAG, "retry to connect to the AP");
 
         ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_APSTA));
     }
+    else if (event_base == WIFI_EVENT && event_id == WIFI_EVENT_AP_STADISCONNECTED)
+    {
+        call_wifi_handler = wifi_connected;
+    }
     else if (event_base == IP_EVENT && event_id == IP_EVENT_STA_GOT_IP)
     {
         wifi_connected = true;
+        wifi_sta_got_ip++;
 
         ip_event_got_ip_t* event = (ip_event_got_ip_t*) event_data;
         ESP_LOGI(TAG, "got ip:%s", esp_ip4addr_ntoa(&event->ip_info.ip, number, 256));
 
-        wifi_sta_list_t sta = {};
-        esp_wifi_ap_get_sta_list(&sta);
-        if (sta.num == 0)
-        {
-            ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
-            wifi_handler();
-        }
+        call_wifi_handler = wifi_connected;
     }
     else if (event_base == IP_EVENT && event_id == IP_EVENT_AP_STAIPASSIGNED)
     {
@@ -152,6 +159,18 @@ static void event_handler(void* arg, esp_event_base_t event_base, int32_t event_
             if (strcmp(fs_gets(number, 256, fd), "YES") == 0)
                 ota_init(8685);
             fs_close(fd);
+        }
+    }
+
+    // WiFi Handler
+    if (call_wifi_handler)
+    {
+        wifi_sta_list_t sta = {};
+        esp_wifi_ap_get_sta_list(&sta);
+        if (sta.num == 0)
+        {
+            ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
+            wifi_handler();
         }
     }
 }
@@ -218,14 +237,14 @@ extern "C" void app_main()
 
     // Set URI handlers
     ESP_LOGI(TAG, "Registering URI handlers");
-    httpd_uri_t web_system_uri = { .uri = "/", .method = HTTP_GET, .handler = web_system };
+    httpd_uri_t web_root_uri = { .uri = "/", .method = HTTP_GET, .handler = web_system };
     httpd_uri_t web_ssid_uri = { .uri = "/ssid", .method = HTTP_GET, .handler = web_ssid };
     httpd_uri_t web_ota_uri = { .uri = "/ota", .method = HTTP_GET, .handler = web_ota };
     httpd_uri_t web_udp_uri = { .uri = "/udp", .method = HTTP_GET, .handler = web_udp };
     httpd_uri_t web_mqtt_uri = { .uri = "/mqtt", .method = HTTP_GET, .handler = web_mqtt };
     httpd_uri_t web_ntp_uri = { .uri = "/ntp", .method = HTTP_GET, .handler = web_ntp };
     httpd_uri_t web_reset_uri = { .uri = "/reset", .method = HTTP_GET, .handler = web_reset };
-    httpd_register_uri_handler(httpd_server, &web_system_uri);
+    httpd_register_uri_handler(httpd_server, &web_root_uri);
     httpd_register_uri_handler(httpd_server, &web_ssid_uri);
     httpd_register_uri_handler(httpd_server, &web_ota_uri);
     httpd_register_uri_handler(httpd_server, &web_udp_uri);

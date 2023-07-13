@@ -33,6 +33,8 @@ extern char thisname[24];
 extern char number[256];
 extern bool debug;
 extern bool wifi_connected;
+extern uint16_t wifi_sta_disconnected;
+extern uint16_t wifi_sta_got_ip;
 
 extern int uart0_tx;
 extern int uart0_rx;

@@ -212,8 +212,12 @@ esp_err_t web_system(httpd_req_t* req)
     if (esp_netif_get_ip_info(sta_netif, &ip_info) == ESP_OK)
     {
         sprintf(number, IPSTR, IP2STR(&ip_info.ip));
-        html += "STA : " + string(number) + "</br>";
+        html += "STA IP : " + string(number) + "</br>";
     }
+    sprintf(number, "%d", wifi_sta_disconnected);
+    html += "STA Connected : " + string(number) + "</br>";
+    sprintf(number, "%d", wifi_sta_got_ip);
+    html += "STA Disconnected : " + string(number) + "</br>";
 
     // Tail
     html += "</body>";
