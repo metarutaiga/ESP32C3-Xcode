@@ -28,6 +28,10 @@ inline int32_t esp_timer_get_time_ms(void)
 {
     return (int32_t)(esp_timer_get_time() / 1000);
 }
+inline int32_t esp_timer_get_time_us(void)
+{
+    return (int32_t)esp_timer_get_time();
+}
 
 extern char thisname[24];
 extern char number[256];

@@ -33,7 +33,7 @@ index c989babd7a..aacb768505 100644
          list(APPEND compile_options "-Og")
      elseif(CONFIG_BOOTLOADER_COMPILER_OPTIMIZATION_NONE)
 diff --git a/components/bootloader_support/CMakeLists.txt b/components/bootloader_support/CMakeLists.txt
-index cd2e1eac74..1642827025 100644
+index ab63cdc11b..03978d1814 100644
 --- a/components/bootloader_support/CMakeLists.txt
 +++ b/components/bootloader_support/CMakeLists.txt
 @@ -33,7 +33,7 @@ if(BOOTLOADER_BUILD)
@@ -45,6 +45,12 @@ index cd2e1eac74..1642827025 100644
      set(include_dirs "include" "bootloader_flash/include")
      set(priv_include_dirs "private_include")
      # heap is required for `heap_memory_layout.h` header
+diff --git a/components/bt/host/nimble/nimble b/components/bt/host/nimble/nimble
+--- a/components/bt/host/nimble/nimble
++++ b/components/bt/host/nimble/nimble
+@@ -1 +1 @@
+-Subproject commit 85ffe748a2f08d9293cae0a55a473155ccd049ab
++Subproject commit 85ffe748a2f08d9293cae0a55a473155ccd049ab-dirty
 diff --git a/components/cxx/cxx_exception_stubs.cpp b/components/cxx/cxx_exception_stubs.cpp
 index a652ace2e3..4af8d5f6dc 100644
 --- a/components/cxx/cxx_exception_stubs.cpp
@@ -88,20 +94,6 @@ index ade3b3d903..471f92a16a 100644
  
  #if CONFIG_SOC_RTC_FAST_MEM_SUPPORTED || CONFIG_SOC_RTC_SLOW_MEM_SUPPORTED
  // Forces data into RTC memory. See "docs/deep-sleep-stub.rst"
-diff --git a/components/esp_netif/lwip/esp_netif_lwip_defaults.c b/components/esp_netif/lwip/esp_netif_lwip_defaults.c
-index 14c527f788..14ced98632 100644
---- a/components/esp_netif/lwip/esp_netif_lwip_defaults.c
-+++ b/components/esp_netif/lwip/esp_netif_lwip_defaults.c
-@@ -50,7 +50,9 @@ static const struct esp_netif_netstack_config s_wifi_netif_config_sta = {
- 
- static const struct esp_netif_netstack_config s_netif_config_ppp = {
-         .lwip_ppp = {
-+#if CONFIG_PPP_SUPPORT
-                 .input_fn = esp_netif_lwip_ppp_input,
-+#endif
-                 .ppp_events = {
-                         .ppp_error_event_enabled = true,
-                         .ppp_phase_event_enabled = false
 diff --git a/components/riscv/include/riscv/rvruntime-frames.h b/components/riscv/include/riscv/rvruntime-frames.h
 index 1ef8934f14..6dbd298914 100644
 --- a/components/riscv/include/riscv/rvruntime-frames.h
