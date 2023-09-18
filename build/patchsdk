@@ -49,8 +49,8 @@ diff --git a/components/bt/host/nimble/nimble b/components/bt/host/nimble/nimble
 --- a/components/bt/host/nimble/nimble
 +++ b/components/bt/host/nimble/nimble
 @@ -1 +1 @@
--Subproject commit 85ffe748a2f08d9293cae0a55a473155ccd049ab
-+Subproject commit 85ffe748a2f08d9293cae0a55a473155ccd049ab-dirty
+-Subproject commit 55c809a7525102508c97efc5fe50560e381fdc69
++Subproject commit 55c809a7525102508c97efc5fe50560e381fdc69-dirty
 diff --git a/components/cxx/cxx_exception_stubs.cpp b/components/cxx/cxx_exception_stubs.cpp
 index a652ace2e3..4af8d5f6dc 100644
 --- a/components/cxx/cxx_exception_stubs.cpp
@@ -315,10 +315,10 @@ index 1bbd80ade8..07b877d9a4 100644
  	default:
  		wpa_printf(MSG_INFO, "X509: Unsupported certificate signature "
 diff --git a/tools/cmake/third_party/GetGitRevisionDescription.cmake b/tools/cmake/third_party/GetGitRevisionDescription.cmake
-index 37077b3b03..3dbd90b939 100644
+index 53428e2cb8..ac00b49d7f 100644
 --- a/tools/cmake/third_party/GetGitRevisionDescription.cmake
 +++ b/tools/cmake/third_party/GetGitRevisionDescription.cmake
-@@ -115,7 +115,6 @@ function(git_describe _var _repo_dir)
+@@ -118,7 +118,6 @@ function(git_describe _var _repo_dir)
          describe
          "--always"
          "--tags"
