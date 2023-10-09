@@ -19,7 +19,7 @@ ALTERNATE_LINKER = $CLANGPLATFORM_DIR/riscv32-esp-elf-lld
 
 GCC_PREFIX_HEADER = $CLANGPLATFORM_DIR/hello_world/build/config/sdkconfig.h
 
-HEADER_SEARCH_PATHS = $(inherited) /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/c++/v1
+HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-clang/riscv32-esp-elf/include/c++/v1
 
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/.
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/app_update/include
@@ -128,11 +128,24 @@ OTHER_CFLAGS = $(inherited) -ffunction-sections
 //OTHER_CFLAGS = $(inherited) -Wno-writable-strings
 OTHER_CFLAGS = $(inherited) -DNDEBUG
 
+//OTHER_CFLAGS = $(inherited) -DCHAR_BIT=8
+//OTHER_CFLAGS = $(inherited) -DINT_MAX=2147483647
+//OTHER_CFLAGS = $(inherited) -Doffsetof=__builtin_offsetof
+//OTHER_CFLAGS = $(inherited) -Dmax_align_t=size_t
+//OTHER_CFLAGS = $(inherited) -D__CLANG_MAX_ALIGN_T_DEFINED
+OTHER_CFLAGS = $(inherited) -Dstrtod_l(a,b,c)=strtod(a,b)
+OTHER_CFLAGS = $(inherited) -Dstrtof_l(a,b,c)=strtof(a,b)
+OTHER_CFLAGS = $(inherited) -Dstrtold_l(a,b,c)=strtold(a,b)
+OTHER_CFLAGS = $(inherited) -Dstrtoll_l(a,b,c,d)=strtoll(a,b,c)
+OTHER_CFLAGS = $(inherited) -Dstrtoull_l(a,b,c,d)=strtoull(a,b,c)
+OTHER_CFLAGS = $(inherited) -Dvasprintf(a,b,c)=0
+
+OTHER_CPLUSPLUSFLAGS = $(inherited) -D_LIBCPP_AVAILABILITY_HAS_NO_VERBOSE_ABORT
 OTHER_CPLUSPLUSFLAGS = $(inherited) -D_LIBCPP_DISABLE_EXTERN_TEMPLATE
 OTHER_CPLUSPLUSFLAGS = $(inherited) -D_LIBCPP_DISABLE_VISIBILITY_ANNOTATIONS
 OTHER_CPLUSPLUSFLAGS = $(inherited) -D_LIBCPP_HAS_NO_LIBRARY_ALIGNED_ALLOCATION
 OTHER_CPLUSPLUSFLAGS = $(inherited) -D_LIBCPP_HAS_NO_THREADS
-OTHER_CPLUSPLUSFLAGS = $(inherited) -D_LIBCPP_HAS_NO_VENDOR_AVAILABILITY_ANNOTATIONS
+//OTHER_CPLUSPLUSFLAGS = $(inherited) -D_LIBCPP_HAS_NO_VENDOR_AVAILABILITY_ANNOTATIONS
 
 OTHER_LDFLAGS = $(inherited) -march=rv32imc -fno-rtti
 OTHER_LDFLAGS = $(inherited) -nostdlib++ -Wl,-static

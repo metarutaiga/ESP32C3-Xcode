@@ -9,5 +9,6 @@ build/*.tar.xz
 esp-clang/
 esp32.xcworkspace/xcshareddata/
 esp32.xcworkspace/xcuserdata/
+riscv32-esp-elf/
 xcschememanagement.plist
 *.xcscheme

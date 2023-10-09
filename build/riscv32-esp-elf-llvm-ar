@@ -1,5 +1,10 @@
 #!/bin/bash
 
+GCC_BIN_PATH="../riscv32-esp-elf/bin"
+if [ -d "../BaseSDK/riscv32-esp-elf/bin" ]; then
+  GCC_BIN_PATH="../BaseSDK/riscv32-esp-elf/bin"
+fi
+
 ARGS=""
 while [[ $# > 0 ]] ; do
     case $1 in
@@ -31,8 +36,6 @@ while [[ $# > 0 ]] ; do
     shift
 done
 
-#echo esp-clang/bin/llvm-ar $ARGS
-#esp-clang/bin/llvm-ar r $ARGS
-echo esp-clang/riscv32-esp-elf/bin/ar $ARGS
-esp-clang/riscv32-esp-elf/bin/ar r $ARGS
+echo $GCC_BIN_PATH/riscv32-esp-elf-ar $ARGS
+$GCC_BIN_PATH/riscv32-esp-elf-ar r $ARGS
 exit $?
