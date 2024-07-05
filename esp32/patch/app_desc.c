@@ -39,10 +39,7 @@ static inline char IRAM_ATTR to_hex_digit(unsigned val)
     return (val < 10) ? ('0' + val) : ('a' + val - 10);
 }
 
-__attribute__((constructor)) void esp_init_app_elf_sha256(void)
-{
-    esp_app_get_elf_sha256(NULL, 0);
-}
+char app_elf_sha256_str[CONFIG_APP_RETRIEVE_LEN_ELF_SHA + 1] = { 0 };
 
 /* The esp_app_desc.app_elf_sha256 should be possible to print in panic handler during cache is disabled.
  * But because the cache is disabled the reading esp_app_desc.app_elf_sha256 is not right and

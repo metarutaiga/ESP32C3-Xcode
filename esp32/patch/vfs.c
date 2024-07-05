@@ -4,6 +4,7 @@
 #include <esp_rom_gpio.h>
 #include <esp_vfs.h>
 #include <esp32c3/rom/ets_sys.h>
+#include <soc/uart_periph.h>
 #include <hal/gpio_ll.h>
 #include <hal/uart_ll.h>
 #include <lwip/sockets.h>

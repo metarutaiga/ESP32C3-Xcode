@@ -25,14 +25,14 @@ while [[ $# > 0 ]] ; do
     esac
     shift
 done
-ARGS=$ARGS" -D__Espressif__ -target riscv32-esp-elf -I"$CLANG_BIN_PATH"/../riscv32-esp-elf/include"
+ARGS=$ARGS" -D__Espressif__ -target riscv32-esp-elf -I"$CLANG_BIN_PATH"/../../riscv32-esp-elf/riscv32-esp-elf/include"
 
 if [ $LD -eq 0 ]; then
   echo $CLANG_BIN_PATH/clang $ARGS
   $CLANG_BIN_PATH/clang $ARGS
   exit $?
 else
-  echo $CLANG_BIN_PATH/clang-16 $ARGS
-  $CLANG_BIN_PATH/clang-16 $ARGS
+  echo $CLANG_BIN_PATH/clang-17 $ARGS
+  $CLANG_BIN_PATH/clang-17 $ARGS
   exit $?
 fi

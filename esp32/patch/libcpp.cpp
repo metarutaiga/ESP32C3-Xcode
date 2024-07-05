@@ -5,6 +5,7 @@
 #if defined(_LIBCPP_VERSION)
 _LIBCPP_BEGIN_NAMESPACE_STD
     template class _LIBCPP_CLASS_TEMPLATE_INSTANTIATION_VIS basic_string<char>;
+    void __libcpp_verbose_abort(const char* __format, ...) {}
 _LIBCPP_END_NAMESPACE_STD
 #endif
 

@@ -19,13 +19,14 @@ ALTERNATE_LINKER = $CLANGPLATFORM_DIR/riscv32-esp-elf-lld
 
 GCC_PREFIX_HEADER = $CLANGPLATFORM_DIR/hello_world/build/config/sdkconfig.h
 
-HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-clang/riscv32-esp-elf/include/c++/v1
+HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-clang/include/c++/v1
 
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/.
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/app_update/include
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/bootloader_support/include
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/driver/include
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/esp_app_format/include
+HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/esp_bootloader_format/include
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/esp_common/include
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/esp_event/include
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/esp_http_server/include
@@ -38,18 +39,25 @@ HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/esp_
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/esp_system/include
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/esp_timer/include
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/esp_wifi/include
-HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/freertos/esp_additions/include
-HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/freertos/esp_additions/include/freertos
+
+HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/freertos/config/include
+HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/freertos/config/include/freertos
+HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/freertos/config/riscv/include
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/freertos/FreeRTOS-Kernel/include
-HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/include
+HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/include/freertos
+
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/hal/include
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/hal/esp32c3/include
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/hal/platform_port/include
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/heap/include
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/http_parser
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/log/include
+
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/lwip/lwip/src/include
-HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/lwip/port/esp32/include
+HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/lwip/port/include
+HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/lwip/port/esp32xx/include
+HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/lwip/port/freertos/include
+
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/mbedtls/mbedtls/include
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/mqtt/esp-mqtt/include
 HEADER_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/../esp-idf/components/newlib/platform_include
@@ -72,12 +80,14 @@ LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/driver
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/efuse
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/esp_app_format
+LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/esp_coex
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/esp_common
 //LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/esp_eth
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/esp_event
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/esp_http_server
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/esp_hw_support
 //LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/esp_gdbstub
+LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/esp_mm
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/esp_netif
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/esp_partition
 LIBRARY_SEARCH_PATHS = $(inherited) $CLANGPLATFORM_DIR/hello_world/build/esp-idf/esp_phy
@@ -127,6 +137,7 @@ OTHER_CFLAGS = $(inherited) -ffunction-sections
 //OTHER_CFLAGS = $(inherited) -Wno-switch
 //OTHER_CFLAGS = $(inherited) -Wno-writable-strings
 OTHER_CFLAGS = $(inherited) -DNDEBUG
+OTHER_CFLAGS = $(inherited) -D__ESP__
 
 //OTHER_CFLAGS = $(inherited) -DCHAR_BIT=8
 //OTHER_CFLAGS = $(inherited) -DINT_MAX=2147483647
@@ -175,12 +186,14 @@ OTHER_LDFLAGS = $(inherited) -lcxx
 OTHER_LDFLAGS = $(inherited) -ldriver
 OTHER_LDFLAGS = $(inherited) -lefuse
 //OTHER_LDFLAGS = $(inherited) -lesp_app_format
+OTHER_LDFLAGS = $(inherited) -lesp_coex
 OTHER_LDFLAGS = $(inherited) -lesp_common
 //OTHER_LDFLAGS = $(inherited) -lesp_eth
 OTHER_LDFLAGS = $(inherited) -lesp_event
 OTHER_LDFLAGS = $(inherited) -lesp_http_server
 OTHER_LDFLAGS = $(inherited) -lesp_hw_support
 //OTHER_LDFLAGS = $(inherited) -lesp_gdbstub
+OTHER_LDFLAGS = $(inherited) -lesp_mm
 OTHER_LDFLAGS = $(inherited) -lesp_netif
 OTHER_LDFLAGS = $(inherited) -lesp_partition
 OTHER_LDFLAGS = $(inherited) -lesp_phy
