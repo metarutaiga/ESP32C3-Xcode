@@ -19,10 +19,6 @@ if [ ! -d "../esp-clang" ]; then
   cd ..
   tar xvf build/clang-esp-17.0.1_20240419-aarch64-apple-darwin.tar.xz
   xattr -r -d com.apple.quarantine esp-clang
-  rm esp-clang/bin/clang
-  rm esp-clang/bin/clang++
-  cp build/esp-clang-clang esp-clang/bin/clang
-  cp build/esp-clang-clang++ esp-clang/bin/clang++
   mkdir esp-clang/include/c++
   ln -s /opt/homebrew/opt/llvm/include/c++/v1 esp-clang/include/c++/v1
   cd build

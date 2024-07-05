@@ -28,8 +28,8 @@ done
 ARGS=$ARGS" -D__Espressif__ -target riscv32-esp-elf -I"$CLANG_BIN_PATH"/../../riscv32-esp-elf/riscv32-esp-elf/include"
 
 if [ $LD -eq 0 ]; then
-  echo $CLANG_BIN_PATH/clang++ $ARGS
-  $CLANG_BIN_PATH/clang++ $ARGS
+  echo /opt/homebrew/opt/llvm/bin/clang++ $ARGS
+  /opt/homebrew/opt/llvm/bin/clang++ $ARGS
   exit $?
 else
   echo $CLANG_BIN_PATH/clang-17 $ARGS
