@@ -11,6 +11,9 @@ void mqtt_receive(void (*callback)(const char* topic, uint32_t topic_len, const 
 void mqtt_setup(const char* ip, int port);
 bool mqtt_connected(void);
 
+bool mqtt_connected_internal(void);
+bool mqtt_ready_internal(void);
+
 #ifdef __cplusplus
 }
 #endif

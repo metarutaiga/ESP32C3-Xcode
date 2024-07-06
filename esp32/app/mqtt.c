@@ -8,9 +8,11 @@
 #include <sys/socket.h>
 #define mqtt_connected mqtt_connected_unused
 #define mqtt_publish mqtt_publish_unused
+#define mqtt_ready mqtt_ready_unused
 #include <freertos-mqtt/mqtt-service.h>
 #undef mqtt_connected
 #undef mqtt_publish
+#undef mqtt_ready
 #endif
 #include "mqtt.h"
 
@@ -238,6 +240,9 @@ void mqtt_setup(const char* ip, int port)
 {
     if (mqtt_client == NULL)
     {
+        if (ip == NULL || ip[0] == 0)
+            return;
+
 #if USE_ESP_MQTT
         esp_mqtt_client_config_t mqtt_cfg =
         {
@@ -278,4 +283,14 @@ void mqtt_setup(const char* ip, int port)
 bool mqtt_connected(void)
 {
     return mqtt_is_connected;
+}
+
+bool mqtt_connected_internal(void)
+{
+    return mqtt_connected_unused();
+}
+
+bool mqtt_ready_internal(void)
+{
+    return mqtt_ready_unused();
 }

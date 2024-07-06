@@ -1,8 +1,14 @@
 #include "esp32.h"
 #include <sys/time.h>
 #include <esp_http_server.h>
+#include <lwip/apps/sntp.h>
 #include "app/fs.h"
 #include "app/httpd.h"
+#include "app/mqtt.h"
+#include "app/ota.h"
+#include "app/temperature.h"
+
+extern "C" void init_udp_console(const char* ip);
 
 extern const char web_css[] __attribute__((weak));
 const char web_css[] = "";
@@ -207,6 +213,10 @@ esp_err_t web_system(httpd_req_t* req)
     html +=     "<button type='submit'>Reset</button>";
     html += "</form>";
 
+    // Temperature
+    sprintf(number, "%d", temperature());
+    html += "Temperature : " + string(number) + "</br>";
+
     // IP
     esp_netif_ip_info_t ip_info = {};
     if (esp_netif_get_ip_info(sta_netif, &ip_info) == ESP_OK)
@@ -218,6 +228,10 @@ esp_err_t web_system(httpd_req_t* req)
     html += "STA Connected : " + string(number) + "</br>";
     sprintf(number, "%d", wifi_sta_got_ip);
     html += "STA Disconnected : " + string(number) + "</br>";
+
+    // MQTT
+    html += "MQTT Connected : " + string(mqtt_connected_internal() ? "YES" : "NO") + "</br>";
+    html += "MQTT Ready : " + string(mqtt_ready_internal() ? "YES" : "NO") + "</br>";
 
     // Tail
     html += "</body>";
@@ -253,7 +267,7 @@ esp_err_t web_ssid(httpd_req_t* req)
 
     wifi_mode_t mode = WIFI_MODE_NULL;
     esp_wifi_get_mode(&mode);
-    if (mode == WIFI_MODE_APSTA)
+    if (/*mode == WIFI_MODE_STA || */mode == WIFI_MODE_APSTA)
     {
         int fd = fs_open("ssid", "r");
         if (fd >= 0)
@@ -294,6 +308,22 @@ esp_err_t web_ota(httpd_req_t* req)
         fs_close(fd);
     }
 
+    wifi_mode_t mode = WIFI_MODE_NULL;
+    esp_wifi_get_mode(&mode);
+    if (mode == WIFI_MODE_STA || mode == WIFI_MODE_APSTA)
+    {
+        fd = fs_open("ota", "r");
+        if (fd >= 0)
+        {
+            if (strcmp(fs_gets(number, 256, fd), "YES") == 0)
+            {
+                ota_init(8685);
+                debug = true;
+            }
+            fs_close(fd);
+        }
+    }
+
     return ESP_OK;
 }
 
@@ -316,6 +346,22 @@ esp_err_t web_udp(httpd_req_t* req)
     {
         fs_write(text.data(), text.length(), fd);
         fs_close(fd);
+    }
+
+    wifi_mode_t mode = WIFI_MODE_NULL;
+    esp_wifi_get_mode(&mode);
+    if (mode == WIFI_MODE_STA || mode == WIFI_MODE_APSTA)
+    {
+        fd = fs_open("udp", "r");
+        if (fd >= 0)
+        {
+            if (strchr(fs_gets(number, 256, fd), '.') != 0)
+            {
+                init_udp_console(number);
+                debug = true;
+            }
+            fs_close(fd);
+        }
     }
 
     return ESP_OK;
@@ -343,6 +389,20 @@ esp_err_t web_mqtt(httpd_req_t* req)
         fs_close(fd);
     }
 
+    wifi_mode_t mode = WIFI_MODE_NULL;
+    esp_wifi_get_mode(&mode);
+    if (mode == WIFI_MODE_STA || mode == WIFI_MODE_APSTA)
+    {
+        int fd = fs_open("mqtt", "r");
+        if (fd >= 0)
+        {
+            string mqtt = fs_gets(number, 256, fd);
+            string port = fs_gets(number, 256, fd);
+            mqtt_setup(mqtt.c_str(), strtol(port.c_str(), nullptr, 10));
+            fs_close(fd);
+        }
+    }
+
     return ESP_OK;
 }
 
@@ -366,6 +426,25 @@ esp_err_t web_ntp(httpd_req_t* req)
     {
         fs_write(text.data(), text.length(), fd);
         fs_close(fd);
+    }
+
+    wifi_mode_t mode = WIFI_MODE_NULL;
+    esp_wifi_get_mode(&mode);
+    if (mode == WIFI_MODE_STA || mode == WIFI_MODE_APSTA)
+    {
+        fd = fs_open("ntp", "r");
+        if (fd >= 0)
+        {
+            string ntp = fs_gets(number, 256, fd);
+            string zone = fs_gets(number, 256, fd);
+            fs_close(fd);
+            free((void*)sntp_getservername(0));
+            sntp_setoperatingmode(SNTP_OPMODE_POLL);
+            sntp_setservername(0, strdup(ntp.c_str()));
+            sntp_init();
+            setenv("TZ", zone.c_str(), 1);
+            tzset();
+        }
     }
 
     return ESP_OK;

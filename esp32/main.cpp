@@ -8,6 +8,7 @@
 #include "app/https.h"
 #include "app/mqtt.h"
 #include "app/ota.h"
+#include "app/temperature.h"
 
 _LIBCPP_BEGIN_NAMESPACE_STD
   template string operator+<char, char_traits<char>, allocator<char>>(char const*, string const&);
@@ -186,6 +187,7 @@ extern "C" void app_main()
 
     // Component
     fs_init();
+    temperature_init();
 
     // WiFi
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
