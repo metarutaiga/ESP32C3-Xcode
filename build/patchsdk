@@ -208,6 +208,30 @@ index 1bbd80ade8..07b877d9a4 100644
  	case 2: /* md2WithRSAEncryption */
  	default:
  		wpa_printf(MSG_INFO, "X509: Unsupported certificate signature "
+diff --git a/tools/cmake/build.cmake b/tools/cmake/build.cmake
+index d562c22453..6ae3aaa5b5 100644
+--- a/tools/cmake/build.cmake
++++ b/tools/cmake/build.cmake
+@@ -516,17 +516,9 @@ macro(idf_build_process target)
+         set(local_components_list_file ${build_dir}/local_components_list.temp.yml)
+ 
+         set(__contents "components:\n")
+-        idf_build_get_property(build_component_targets BUILD_COMPONENT_TARGETS)
+-        foreach(__build_component_target ${build_component_targets})
+-            __component_get_property(__component_name ${__build_component_target} COMPONENT_NAME)
+-            __component_get_property(__component_dir ${__build_component_target} COMPONENT_DIR)
+-
+-            # Exclude components could be passed with -DEXCLUDE_COMPONENTS
+-            # after the call to __component_add finished in the last run.
+-            # Need to check if the component is excluded again
+-            if(NOT __component_name IN_LIST EXCLUDE_COMPONENTS)
++        foreach(__component_name ${components})
++            idf_component_get_property(__component_dir ${__component_name} COMPONENT_DIR)
+                 set(__contents "${__contents}  - name: \"${__component_name}\"\n    path: \"${__component_dir}\"\n")
+-            endif()
+         endforeach()
+ 
+         file(WRITE ${local_components_list_file} "${__contents}")
 diff --git a/tools/cmake/third_party/GetGitRevisionDescription.cmake b/tools/cmake/third_party/GetGitRevisionDescription.cmake
 index 53428e2cb8..381d173b30 100644
 --- a/tools/cmake/third_party/GetGitRevisionDescription.cmake

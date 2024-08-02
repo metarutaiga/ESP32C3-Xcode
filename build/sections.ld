@@ -13,14 +13,13 @@
  */
 /* List of deprecated options */
 
-/* Default entry point */
-ENTRY(call_start_cpu0);
-
 _strtol_r = 0x40031f06;
 strtol_l = 0x40031f08;
 _strtoul_r = 0x40032064;
 strtoul_l = 0x40032066;
 
+/* Default entry point */
+ENTRY(call_start_cpu0);
 SECTIONS
 {
   /**
@@ -399,13 +398,13 @@ SECTIONS
     *libdriver.a:gptimer.*(.text .text.OUTLINED_FUNCTION_0 .text.OUTLINED_FUNCTION_1 .text.OUTLINED_FUNCTION_2 .text.OUTLINED_FUNCTION_3 .text.OUTLINED_FUNCTION_4 .text.OUTLINED_FUNCTION_5 .text.OUTLINED_FUNCTION_6 .text.OUTLINED_FUNCTION_7 .text.OUTLINED_FUNCTION_8 .text.gptimer_del_timer .text.gptimer_destroy .text.gptimer_disable .text.gptimer_enable .text.gptimer_get_captured_count .text.gptimer_get_raw_count .text.gptimer_get_resolution .text.gptimer_new_timer .text.gptimer_register_event_callbacks .text.gptimer_release_group_handle .text.gptimer_set_alarm_action .text.gptimer_set_raw_count .text.gptimer_start .text.gptimer_stop)
     *libesp_event.a:default_event_loop.*(.text .text.OUTLINED_FUNCTION_0 .text.esp_event_handler_instance_register .text.esp_event_handler_instance_unregister .text.esp_event_handler_register .text.esp_event_handler_unregister .text.esp_event_loop_create_default .text.esp_event_loop_delete_default .text.esp_event_post)
     *libesp_event.a:esp_event.*(.text .text.OUTLINED_FUNCTION_0 .text.OUTLINED_FUNCTION_1 .text.OUTLINED_FUNCTION_2 .text.OUTLINED_FUNCTION_3 .text.OUTLINED_FUNCTION_4 .text.OUTLINED_FUNCTION_5 .text.OUTLINED_FUNCTION_6 .text.OUTLINED_FUNCTION_7 .text.OUTLINED_FUNCTION_8 .text.base_node_add_handler .text.esp_event_dump .text.esp_event_handler_instance_register_with .text.esp_event_handler_instance_unregister_with .text.esp_event_handler_register_with .text.esp_event_handler_register_with_internal .text.esp_event_handler_unregister_with .text.esp_event_handler_unregister_with_internal .text.esp_event_loop_create .text.esp_event_loop_delete .text.esp_event_loop_run .text.esp_event_loop_run_task .text.esp_event_post_to .text.handler_execute .text.handler_instances_add .text.handler_instances_remove .text.handler_instances_remove_all .text.loop_node_add_handler)
-    *libesp_hw_support.a:cpu.*(.text .text.esp_cpu_clear_breakpoint .text.esp_cpu_clear_watchpoint .text.esp_cpu_intr_get_desc .text.esp_cpu_set_breakpoint .text.esp_cpu_set_watchpoint)
+    *libesp_hw_support.a:cpu.*(.text .text.esp_cpu_clear_breakpoint .text.esp_cpu_clear_watchpoint .text.esp_cpu_set_breakpoint .text.esp_cpu_set_watchpoint)
     *libesp_hw_support.a:esp_gpio_reserve.*(.text)
     *libesp_hw_support.a:gdma.*(.text .text.OUTLINED_FUNCTION_0 .text.OUTLINED_FUNCTION_1 .text.OUTLINED_FUNCTION_10 .text.OUTLINED_FUNCTION_2 .text.OUTLINED_FUNCTION_3 .text.OUTLINED_FUNCTION_4 .text.OUTLINED_FUNCTION_5 .text.OUTLINED_FUNCTION_6 .text.OUTLINED_FUNCTION_7 .text.OUTLINED_FUNCTION_8 .text.OUTLINED_FUNCTION_9 .text.gdma_append .text.gdma_apply_strategy .text.gdma_connect .text.gdma_del_channel .text.gdma_del_rx_channel .text.gdma_del_tx_channel .text.gdma_disconnect .text.gdma_get_channel_id .text.gdma_get_free_m2m_trig_id_mask .text.gdma_new_ahb_channel .text.gdma_register_rx_event_callbacks .text.gdma_register_tx_event_callbacks .text.gdma_release_group_handle .text.gdma_release_pair_handle .text.gdma_reset .text.gdma_set_priority .text.gdma_set_transfer_ability .text.gdma_start .text.gdma_stop)
     *libesp_hw_support.a:periph_ctrl.*(.text .text.periph_ll_get_clk_en_mask .text.periph_ll_get_rst_en_mask .text.periph_module_disable .text.periph_module_enable .text.periph_rcc_acquire_enter .text.periph_rcc_acquire_exit .text.periph_rcc_release_enter .text.periph_rcc_release_exit)
     *libesp_hw_support.a:sar_periph_ctrl.*(.text .text.OUTLINED_FUNCTION_0 .text.s_sar_adc_power_acquire .text.s_sar_adc_power_release .text.sar_periph_ctrl_adc_continuous_power_acquire .text.sar_periph_ctrl_adc_continuous_power_release .text.sar_periph_ctrl_adc_oneshot_power_acquire .text.sar_periph_ctrl_adc_oneshot_power_release .text.sar_periph_ctrl_init .text.sar_periph_ctrl_power_disable .text.sar_periph_ctrl_pwdet_power_acquire .text.sar_periph_ctrl_pwdet_power_release)
     *libesp_system.a:esp_system_chip.*(.text .text.esp_get_free_heap_size .text.esp_get_free_internal_heap_size .text.esp_get_idf_version .text.esp_get_minimum_free_heap_size)
-    *libesp_wifi.a:esp_adapter.*(.text .text.clear_intr_wrapper .text.coex_deinit_wrapper .text.coex_disable_wrapper .text.coex_enable_wrapper .text.coex_init_wrapper .text.coex_register_start_cb_wrapper .text.coex_schm_curr_period_get_wrapper .text.coex_schm_curr_phase_get_wrapper .text.coex_schm_interval_get_wrapper .text.coex_schm_process_restart_wrapper .text.coex_schm_register_cb_wrapper .text.coex_schm_status_bit_clear_wrapper .text.coex_schm_status_bit_set_wrapper .text.coex_wifi_channel_set_wrapper .text.coex_wifi_request_wrapper .text.disable_intr_wrapper .text.enable_intr_wrapper .text.esp_event_post_wrapper .text.esp_log_write_wrapper .text.esp_log_writev_wrapper .text.esp_phy_disable_wrapper .text.esp_phy_enable_wrapper .text.esp_read_mac_wrapper .text.event_group_wait_bits_wrapper .text.get_time_wrapper .text.mutex_create_wrapper .text.mutex_delete_wrapper .text.nvs_open_wrapper .text.queue_create_wrapper .text.queue_recv_wrapper .text.queue_send_to_back_wrapper .text.queue_send_to_front_wrapper .text.queue_send_wrapper .text.recursive_mutex_create_wrapper .text.set_intr_wrapper .text.set_isr_wrapper .text.task_create_pinned_to_core_wrapper .text.task_create_wrapper .text.task_get_max_priority_wrapper .text.wifi_clock_disable_wrapper .text.wifi_clock_enable_wrapper .text.wifi_create_queue .text.wifi_create_queue_wrapper .text.wifi_delete_queue .text.wifi_delete_queue_wrapper .text.wifi_reset_mac_wrapper .text.wifi_thread_semphr_free .text.wifi_thread_semphr_get_wrapper)
+    *libesp_wifi.a:esp_adapter.*(.text .text.clear_intr_wrapper .text.coex_deinit_wrapper .text.coex_disable_wrapper .text.coex_enable_wrapper .text.coex_init_wrapper .text.coex_register_start_cb_wrapper .text.coex_schm_curr_period_get_wrapper .text.coex_schm_curr_phase_get_wrapper .text.coex_schm_flexible_period_get_wrapper .text.coex_schm_flexible_period_set_wrapper .text.coex_schm_interval_get_wrapper .text.coex_schm_process_restart_wrapper .text.coex_schm_register_cb_wrapper .text.coex_schm_status_bit_clear_wrapper .text.coex_schm_status_bit_set_wrapper .text.coex_wifi_channel_set_wrapper .text.coex_wifi_request_wrapper .text.disable_intr_wrapper .text.enable_intr_wrapper .text.esp_event_post_wrapper .text.esp_log_write_wrapper .text.esp_log_writev_wrapper .text.esp_phy_disable_wrapper .text.esp_phy_enable_wrapper .text.esp_read_mac_wrapper .text.event_group_wait_bits_wrapper .text.get_time_wrapper .text.mutex_create_wrapper .text.mutex_delete_wrapper .text.nvs_open_wrapper .text.queue_create_wrapper .text.queue_recv_wrapper .text.queue_send_to_back_wrapper .text.queue_send_to_front_wrapper .text.queue_send_wrapper .text.recursive_mutex_create_wrapper .text.set_intr_wrapper .text.set_isr_wrapper .text.task_create_pinned_to_core_wrapper .text.task_create_wrapper .text.task_get_max_priority_wrapper .text.wifi_clock_disable_wrapper .text.wifi_clock_enable_wrapper .text.wifi_create_queue .text.wifi_create_queue_wrapper .text.wifi_delete_queue .text.wifi_delete_queue_wrapper .text.wifi_reset_mac_wrapper .text.wifi_thread_semphr_free .text.wifi_thread_semphr_get_wrapper)
     *libesp_wifi.a:wifi_netif.*(.text .text.esp_wifi_create_if_driver .text.esp_wifi_destroy_if_driver .text.esp_wifi_get_if_mac .text.esp_wifi_is_if_ready_when_started .text.esp_wifi_register_if_rxcb .text.wifi_ap_receive .text.wifi_driver_start .text.wifi_free .text.wifi_transmit)
     *libfreertos.a:app_startup.*(.literal .literal.* .text .text.*)
     *libfreertos.a:freertos_compatibility.*(.literal .literal.* .text .text.*)
@@ -585,8 +584,56 @@ SECTIONS
     . = ALIGN (16);
     _heap_start = ABSOLUTE(.);
   } > dram0_0_seg
+ /* DWARF 1 */
+  .debug 0 : { *(.debug) }
+  .line 0 : { *(.line) }
+  /* GNU DWARF 1 extensions */
+  .debug_srcinfo 0 : { *(.debug_srcinfo) }
+  .debug_sfnames 0 : { *(.debug_sfnames) }
+  /* DWARF 1.1 and DWARF 2 */
+  .debug_aranges 0 : { *(.debug_aranges) }
+  .debug_pubnames 0 : { *(.debug_pubnames) }
+  /* DWARF 2 */
+  .debug_info 0 : { *(.debug_info .gnu.linkonce.wi.*) }
+  .debug_abbrev 0 : { *(.debug_abbrev) }
+  .debug_line 0 : { *(.debug_line) }
+  .debug_frame 0 : { *(.debug_frame) }
+  .debug_str 0 : { *(.debug_str) }
+  .debug_loc 0 : { *(.debug_loc) }
+  .debug_macinfo 0 : { *(.debug_macinfo) }
+  .debug_pubtypes 0 : { *(.debug_pubtypes) }
+  /* DWARF 3 */
+  .debug_ranges 0 : { *(.debug_ranges) }
+  /* SGI/MIPS DWARF 2 extensions */
+  .debug_weaknames 0 : { *(.debug_weaknames) }
+  .debug_funcnames 0 : { *(.debug_funcnames) }
+  .debug_typenames 0 : { *(.debug_typenames) }
+  .debug_varnames 0 : { *(.debug_varnames) }
+  /* GNU DWARF 2 extensions */
+  .debug_gnu_pubnames 0 : { *(.debug_gnu_pubnames) }
+  .debug_gnu_pubtypes 0 : { *(.debug_gnu_pubtypes) }
+  /* DWARF 4 */
+  .debug_types 0 : { *(.debug_types) }
+  /* DWARF 5 */
+  .debug_addr 0 : { *(.debug_addr) }
+  .debug_line_str 0 : { *(.debug_line_str) }
+  .debug_loclists 0 : { *(.debug_loclists) }
+  .debug_macro 0 : { *(.debug_macro) }
+  .debug_names 0 : { *(.debug_names) }
+  .debug_rnglists 0 : { *(.debug_rnglists) }
+  .debug_str_offsets 0 : { *(.debug_str_offsets) }
+  .comment 0 : { *(.comment) }
+  .note.GNU-stack 0: { *(.note.GNU-stack) }
+  .riscv.attributes 0: { *(.riscv.attributes) }
   /DISCARD/ :
   {
+   /**
+    * Discarding .rela.* sections results in the following mapping:
+    * .rela.text.* -> .text.*
+    * .rela.data.* -> .data.*
+    * And so forth...
+    */
+   *(.rela.*)
    *(.eh_frame_hdr)
    *(.eh_frame)
   }
