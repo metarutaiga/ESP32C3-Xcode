@@ -1,5 +1,5 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index a033c3d478..62fc8b53de 100644
+index 722b07b973..e607e21cdd 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -16,10 +16,13 @@ endif()
@@ -33,10 +33,10 @@ index a033c3d478..62fc8b53de 100644
          list(APPEND compile_options "-Og")
          if(CMAKE_C_COMPILER_ID MATCHES "GNU" AND NOT CONFIG_IDF_TARGET_LINUX)
 diff --git a/components/esp_common/include/esp_attr.h b/components/esp_common/include/esp_attr.h
-index 2ce549b6fe..79fd4da92d 100644
+index ee5a94a310..59aa39f703 100644
 --- a/components/esp_common/include/esp_attr.h
 +++ b/components/esp_common/include/esp_attr.h
-@@ -65,7 +65,7 @@ extern "C" {
+@@ -75,7 +75,7 @@ extern "C" {
  
  // Forces a string into DRAM instead of flash
  // Use as esp_rom_printf(DRAM_STR("Hello world!\n"));
@@ -46,10 +46,10 @@ index 2ce549b6fe..79fd4da92d 100644
  #if CONFIG_SOC_RTC_FAST_MEM_SUPPORTED || CONFIG_SOC_RTC_SLOW_MEM_SUPPORTED
  // Forces data into RTC memory. See "docs/deep-sleep-stub.rst"
 diff --git a/components/freertos/FreeRTOS-Kernel/portable/riscv/portasm.S b/components/freertos/FreeRTOS-Kernel/portable/riscv/portasm.S
-index f63c880372..96e41e376d 100644
+index b737e58d7c..5f32c613a0 100644
 --- a/components/freertos/FreeRTOS-Kernel/portable/riscv/portasm.S
 +++ b/components/freertos/FreeRTOS-Kernel/portable/riscv/portasm.S
-@@ -233,7 +233,7 @@ rtos_current_tcb:
+@@ -441,7 +441,7 @@ rtos_current_tcb:
      lw      a0, pxCurrentTCBs
  #endif /* ( configNUM_CORES > 1 ) */
      ret
@@ -209,14 +209,13 @@ index 1bbd80ade8..07b877d9a4 100644
  	default:
  		wpa_printf(MSG_INFO, "X509: Unsupported certificate signature "
 diff --git a/tools/cmake/build.cmake b/tools/cmake/build.cmake
-index d562c22453..6ae3aaa5b5 100644
+index 0bafd9fcb1..10abac4a10 100644
 --- a/tools/cmake/build.cmake
 +++ b/tools/cmake/build.cmake
-@@ -516,17 +516,9 @@ macro(idf_build_process target)
-         set(local_components_list_file ${build_dir}/local_components_list.temp.yml)
+@@ -517,16 +517,9 @@ macro(idf_build_process target)
  
          set(__contents "components:\n")
--        idf_build_get_property(build_component_targets BUILD_COMPONENT_TARGETS)
+         idf_build_get_property(build_component_targets BUILD_COMPONENT_TARGETS)
 -        foreach(__build_component_target ${build_component_targets})
 -            __component_get_property(__component_name ${__build_component_target} COMPONENT_NAME)
 -            __component_get_property(__component_dir ${__build_component_target} COMPONENT_DIR)

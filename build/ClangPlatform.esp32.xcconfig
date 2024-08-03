@@ -238,6 +238,16 @@ OTHER_LDFLAGS = $(inherited) -lmu_srp
 
 OTHER_LDFLAGS = $(inherited) -Wl,--end-group
 
+OTHER_LDFLAGS = $(inherited) -Wl,-u,app_main
+OTHER_LDFLAGS = $(inherited) -Wl,-u,esp_app_desc
+OTHER_LDFLAGS = $(inherited) -Wl,-u,esp_efuse_startup_include_func
+OTHER_LDFLAGS = $(inherited) -Wl,-u,esp_system_include_coredump_init
+OTHER_LDFLAGS = $(inherited) -Wl,-u,esp_system_include_startup_funcs
+OTHER_LDFLAGS = $(inherited) -Wl,-u,esp_timer_init_include_func
+OTHER_LDFLAGS = $(inherited) -Wl,-u,include_esp_phy_override
+OTHER_LDFLAGS = $(inherited) -Wl,-u,newlib_include_init_funcs
+OTHER_LDFLAGS = $(inherited) -Wl,-u,start_app
+
 OTHER_LDFLAGS = $(inherited) -Wl,-wrap,_read_r_console
 OTHER_LDFLAGS = $(inherited) -Wl,-wrap,_write_r_console
 

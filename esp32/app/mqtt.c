@@ -114,6 +114,14 @@ char* mqtt_prefix(char* pointer, const char* prefix, ...)
     va_start(args, prefix);
     char* output = pointer;
     pointer += sprintf(pointer, "%s", thisname);
+    for (int i = 0; i < 256; ++i)
+    {
+        char c = output[i];
+        if (c == 0)
+            break;
+        if (c == '_')
+            output[i] = '/';
+    }
     pointer += sprintf(pointer, "/%s", prefix);
     const char* name;
     while ((name = va_arg(args, char*)))

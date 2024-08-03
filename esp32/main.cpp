@@ -10,6 +10,13 @@
 #include "app/ota.h"
 #include "app/temperature.h"
 
+#define ESP_WIFI_MAX_CONN_NUM  (10)       /**< max number of stations which can connect to ESP32C3 soft-AP */
+
+typedef struct wifi_sta_list_t {
+    wifi_sta_info_t sta[ESP_WIFI_MAX_CONN_NUM]; /**< station list */
+    int       num; /**< number of stations in the list (other entries are invalid) */
+} wifi_sta_list_t;
+
 _LIBCPP_BEGIN_NAMESPACE_STD
   template string operator+<char, char_traits<char>, allocator<char>>(char const*, string const&);
 _LIBCPP_END_NAMESPACE_STD
